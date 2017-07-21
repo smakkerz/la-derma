@@ -1,27 +1,34 @@
-# RACODE Generator Beta by [belajarphp.net](http://belajarphp.net)#
-racode generator adalah sebuah tools yang mempermudah developer dalam proses development,
-tools ini dibangun atas 5 komponen utama yaitu : <br>
-1. framework codeigniter 3<br>
-2. harviacode crud generator versi 1.3.0<br>
-3. ION auth library<br>
-4. template AdminLTE<br>
-5. menu management<br><br>
+Tabel Penjelasan Aktor
 
-Informasi Selengkapnya 
-https://belajarphp.net/racode-generator-tools-for-development-2/
-<br>
-# Tutorial Membuat Aplikasi Dengan Racode
-Dalam waktu dekat saya akan merilis beberapa tutorial membuat aplikasi dengan racode, tutorial ini akan saya bagikan gratis pada halaman ini.
+Aktor	Hak Akses	Uraian
+Owner	Laporan	Melihat laporan mingguan dan bulanan mulai (obat, pengeluaran, pemasukan, dan layanan) juga bisa mencetak bulanan
+	Grafik	Melihat hasil dalam skala mingguan mulai (obat, pengeluaran, pemasukan, dan layanan)
+Admin	Mengelola Obat	CRUD Data Obat
+	Mengelola Pasien	Mendaftarkan data Pasien, edit, hapus, dan menampilkan data pasien
+	Mengelola Laporan	Mengelola Pengeluaran dan Pemasukan
+	Mengelola Layanan	CRUD Data Layanan
+	Mengelola Transaksi	Mengelola transaksi dan pembayaran.
+	Mengelola Jadwal Dokter	CRUD Jadwal Dokter skala jam dan hari.
+	Mengelola Pengguna	CRUD Data Dokter,owner, dan admin
+	Mengelola rekam medis	CRUD Rekam medis berdasarkan pesan/catatan dokter
+	Mengelola tindakan	CRUD tindakan berdasarkan pesan/catatan dokter
+	Pesan	
+Dokter	*Melihat Jadwal Dokter	Melihat Jadwal dokter 
+	*Pesan	Melayani tanya-jawab dengan pasien
+	 Laporan	Melihat laporan mingguan dan bulanan mulai (obat, pengeluaran, pemasukan, dan layanan) juga bisa mencetak bulanan
+Pasien	*Melihat Jadwal Dokter	Melihat Jadwal dokter
+	*Profil Pasien	Melihat Data Pribadi Pasien
+	*Melihat rekam medis	Melihat rekam medis Pasien
+	*Pesan	Mengirim pesan ke dokter maupun ke admin
+	*Melihat Tindakan	Melihat tindakan Pasien
 
-# Cara Install
-1. Masuk ke phpmyadmin, buat database dengan nama demo<br>
-2. Copy paste isi demo.sql ke dalam database demo<br>
-3. Setting database password di application/config/database.php<br>
-4. Setting base_uri di application/config/config.php<br><br>
+*Melihat yang ada nama miliknya,maksudnya (Dokter Login dengan akun A maka Jadwal Dokter yang ditampilkan dokter dengan Akun A, begitu pula Pasien login dengan akun AB maka Jadwal Dokter yang ditampilkan yang ada nama milik Pasien AB).
 
-# User Login
-Jika anda mengalami masalah login, gunakan email dan password default
-> admin@admin.com
->
-> password
+Untuk tabel di database bisa dirubah maupun ditambah sesuai kebutuhan Junandia dengan konfirmasi ataupun diskusikan terlebih dahulu.
 
+Desain untuk aktor Dokter, Owner, dan Pasien menggunakan Template Gentelella.
+Untuk Desain Admin sementara silahkan gunakan Gentelella juga. 
+
+Sementara Desain Admin sedang proses pembuatan. Jika ada pertanyaan yang belum jelas bisa japri saya ke 089 66 44 51 557 ataupun ke cs.sekawan@zoho.com ataupun kirim pesan ke website sekawan di http://sekawan.net76.net  Saya menerima dan mengandalkan semua inovasi dan kreativitas junandia. Terima kasih atas perhatiannya.
+
+Selamat Berinovasi dan berpikir kreativitas untuk menjadi salah satu keunggulan jati diri anda. Kembangkan potensi dirimu
