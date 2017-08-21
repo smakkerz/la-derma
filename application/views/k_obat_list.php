@@ -17,9 +17,7 @@
                     <th width="80px">No</th>
 		    <th>Nama</th>
 		    <th>Kategori Obat</th>
-		    <th>Deskripsi</th>
 		    <th>Stock</th>
-		    <th>Manufaktur</th>
 		    <th>Harga</th>
 		    <th>Status</th>
 		    <th>Expired</th>
@@ -36,12 +34,10 @@
 		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $k_obat->nama ?></td>
 		    <td><?php echo $k_obat->kategori ?></td>
-		    <td><?php echo $k_obat->deskripsi ?></td>
 		    <td><?php echo $k_obat->stock ?></td>
-		    <td><?php echo $k_obat->manufaktur ?></td>
-		    <td><?php echo $k_obat->harga ?></td>
+		    <td><?php echo uang($k_obat->harga) ?></td>
 		    <td><?php echo $k_obat->status ?></td>
-		    <td><?php echo $k_obat->expired ?></td>
+		    <td><?php echo format_tanggal($k_obat->expired) ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
 			echo anchor(site_url('k_obat/read/'.$k_obat->id_obat),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 

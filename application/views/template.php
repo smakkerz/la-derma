@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php $informasi = $this->informasi->web(); ?>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,16 +9,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>HOME | SIM</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/select2/css/select2.min.css">
+            <script src="<?php echo base_url() ?>template/vendors/jquery/dist/jquery.min.js"></script>
 
+    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+  $(".js-example-basic-single").select2();
+});
+</script>
+    <link rel="shortcut icon" href="<?= base_url($informasi['fav']) ?>" type="image/x-icon">
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url() ?>template/build/css/custom.min.css" rel="stylesheet">
     <!-- jQuery -->
-  
+    <!-- jQuery Obat -->
+    
   </head>
 
   <body class="nav-md">
@@ -125,14 +135,14 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Klinik La Derma Semarang ©<?= date("Y"); ?> All Rights Reserved.
+            <?= $informasi['name']; ?> ©<?= date("Y"); ?> All Rights Reserved.
           </div>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
       </div>
     </div>
-        <script src="<?php echo base_url() ?>template/vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="<?php echo base_url() ?>template/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -143,6 +153,7 @@
     <script src="<?php echo base_url() ?>template/build/js/custom.min.js"></script>
         <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
         <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
+
 
   </body>
 

@@ -24,7 +24,7 @@
                     ?>
                     <tr>
                         <td><a href="<?= base_url('c_kasir/'.$url.'/'.$row->idTransaksi) ?>"><?= $row->idTransaksi ?></a></td>
-                        <td><?= $row->date ?></td>
+                        <td><?= format_tanggal($row->date) ?></td>
                         <td><?= $row->idDokter ?></td>
                         <td><?= $row->idPasien ?></td>
                         <td><?= $row->status ?></td>

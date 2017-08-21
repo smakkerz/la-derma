@@ -15,7 +15,7 @@ function uang($nominal, $pecah=0){
     return "Rp. ".number_format($nominal, $pecah, ',','.');
 }
 
-function format_tanggal($tanggal,$jam=false){
+function format_tanggal($tanggal){
 
  $tanggal_terbentuk="";
 
@@ -23,7 +23,7 @@ function format_tanggal($tanggal,$jam=false){
 
  $set1=explode("-",$tanggal[0]);
 
- $tanggal_terbentuk.=" ".$set1[0]." ";
+ $tanggal_terbentuk.=" ".$set1[2]." ";
  switch ($set1[1]) {
     case '01':
         $tanggal_terbentuk.="Januari";
@@ -76,10 +76,7 @@ function format_tanggal($tanggal,$jam=false){
 
 
  }
- $tanggal_terbentuk.=" ".$set1[2];
+ $tanggal_terbentuk.=" ".$set1[0];
 
-if($jam==true){
-    $tanggal_terbentuk.=" ".$tanggal[1];
-}
 return $tanggal_terbentuk;
 }
