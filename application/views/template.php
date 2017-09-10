@@ -45,7 +45,11 @@ $(document).ready(function() {
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_info">
-                <h2 class="pull-right"><?= $this->session->userdata('nama') ?></h2>
+                <h2 class="pull-right">
+                 Hai, Selamat datang <?php $user = $this->ion_auth->user()->row();
+                     echo $user->first_name." ".$user->last_name; ?>
+      
+    </h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -58,13 +62,24 @@ $(document).ready(function() {
                 <h3>MENU UTAMA</h3>
                 <ul class="nav side-menu">
                     <li><a href="<?= base_url('auth') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
-                        <li><a href="<?= base_url('c_kasir') ?>"><i class="fa fa-folder-o"></i> Kasir</a></li>
-                        <li><a href="<?= base_url('c_kasir/tx_list') ?>"><i class="fa fa-file-o"></i>List Transaksi </a></li>
-                        <li><a href="<?= base_url('k_obat') ?>"><i class="fa fa-folder-o"></i>Obat </a></li>
-                        <li><a href="<?= base_url('Kategori_obat') ?>"><i class="fa fa-file-o"></i>Kategori Obat</a></li>
-                        <li><a href="<?= base_url('pasien') ?>"><i class="fa fa-file-o"></i>Pasien </a></li>
-                        <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-file-o"></i>Pesan </a></li>
-                        <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-file-o"></i>Rekam Medis </a></li>
+                    <li><a><i class="fa fa-desktop"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?= base_url('pasien') ?>">Pasien</a></li>
+                            <li><a href="media_gallery.html">Dokter</a></li>
+                            <li><a href="typography.html">User</a></li>
+                            <li><a href="<?= base_url('Kategori_obat') ?>">Kategori Obat</a></li>
+                            <li><a href="<?= base_url('k_obat') ?>">Obat</a></li>
+                            <li><a href="<?= base_url('c_jadwal') ?>">Jadwal</a></li>
+                            <li><a href="<?= base_url('k_paket') ?>">Paket</a></li>
+                            <li><a href="<?= base_url('k_tindakan') ?>">Tindakan</a></li>
+                        </ul>
+                    </li>
+                        <li><a href="<?= base_url('c_kasir') ?>"><i class="fa fa-edit"></i> Kasir</a></li>
+                        <li><a href="<?= base_url('c_kasir/tx_list') ?>"><i class="fa fa-table"></i>List Transaksi </a></li>
+                  
+                        <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-envelope"></i>Pesan </a></li>
+                        <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-laptop"></i>Rekam Medis </a></li>
+                        <li><a href="#"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
 
                 </ul>
               </div>
@@ -101,7 +116,16 @@ $(document).ready(function() {
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <?php echo $this->session->userdata('level'); ?>
+                    <?php 
+                      if ($this->ion_auth->is_admin())
+                        {
+                         echo "Administrator";
+                        }elseif ($this->ion_auth->in_group("Dokter")) {
+                          echo "Dokter";
+                        }else{
+                          echo "Pasien";
+                        }
+                     ?>
                     <span class="fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -80,7 +80,6 @@ class K_rmedis extends CI_Controller
 	    'resep' => set_value('resep'),
 	    'waktu' => set_value('waktu'),
 	    'keterangan' => set_value('keterangan'),
-	    'id_pengguna' => set_value('id_pengguna'),
 	);
         $this->template->load('template','k_rmedis_form', $data);
     }
@@ -92,7 +91,9 @@ class K_rmedis extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $data = array(
+        $user = $this->ion_auth->user()->row();
+        $id_pengguna = $user->email;
+        $data = array(
 		'id_tindakan' => $this->input->post('id_tindakan',TRUE),
 		'id_pasien' => $this->input->post('id_pasien',TRUE),
 		'diagnosa' => $this->input->post('diagnosa',TRUE),
@@ -100,7 +101,7 @@ class K_rmedis extends CI_Controller
 		'resep' => $this->input->post('resep',TRUE),
 		'waktu' => $this->input->post('waktu',TRUE),
 		'keterangan' => $this->input->post('keterangan',TRUE),
-		'id_pengguna' => $this->input->post('id_pengguna',TRUE),
+		'id_pengguna' => $id_pengguna,
 	    );
 
             $this->K_rmedis_model->insert($data);
@@ -125,7 +126,6 @@ class K_rmedis extends CI_Controller
 		'resep' => set_value('resep', $row->resep),
 		'waktu' => set_value('waktu', $row->waktu),
 		'keterangan' => set_value('keterangan', $row->keterangan),
-		'id_pengguna' => set_value('id_pengguna', $row->id_pengguna),
 	    );
             $this->template->load('template','k_rmedis_form', $data);
         } else {
@@ -149,7 +149,6 @@ class K_rmedis extends CI_Controller
 		'resep' => $this->input->post('resep',TRUE),
 		'waktu' => $this->input->post('waktu',TRUE),
 		'keterangan' => $this->input->post('keterangan',TRUE),
-		'id_pengguna' => $this->input->post('id_pengguna',TRUE),
 	    );
 
             $this->K_rmedis_model->update($this->input->post('id_rmedis', TRUE), $data);

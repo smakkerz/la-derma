@@ -56,7 +56,7 @@ function hitung2() {
                                     $row = $this->ion_auth->users('Dokter')->result();
                                     foreach ($row as $data) {
                                 ?>
-                                <option><?= $data->email ?></option>
+                                <option value="<?= $data->email ?>"><?= $data->first_name ?> <?= $data->last_name ?></option>
                                 <?php
                                     }
                                 ?>  
