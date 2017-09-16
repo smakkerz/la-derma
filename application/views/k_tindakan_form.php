@@ -2,11 +2,11 @@
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
-              <div class='box'>
-                <div class='box-header'>
+              <div class=''>
+                <div class=''>
                 
                   <h3 class='box-title'>K_TINDAKAN</h3>
-                      <div class='box box-primary'>
+                      <div class=''>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Tindakan <?php echo form_error('tindakan') ?></td>
             <td><input type="text" class="form-control" name="tindakan" id="tindakan" placeholder="Tindakan" value="<?php echo $tindakan; ?>" />

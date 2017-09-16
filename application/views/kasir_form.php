@@ -42,7 +42,7 @@ function hitung2() {
                                 <?php
                                     foreach ($a as $pasien) {
                                 ?>
-                                <option value="<?= $pasien->id_pasien ?>"><?= $pasien->nama ?></option>
+                                <option value="<?= $pasien->identitas ?>"><?= $pasien->nama ?></option>
                                 <?php
                                     }
                                 ?>

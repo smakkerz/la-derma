@@ -102,7 +102,16 @@ class Pasien extends CI_Controller
 		'birth_date' => $this->input->post('birth_date',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
+        $username = $this->input->post('user',TRUE);
+        $password = $this->input->post('pass',TRUE);
+        $email = $this->input->post('user',TRUE);
+        $additional_data = array(
+                                'first_name' => $this->input->post('identitas', TRUE),
+                                'last_name' => $this->input->post('nama', TRUE),
+                                );
+        $group = array('5'); // Sets user to admin.
 
+        $this->ion_auth->register($username, $password, $email, $additional_data, $group);
             $this->Pasien_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('pasien'));

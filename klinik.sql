@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14 Agu 2017 pada 19.18
+-- Generation Time: 16 Sep 2017 pada 02.08
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -79,6 +79,20 @@ INSERT INTO `informasi` (`id`, `nama_klinik`, `favicon`, `logo`, `ijin_klinik`) 
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `jadwal`
+--
+
+CREATE TABLE IF NOT EXISTS `jadwal` (
+  `idJadwal` int(10) NOT NULL,
+  `idDokter` varchar(50) NOT NULL,
+  `Hari` varchar(7) NOT NULL,
+  `DariJam` time NOT NULL,
+  `SampaiJam` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `kategori`
 --
 
@@ -117,10 +131,19 @@ CREATE TABLE IF NOT EXISTS `k_catatan` (
 
 CREATE TABLE IF NOT EXISTS `k_janji` (
   `id_kj` int(3) NOT NULL,
-  `waktu_janji` int(11) NOT NULL,
-  `id_pengguna` int(3) NOT NULL,
-  `id_pasien` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_pasien` varchar(20) NOT NULL,
+  `idDokter` varchar(50) NOT NULL,
+  `Tanggal` date NOT NULL,
+  `Jam` time NOT NULL,
+  `IdPengguna` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `k_janji`
+--
+
+INSERT INTO `k_janji` (`id_kj`, `id_pasien`, `idDokter`, `Tanggal`, `Jam`, `IdPengguna`) VALUES
+(1, '123455678888', 'doketer@la-derma.com', '2017-09-17', '09:00:00', 'admin@admin.com');
 
 -- --------------------------------------------------------
 
@@ -159,7 +182,14 @@ CREATE TABLE IF NOT EXISTS `k_paket` (
   `layanan` varchar(120) NOT NULL,
   `deskripsi` longtext NOT NULL,
   `harga` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `k_paket`
+--
+
+INSERT INTO `k_paket` (`id_paket`, `layanan`, `deskripsi`, `harga`) VALUES
+(1, 'Check Up', 'Cek Kesehatan', '50000');
 
 -- --------------------------------------------------------
 
@@ -189,7 +219,14 @@ CREATE TABLE IF NOT EXISTS `k_tindakan` (
   `id_tindakan` int(3) NOT NULL,
   `tindakan` longtext NOT NULL,
   `keterangan` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `k_tindakan`
+--
+
+INSERT INTO `k_tindakan` (`id_tindakan`, `tindakan`, `keterangan`) VALUES
+(1, 'Operasi Kecil', 'Operasi kecil');
 
 -- --------------------------------------------------------
 
@@ -227,6 +264,7 @@ CREATE TABLE IF NOT EXISTS `pasien` (
 --
 
 INSERT INTO `pasien` (`id_pasien`, `identitas`, `nama`, `alamat`, `user`, `pass`, `sex`, `birth_date`, `status`) VALUES
+('', '123455678888', 'Rismawan Junandia', 'JL. KARAMAT', 'junandia08@gmail.com', 'junandia101', 'Laki-laki', '1998-10-18', 'Pasien Baru'),
 ('LD-2017000102', '2147483647', 'Zein al Qurthubi', 'Jalan Simongan dalam gang 3 RT 06/01 Simongan Semarang barat, Kota Semarang', 'fafandha', 'fafarisi', 'Laki-laki', '10-11-1988', 'pasien lama'),
 ('LD-2017000207', '335000124500', 'Mason Najib', 'Perumahan Kompleks Tri Megah blok Anggrek-2 No. 13 Semarang', 'mason', 'mason', 'Laki-laki', '21-02-1976', 'Pasien Baru');
 
@@ -309,15 +347,19 @@ CREATE TABLE IF NOT EXISTS `rincian` (
   `id` int(4) NOT NULL,
   `idTransaksi` varchar(20) NOT NULL,
   `KodeBarang` varchar(10) NOT NULL,
-  `qty` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+  `qty` int(10) NOT NULL,
+  `subtotal` bigint(12) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `rincian`
 --
 
-INSERT INTO `rincian` (`id`, `idTransaksi`, `KodeBarang`, `qty`) VALUES
-(15, '14.001.082017.LD', '1', 4);
+INSERT INTO `rincian` (`id`, `idTransaksi`, `KodeBarang`, `qty`, `subtotal`) VALUES
+(15, '14.001.082017.LD', '1', 1, 45000),
+(16, '21.001.082017.LD', '1', 1, 450000),
+(18, '21.001.082017.LD', '2', 2, 4000),
+(19, '10.001.092017.LD', '1', 3, 1350000);
 
 -- --------------------------------------------------------
 
@@ -330,6 +372,7 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `idPasien` varchar(100) NOT NULL,
   `idDokter` varchar(100) NOT NULL,
   `total_bayar` bigint(10) NOT NULL,
+  `metode` enum('Transfer','Tunai','Kartu Kredit') NOT NULL,
   `status` enum('Pending','Terjual','Lunas') NOT NULL,
   `idCreate` varchar(100) NOT NULL,
   `date` date NOT NULL
@@ -339,9 +382,11 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`idTransaksi`, `idPasien`, `idDokter`, `total_bayar`, `status`, `idCreate`, `date`) VALUES
-('14.001.082017.LD', 'pasien@la-derma.com', 'doketer@la-derma.com', 2000000, 'Lunas', 'admin@admin.com', '2017-08-14'),
-('14.002.082017.LD', 'pasien@la-derma.com', 'doketer@la-derma.com', 0, 'Pending', 'admin@admin.com', '2017-08-14');
+INSERT INTO `transaksi` (`idTransaksi`, `idPasien`, `idDokter`, `total_bayar`, `metode`, `status`, `idCreate`, `date`) VALUES
+('10.001.092017.LD', 'LD-2017000102', 'admin@admin.com', 0, 'Transfer', 'Pending', 'admin@admin.com', '2017-09-10'),
+('14.001.082017.LD', 'pasien@la-derma.com', 'doketer@la-derma.com', 2000000, 'Transfer', 'Lunas', 'admin@admin.com', '2017-08-14'),
+('14.002.082017.LD', 'pasien@la-derma.com', 'doketer@la-derma.com', 0, 'Transfer', 'Pending', 'admin@admin.com', '2017-08-14'),
+('21.001.082017.LD', 'LD-2017000102', 'doketer@la-derma.com', 500000, 'Tunai', 'Lunas', 'admin@admin.com', '2017-08-21');
 
 -- --------------------------------------------------------
 
@@ -367,16 +412,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_name` varchar(50) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1502723995, 1, 'Admin', 'istrator', 'ADMIN', '0'),
-(2, '::1', 'pasien@la-derma.com', '$2y$08$Pn8porgrcHoRWuVJ5gW47.LpR9euGlwKZzfwatvsKFYsxTdT64him', NULL, 'pasien@la-derma.com', NULL, NULL, NULL, NULL, 1501726388, 1502381484, 1, 'Pasien', 'Satu', 'Pasien', '08080808'),
-(3, '::1', 'doketer@la-derma.com', '$2y$08$cT0mQdyvgffjViAn.pCwFOP8TJKoAmP5/YWB4.xP1oCuH62LJNDdq', NULL, 'doketer@la-derma.com', NULL, NULL, NULL, NULL, 1501726460, 1502387113, 1, 'Dokter', 'Satu', 'La-Derma', '0808081088');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1505515320, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(2, '::1', 'pasien@la-derma.com', '$2y$08$Pn8porgrcHoRWuVJ5gW47.LpR9euGlwKZzfwatvsKFYsxTdT64him', NULL, 'pasien@la-derma.com', NULL, NULL, NULL, NULL, 1501726388, 1502800334, 1, 'Pasien', 'Satu', 'Pasien', '08080808'),
+(3, '::1', 'doketer@la-derma.com', '$2y$08$cT0mQdyvgffjViAn.pCwFOP8TJKoAmP5/YWB4.xP1oCuH62LJNDdq', NULL, 'doketer@la-derma.com', NULL, NULL, NULL, NULL, 1501726460, 1502800241, 1, 'Dokter', 'Satu', 'La-Derma', '0808081088'),
+(4, '::1', 'junandia08@gmail.com', '$2y$08$9LnF5z3fxZpqyKrjTizjAeMz7.E5Yt2ze8F2W4qngRZCd5ZPhQWMi', NULL, 'junandia08@gmail.com', NULL, NULL, NULL, NULL, 1505478507, NULL, 1, '123455678888', 'Rismawan Junandia', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -388,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   `id` int(11) unsigned NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `users_groups`
@@ -401,7 +447,8 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (6, 1, 4),
 (7, 1, 5),
 (9, 2, 5),
-(11, 3, 4);
+(11, 3, 4),
+(12, 4, 5);
 
 --
 -- Indexes for dumped tables
@@ -424,6 +471,12 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `informasi`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD PRIMARY KEY (`idJadwal`);
 
 --
 -- Indexes for table `k_catatan`
@@ -530,6 +583,11 @@ ALTER TABLE `config`
 ALTER TABLE `groups`
   MODIFY `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  MODIFY `idJadwal` int(10) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `k_catatan`
 --
 ALTER TABLE `k_catatan`
@@ -538,7 +596,7 @@ ALTER TABLE `k_catatan`
 -- AUTO_INCREMENT for table `k_janji`
 --
 ALTER TABLE `k_janji`
-  MODIFY `id_kj` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kj` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `k_obat`
 --
@@ -548,7 +606,7 @@ ALTER TABLE `k_obat`
 -- AUTO_INCREMENT for table `k_paket`
 --
 ALTER TABLE `k_paket`
-  MODIFY `id_paket` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_paket` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `k_rmedis`
 --
@@ -558,7 +616,7 @@ ALTER TABLE `k_rmedis`
 -- AUTO_INCREMENT for table `k_tindakan`
 --
 ALTER TABLE `k_tindakan`
-  MODIFY `id_tindakan` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tindakan` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
@@ -583,17 +641,17 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `rincian`
 --
 ALTER TABLE `rincian`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --

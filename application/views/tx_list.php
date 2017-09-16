@@ -16,14 +16,9 @@
                     </tr>
                     <?php
                         foreach ($list as $row) {
-                        if ($row->status == "Pending") {
-                            $url = "step2";
-                        }else{
-                            $url = "step3";
-                        }
                     ?>
                     <tr>
-                        <td><a href="<?= base_url('c_kasir/'.$url.'/'.$row->idTransaksi) ?>"><?= $row->idTransaksi ?></a></td>
+                        <td><a href="<?= base_url('c_kasir/p/'.$row->idTransaksi) ?>"><?= $row->idTransaksi ?></a></td>
                         <td><?= format_tanggal($row->date) ?></td>
                         <td><?= $row->idDokter ?></td>
                         <td><?= $row->idPasien ?></td>

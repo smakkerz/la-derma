@@ -26,8 +26,13 @@ $(document).ready(function() {
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url() ?>template/build/css/custom.min.css" rel="stylesheet">
     <!-- jQuery -->
-    <!-- jQuery Obat -->
-    
+    <!-- STOK OBAT START -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+ 
+<script src="<?= base_url('') ?>assets/highcharts/code/highcharts.js"></script>
+ <script src="<?= base_url('') ?>assets/highcharts/modules/exporting.js"></script>
+ 
+
   </head>
 
   <body class="nav-md">
@@ -65,8 +70,7 @@ $(document).ready(function() {
                     <li><a><i class="fa fa-desktop"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<?= base_url('pasien') ?>">Pasien</a></li>
-                            <li><a href="media_gallery.html">Dokter</a></li>
-                            <li><a href="typography.html">User</a></li>
+                            <li><a href="<?= base_url('auth') ?>">User</a></li>
                             <li><a href="<?= base_url('Kategori_obat') ?>">Kategori Obat</a></li>
                             <li><a href="<?= base_url('k_obat') ?>">Obat</a></li>
                             <li><a href="<?= base_url('c_jadwal') ?>">Jadwal</a></li>
@@ -75,11 +79,11 @@ $(document).ready(function() {
                         </ul>
                     </li>
                         <li><a href="<?= base_url('c_kasir') ?>"><i class="fa fa-edit"></i> Kasir</a></li>
-                        <li><a href="<?= base_url('c_kasir/tx_list') ?>"><i class="fa fa-table"></i>List Transaksi </a></li>
+                        <li><a href="<?= base_url('K_Janji') ?>"><i class="fa fa-table"></i>Janji </a></li>
                   
                         <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-envelope"></i>Pesan </a></li>
                         <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-laptop"></i>Rekam Medis </a></li>
-                        <li><a href="#"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
+                        <li><a href="<?= base_url('C_Laporan') ?>"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
 
                 </ul>
               </div>

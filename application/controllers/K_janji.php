@@ -12,36 +12,24 @@ class K_janji extends CI_Controller
         parent::__construct();
         $this->load->model('K_janji_model');
         $this->load->library('form_validation');
+       $this->load->library(array('ion_auth','form_validation'));
+        $this->load->helper(array('url','language','nuris_helper'));
+
+        $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
+
+        $this->lang->load('auth');
+        $this->load->model('K_kasir');
     }
 
     public function index()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'k_janji/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'k_janji/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'k_janji/index.html';
-            $config['first_url'] = base_url() . 'k_janji/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->K_janji_model->total_rows($q);
-        $k_janji = $this->K_janji_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $k_janji = $this->K_janji_model->get_all();
 
         $data = array(
             'k_janji_data' => $k_janji,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
+            'a' => $this->K_kasir->pasien(),
         );
+
         $this->template->load('template','k_janji_list', $data);
     }
 
@@ -51,9 +39,12 @@ class K_janji extends CI_Controller
         if ($row) {
             $data = array(
 		'id_kj' => $row->id_kj,
-		'waktu_janji' => $row->waktu_janji,
-		'id_pengguna' => $row->id_pengguna,
 		'id_pasien' => $row->id_pasien,
+		'idDokter' => $row->idDokter,
+		'Tanggal' => $row->Tanggal,
+		'Jam' => $row->Jam,
+		'IdPengguna' => $row->IdPengguna,
+
 	    );
             $this->template->load('template','k_janji_read', $data);
         } else {
@@ -68,9 +59,12 @@ class K_janji extends CI_Controller
             'button' => 'Create',
             'action' => site_url('k_janji/create_action'),
 	    'id_kj' => set_value('id_kj'),
-	    'waktu_janji' => set_value('waktu_janji'),
-	    'id_pengguna' => set_value('id_pengguna'),
 	    'id_pasien' => set_value('id_pasien'),
+	    'idDokter' => set_value('idDokter'),
+	    'Tanggal' => set_value('Tanggal'),
+	    'Jam' => set_value('Jam'),
+	    'IdPengguna' => set_value('IdPengguna'),
+        'a' => $this->K_kasir->pasien(),
 	);
         $this->template->load('template','k_janji_form', $data);
     }
@@ -83,9 +77,11 @@ class K_janji extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'waktu_janji' => $this->input->post('waktu_janji',TRUE),
-		'id_pengguna' => $this->input->post('id_pengguna',TRUE),
 		'id_pasien' => $this->input->post('id_pasien',TRUE),
+		'idDokter' => $this->input->post('idDokter',TRUE),
+		'Tanggal' => $this->input->post('Tanggal',TRUE),
+		'Jam' => $this->input->post('Jam',TRUE),
+		'IdPengguna' => $this->input->post('IdPengguna',TRUE),
 	    );
 
             $this->K_janji_model->insert($data);
@@ -103,9 +99,12 @@ class K_janji extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('k_janji/update_action'),
 		'id_kj' => set_value('id_kj', $row->id_kj),
-		'waktu_janji' => set_value('waktu_janji', $row->waktu_janji),
-		'id_pengguna' => set_value('id_pengguna', $row->id_pengguna),
 		'id_pasien' => set_value('id_pasien', $row->id_pasien),
+		'idDokter' => set_value('idDokter', $row->idDokter),
+		'Tanggal' => set_value('Tanggal', $row->Tanggal),
+		'Jam' => set_value('Jam', $row->Jam),
+		'IdPengguna' => set_value('IdPengguna', $row->IdPengguna),
+        'a' => $this->K_kasir->pasien(),
 	    );
             $this->template->load('template','k_janji_form', $data);
         } else {
@@ -122,9 +121,11 @@ class K_janji extends CI_Controller
             $this->update($this->input->post('id_kj', TRUE));
         } else {
             $data = array(
-		'waktu_janji' => $this->input->post('waktu_janji',TRUE),
-		'id_pengguna' => $this->input->post('id_pengguna',TRUE),
 		'id_pasien' => $this->input->post('id_pasien',TRUE),
+		'idDokter' => $this->input->post('idDokter',TRUE),
+		'Tanggal' => $this->input->post('Tanggal',TRUE),
+		'Jam' => $this->input->post('Jam',TRUE),
+		'IdPengguna' => $this->input->post('IdPengguna',TRUE),
 	    );
 
             $this->K_janji_model->update($this->input->post('id_kj', TRUE), $data);
@@ -149,12 +150,76 @@ class K_janji extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('waktu_janji', 'waktu janji', 'trim|required');
-	$this->form_validation->set_rules('id_pengguna', 'id pengguna', 'trim|required');
 	$this->form_validation->set_rules('id_pasien', 'id pasien', 'trim|required');
+	$this->form_validation->set_rules('idDokter', 'iddokter', 'trim|required');
+	$this->form_validation->set_rules('Tanggal', 'tanggal', 'trim|required');
+	$this->form_validation->set_rules('Jam', 'jam', 'trim|required');
+	$this->form_validation->set_rules('IdPengguna', 'idpengguna', 'trim|required');
 
 	$this->form_validation->set_rules('id_kj', 'id_kj', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function excel()  //fungsi untuk export data ke format excel
+    {
+        $this->load->helper('exportexcel');
+        $namaFile = "k_janji.xls";
+        $judul = "k_janji";
+        $tablehead = 0;
+        $tablebody = 1;
+        $nourut = 1;
+        //penulisan header
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Disposition: attachment;filename=" . $namaFile . "");
+        header("Content-Transfer-Encoding: binary ");
+
+        xlsBOF();
+
+        $kolomhead = 0;
+        xlsWriteLabel($tablehead, $kolomhead++, "No");
+	xlsWriteLabel($tablehead, $kolomhead++, "Id Pasien");
+	xlsWriteLabel($tablehead, $kolomhead++, "IdDokter");
+	xlsWriteLabel($tablehead, $kolomhead++, "Tanggal");
+	xlsWriteLabel($tablehead, $kolomhead++, "Jam");
+	xlsWriteLabel($tablehead, $kolomhead++, "IdPengguna");
+
+	foreach ($this->K_janji_model->get_all() as $data) {
+            $kolombody = 0;
+
+            //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
+            xlsWriteNumber($tablebody, $kolombody++, $nourut);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->id_pasien);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->idDokter);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Tanggal);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Jam);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->IdPengguna);
+
+	    $tablebody++;
+            $nourut++;
+        }
+
+        xlsEOF();
+        exit();
+    }
+
+    function pdf()
+    {
+        $data = array(
+            'k_janji_data' => $this->K_janji_model->get_all(),
+            'start' => 0
+        );
+        
+        ini_set('memory_limit', '32M');
+        $html = $this->load->view('k_janji_pdf', $data, true);
+        $this->load->library('pdf');
+        $pdf = $this->pdf->load();
+        $pdf->WriteHTML($html);
+        $pdf->Output('k_janji.pdf', 'D'); 
     }
 
 }
