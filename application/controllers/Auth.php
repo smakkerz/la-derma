@@ -515,7 +515,7 @@ class Auth extends CI_Controller {
                 'value' => $this->form_validation->set_value('password_confirm'),
             );
 
-            $this->_render_page('auth/create_user', $this->data);
+            $this->template->load('template','auth/create_user', $this->data);
         }
     }
 

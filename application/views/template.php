@@ -27,10 +27,9 @@ $(document).ready(function() {
     <link href="<?php echo base_url() ?>template/build/css/custom.min.css" rel="stylesheet">
     <!-- jQuery -->
     <!-- STOK OBAT START -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
  
-<script src="<?= base_url('') ?>assets/highcharts/code/highcharts.js"></script>
- <script src="<?= base_url('') ?>assets/highcharts/modules/exporting.js"></script>
+<script src="<?= base_url() ?>assets/highcharts/code/highcharts.js"></script>
+ <script src="<?= base_url() ?>assets/highcharts/code/modules/exporting.js"></script>
  
 
   </head>
@@ -69,21 +68,19 @@ $(document).ready(function() {
                     <li><a href="<?= base_url('auth') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
                     <li><a><i class="fa fa-desktop"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<?= base_url('pasien') ?>">Pasien</a></li>
-                            <li><a href="<?= base_url('auth') ?>">User</a></li>
-                            <li><a href="<?= base_url('Kategori_obat') ?>">Kategori Obat</a></li>
-                            <li><a href="<?= base_url('k_obat') ?>">Obat</a></li>
+                            <li><a href="<?= base_url('Users') ?>">User Management</a></li>
+                            <li><a href="<?= base_url('Kategori') ?>">Kategori Obat / Paket</a></li>
+                            <li><a href="<?= base_url('Barang') ?>">Obat / Paket</a></li>
                             <li><a href="<?= base_url('c_jadwal') ?>">Jadwal</a></li>
-                            <li><a href="<?= base_url('k_paket') ?>">Paket</a></li>
                             <li><a href="<?= base_url('k_tindakan') ?>">Tindakan</a></li>
                         </ul>
                     </li>
-                        <li><a href="<?= base_url('c_kasir') ?>"><i class="fa fa-edit"></i> Kasir</a></li>
-                        <li><a href="<?= base_url('K_Janji') ?>"><i class="fa fa-table"></i>Janji </a></li>
+                        <li><a href="<?= base_url('transaksi') ?>"><i class="fa fa-edit"></i> Kasir</a></li>
+                        <li><a href="<?= base_url('K_janji') ?>"><i class="fa fa-table"></i>Janji </a></li>
                   
                         <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-envelope"></i>Pesan </a></li>
                         <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-laptop"></i>Rekam Medis </a></li>
-                        <li><a href="<?= base_url('C_Laporan') ?>"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
+                        <li><a href="<?= base_url('transaksi/laporan') ?>"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
 
                 </ul>
               </div>

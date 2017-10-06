@@ -33,3 +33,7 @@
 </table>
 
 <p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('index_create_group_link'))?></p>
+
+<?php 
+	redirect('Users');
+?>
