@@ -1,0 +1,18 @@
+#navItems>a{ /* main nav on top */
+	height:auto;
+	padding: 7px 3px 5px 3px;
+	width:95px;
+	color:#FFF;
+	font-size:14px;
+	text-align:center;
+	text-decoration:none;
+	background-color:#444;
+	border-bottom:1px #999 solid;
+}
+#navItems>a:hover{
+	color:#FFF;
+	background-color:#888;
+}
+#navItems>a>img{
+	padding-top:5px;
+}

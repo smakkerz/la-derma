@@ -1,0 +1,22 @@
+/* 
+    Document   : theme-login
+    Created on : Aug 27, 2013, 8:27:27 AM
+    Author     : arvinnizar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+* { margin: auto 0; font-family: "Segoe UI", Verdana, Tahoma,Helvetica,sans-serif; }
+.body-lock { background: url(../../img/bg/opening.jpg) no-repeat center; height: 100%; }
+.body-lock .dateandtime { color: #fff; position: absolute; bottom: 15%; left: 3%; display: inline-block; }
+.body-lock .dateandtime .hour-time { font-size: 10em; font-weight: lighter; height: 180px;  }
+.body-lock .dateandtime .date-time { font-size: 3em; font-weight: lighter; margin-left: 5px; }
+
+.body-login { background: #011842; height: 100%; width: 100%; display: none; color: #fff; }
+.body-login .wrapper { margin: auto; width: 600px; height: 300px; position: absolute; top: 0; left: 0; bottom: 0; right: 0;  }
+.body-login h1 { font-size: 20px; font-weight: lighter; margin-bottom: 3px; }
+.body-login .wrapper img { margin: 10px; }
+.body-login .wrapper input { border: 1px solid #f4f4f4; margin-top: 10px; padding: 2px 5px; }
+.body-login .wrapper input:focus { border: 1px solid #ccc; }
+.body-login .wrapper .button { background: #0269c6; border: 2px solid #cee0ed; color: #fff; width: 80px; padding: 0 0 1px; margin-right: 10px; }
+.body-login .wrapper .button:visited { background: #0269c6; border: 2px solid #cee0ed; color: #fff; width: 80px; padding: 0 0 1px; margin-right: 10px; }
+.body-login .wrapper #result { color: #fff; background: url(../../img/icons/no.png) no-repeat left; padding-left: 18px; display: none; font-size: 11px; }

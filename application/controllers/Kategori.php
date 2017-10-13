@@ -16,7 +16,8 @@ class kategori extends CI_Controller{
         $halaman            =  $this->uri->segment(3);
         $halaman            =$halaman==''?0:$halaman;
         $data['record']     =    $this->model_kategori->tampilkan_data_paging($halaman,$config['per_page']);
-        $this->template->load('template','kategori/lihat_data',$data);
+        $this->load->view('admin/tema2');
+        $this->load->view('kategori/lihat_data',$data);
     }
     
     function post()
@@ -43,7 +44,8 @@ class kategori extends CI_Controller{
             $id=  $this->uri->segment(3);
             $data['record']=  $this->model_kategori->get_one($id)->row_array();
             //$this->load->view('kategori/form_edit',$data);
-            $this->template->load('template','kategori/form_edit',$data);
+            $this->load->view('admin/tema2');
+        $this->load->view('kategori/form_edit',$data);
         }
     }
     

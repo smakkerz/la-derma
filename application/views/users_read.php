@@ -6,7 +6,7 @@
               <div class=''>
                 <div class=''>
                 <h3 class='box-title'>Users Read</h3>
-        <table class="table table-bordered">
+        <table class="table table-bordered" width="100%">
 	    <tr><td>No Identitas</td><td><?php echo $ip_address; ?></td></tr>
 	    <tr><td>Username</td><td><?php echo $username; ?></td></tr>
 	    <tr><td>Email</td><td><?php echo $email; ?></td></tr>

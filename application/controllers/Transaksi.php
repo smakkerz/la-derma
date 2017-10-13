@@ -28,7 +28,8 @@ class transaksi extends ci_controller{
             $data['user']=  $this->ion_auth->users();
             $data['barang']=  $this->model_barang->tampil_data();
             $data['detail']=  $this->model_transaksi->tampilkan_detail_transaksi()->result();
-            $this->template->load('template','transaksi/form_transaksi',$data);
+            $this->load->view('admin/tema2');
+            $this->load->view('transaksi/form_transaksi',$data);
         }
     }
     
@@ -59,12 +60,15 @@ class transaksi extends ci_controller{
             $tanggal1=  $this->input->post('tanggal1');
             $tanggal2=  $this->input->post('tanggal2');
             $data['record']=  $this->model_transaksi->laporan_periode($tanggal1,$tanggal2);
-            $this->template->load('template','transaksi/laporan',$data);
+            $this->load->view('admin/tema2');
+            $this->load->view('transaksi/laporan',$data);
+
         }
         else
         {
             $data['record']=  $this->model_transaksi->laporan_default();
-            $this->template->load('template','transaksi/laporan',$data);
+            $this->load->view('admin/tema2');
+            $this->load->view('transaksi/laporan',$data);
         }
     }
     

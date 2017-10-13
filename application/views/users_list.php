@@ -9,7 +9,7 @@
 		<?php echo anchor(site_url('users/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="btn btn-primary btn-sm"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table table-bordered table-striped" id="mytable">
+        <table class="table table-bordered table-striped" id="mytable" width="100%">
             <thead>
                 <tr>
                     <th width="80px">No</th>
@@ -46,11 +46,11 @@
 			</td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('users/read/'.$users->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo anchor(site_url('users/read/'.$users->id),'<i class="">Detail</i>',array('title'=>'detail','class'=>'button')); 
 			echo '  '; 
-			echo anchor(site_url('users/update/'.$users->id),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo anchor(site_url('users/update/'.$users->id),'<i class="fa fa-pencil-square-o">Edit</i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('users/delete/'.$users->id),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('users/delete/'.$users->id),'<i class="fa fa-trash-o">Hapus</i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>

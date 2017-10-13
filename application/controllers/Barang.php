@@ -10,7 +10,8 @@ class Barang extends CI_Controller{
     function index()
     {
         $data['record'] = $this->model_barang->tampil_data();
-        $this->template->load('template','barang/lihat_data',$data);
+        $this->load->view('admin/tema2');
+        $this->load->view('barang/lihat_data',$data);
     }
     
     function post()
@@ -55,7 +56,8 @@ class Barang extends CI_Controller{
             $data['kategori']   =  $this->model_kategori->tampilkan_data()->result();
             $data['record']     =  $this->model_barang->get_one($id)->row_array();
             //$this->load->view('barang/form_edit',$data);
-            $this->template->load('template','barang/form_edit',$data);
+            $this->load->view('admin/tema2');
+        $this->load->view('barang/form_edit',$data);
         }
     }
     

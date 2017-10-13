@@ -27,7 +27,8 @@ class Users extends CI_Controller
 			{
 				$this->data['users_data'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
-        $this->template->load('template','users_list', $this->data);
+        $this->load->view('admin/tema2');
+        $this->load->view('users_list',$this->data);
     }
 
     public function read($id) //fungsi tampil data
@@ -53,7 +54,8 @@ class Users extends CI_Controller
 		'company' => $row->company,
 		'phone' => $row->phone,
 	    );
-            $this->template->load('template','users_read', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));
@@ -83,7 +85,8 @@ class Users extends CI_Controller
 	    'company' => set_value('company'),
 	    'phone' => set_value('phone'),
 	);
-        $this->template->load('template','users_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('users_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
@@ -144,7 +147,9 @@ class Users extends CI_Controller
 		'company' => set_value('company', $row->company),
 		'phone' => set_value('phone', $row->phone),
 	    );
-            $this->template->load('template','users_form', $data);
+                    $this->load->view('admin/tema2');
+        $this->load->view('users_form', $data);
+
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('users'));

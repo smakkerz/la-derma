@@ -8,8 +8,7 @@
                 <!-- /. ROW  -->
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
+                        <table>
                             <div class="panel-body">
                                 <?php echo form_open('transaksi', array('class'=>'form-horizontal')); ?>
                                     <div class="form-group">
@@ -76,7 +75,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
