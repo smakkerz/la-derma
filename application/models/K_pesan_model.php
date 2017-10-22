@@ -47,4 +47,10 @@ class K_pesan_model extends CI_Model
 	{
 		$this->db->insert('percakapan',$data);
 	}
+	function hapus($id)
+	{
+		$tables = array('pesan', 'percakapan');
+		$this->db->where('id_percakapan', $id);
+		$this->db->delete($tables);
+	}
 }

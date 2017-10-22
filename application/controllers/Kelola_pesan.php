@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_pesan extends CI_Controller {
+class Kelola_pesan extends CI_Controller {
 
 	public function __construct()
 	{
@@ -28,7 +28,9 @@ class C_pesan extends CI_Controller {
 		$data = [
 			'k_pesan' => $pesan
 		];
-		$this->template->load('template','c_pesan_list', $data);
+		$this->load->view('admin/tema2');
+		$this->load->view('admin/pesan/c_pesan_list',$data);
+		//$this->template->load('template','c_pesan_list', $data);
 	}
 	public function outbox()
 	{
@@ -42,7 +44,8 @@ class C_pesan extends CI_Controller {
 		$data = [
 			'k_pesan' => $pesan
 		];
-		$this->template->load('template','c_pesan_list', $data);
+		$this->load->view('admin/tema2');
+		$this->load->view('admin/pesan/c_pesan_list', $data);
 	}
 	public function baca()
 	{
@@ -53,7 +56,8 @@ class C_pesan extends CI_Controller {
 			'baca' => $pesan,
 			'judul' => $judl,
 		];
-		$this->template->load('template','c_pesan_baca',$data);
+		$this->load->view('admin/tema2');
+		$this->load->view('admin/pesan/c_pesan_baca',$data);
 	}
 	public function kirim_pesan()
 	{
@@ -68,11 +72,18 @@ class C_pesan extends CI_Controller {
 		];
 
 		$this->K_pesan_model->kirim($data);
-		redirect('c_pesan/baca/'.$id_percakapan);
+		redirect('Kelola_pesan/baca/'.$id_percakapan);
 	}
 	public function pesan_baru()
 	{
-		$this->template->load('template','c_pesan_baru');
+		$this->load->view('admin/tema2');
+		$this->load->view('admin/pesan/c_pesan_baru');
+	}
+	public function hapus()
+	{
+		$id = $this->uri->segment(3);
+		$this->K_pesan_model->hapus($id);
+		redirect('Kelola_pesan');
 	}
 	public function tambah_pesan()
 	{
@@ -94,6 +105,6 @@ class C_pesan extends CI_Controller {
 			];
 
 			$this->K_pesan_model->buat_pesan($data);
-			redirect('c_pesan/baca/'.$newid);
+			redirect('Kelola_pesan/baca/'.$newid);
 	}
 }

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <title>La-derma - Home</title> 
-    
+    <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/metro.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/layout.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/nav.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/tiles.css">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/styles.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/jquery.autocomplete.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/plugin.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/metro-icons.css">
     <style>
 html{background-color:#0F6D32;}
 
@@ -166,6 +167,11 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
             	<a  href="<?= base_url('index.php/Menu') ?>"  rel="group0" id="menu1" class="navActive">
 	<img src="<?= base_url('Metro') ?>/home.png" alt="home">
 	Pelayanan
+</a>
+<a href="<?= base_url('index.php/Kelola_pesan') ?>" rel="group1" id="menu2">
+   <span class="mif-mail mif-4x"></span><br/>
+
+    Kelola Pesan
 </a>
 <a href="<?= base_url('auth/logout') ?>"   rel="group5">
         <img src="<?= base_url('Metro') ?>/logout.png" alt="Logout" align="center">
