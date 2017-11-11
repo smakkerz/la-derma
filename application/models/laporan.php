@@ -14,10 +14,20 @@
     	return $data->result();
     }
     function pemasukan(){
-    	 $this->db->select('*');
-        $this->db->like('date','2017-');
-        $this->db->order_by('date','asc');
-        return $this->db->get('transaksi')->result();
+        $date = date('Y-m');
+        $awal = $date."-01";
+    	$query = $this->db->query("SELECT * FROM arus_kas WHERE keluar = '0' AND waktu BETWEEN $awal AND CURRENT_DATE()");
+        return $query->result();
+    }
+    function pengeluaran(){
+        $date = date('Y-m');
+        $awal = $date."-01";
+        $query = $this->db->query("SELECT * FROM arus_kas WHERE masuk = '0' AND waktu BETWEEN $awal AND CURRENT_DATE()");
+        return $query->result();
+    }
+    function priode($tgl1,$tgl2,$type){
+        $query = $this->db->query("SELECT * FROM arus_kas WHERE $type = '0' AND waktu BETWEEN '$tgl1' AND '$tgl2'");
+        return $query->result();
     }
 	}
 ?>

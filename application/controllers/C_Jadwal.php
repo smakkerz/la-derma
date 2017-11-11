@@ -22,7 +22,8 @@ class C_Jadwal extends CI_Controller
             'c_jadwal_data' => $c_jadwal
         );
 
-        $this->template->load('template','jadwal_list', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('jadwal_list', $data);
     }
 
     public function read($id) //fungsi tampil data
@@ -36,7 +37,8 @@ class C_Jadwal extends CI_Controller
 		'DariJam' => $row->DariJam,
 		'SampaiJam' => $row->SampaiJam,
 	    );
-            $this->template->load('template','jadwal_read', $data);
+           $this->load->view('admin/tema2');
+        $this->load->view('jadwal_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('c_jadwal'));
@@ -49,12 +51,13 @@ class C_Jadwal extends CI_Controller
             'button' => 'Create',
             'action' => site_url('c_jadwal/create_action'),
 	    'idJadwal' => set_value('idJadwal'),
-	    'idDokter' => set_value('idDokter'),
+	    'idDokter' => $this->ion_auth->user('4')->result(),
 	    'Hari' => set_value('Hari'),
 	    'DariJam' => set_value('DariJam'),
 	    'SampaiJam' => set_value('SampaiJam'),
 	);
-        $this->template->load('template','jadwal_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('jadwal_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
@@ -91,7 +94,8 @@ class C_Jadwal extends CI_Controller
 		'DariJam' => set_value('DariJam', $row->DariJam),
 		'SampaiJam' => set_value('SampaiJam', $row->SampaiJam),
 	    );
-            $this->template->load('template','jadwal_form', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('jadwal_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('c_jadwal'));
@@ -186,21 +190,6 @@ class C_Jadwal extends CI_Controller
 
         xlsEOF();
         exit();
-    }
-
-    function pdf()
-    {
-        $data = array(
-            'jadwal_data' => $this->Jadwal_model->get_all(),
-            'start' => 0
-        );
-        
-        ini_set('memory_limit', '32M');
-        $html = $this->load->view('jadwal_pdf', $data, true);
-        $this->load->library('pdf');
-        $pdf = $this->pdf->load();
-        $pdf->WriteHTML($html);
-        $pdf->Output('jadwal.pdf', 'D'); 
     }
 
 }

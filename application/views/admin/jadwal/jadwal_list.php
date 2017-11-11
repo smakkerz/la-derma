@@ -3,17 +3,19 @@
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
-              <div class='box'>
-                <div class='box-header'>
-                  <h3 class='box-title'>JADWAL VIEW <?php echo anchor('c_jadwal/create/','Create',array('class'=>'btn btn-primary btn-sm'));?>
-		<?php echo anchor(site_url('c_jadwal/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-primary btn-sm"'); ?></h3>
+              <div class=''>
+                <div class=''>
+                  <h3 class='box-title'>Jadwal Praktek Dokter</h3> 
+                  <?php echo anchor('C_jadwal/create/','Create',array('class'=>'button primary'));?>
+		          <?php echo anchor(site_url('C_jadwal/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button warning"'); ?>
+		          <?php echo anchor(site_url('C_jadwal/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button warning"'); ?></h3>
                 </div><!-- /.box-header -->
-                <div class='box-body'>
+                <div class=''>
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
                     <th width="80px">No</th>
-		    <th>Nama Dokter</th>
+		    <th>IdDokter</th>
 		    <th>Hari</th>
 		    <th>DariJam</th>
 		    <th>SampaiJam</th>
@@ -28,14 +30,17 @@
                 ?>
                 <tr>
 		    <td><?php echo ++$start ?></td>
-		    <td>Dr.<?php echo $c_jadwal->last_name ?></td>
+		    <td><?php echo $c_jadwal->idDokter ?></td>
 		    <td><?php echo $c_jadwal->Hari ?></td>
 		    <td><?php echo $c_jadwal->DariJam ?></td>
 		    <td><?php echo $c_jadwal->SampaiJam ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('c_jadwal/update/'.$c_jadwal->idJadwal),'Ubah',array('title'=>'edit','class'=>'button button-primary')); 
-			echo anchor(site_url('c_jadwal/delete/'.$c_jadwal->idJadwal),'Hapus','title="delete" class="button button-primary" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('c_jadwal/read/'.$c_jadwal->idJadwal),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo '  '; 
+			echo anchor(site_url('c_jadwal/update/'.$c_jadwal->idJadwal),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo '  '; 
+			echo anchor(site_url('c_jadwal/delete/'.$c_jadwal->idJadwal),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>

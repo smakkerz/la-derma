@@ -2,37 +2,36 @@
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
-              <div class='box'>
-                <div class='box-header'>
+              <div>
+                <div>
                 
                   <h3 class='box-title'>JADWAL</h3>
-                      <div class='box box-primary'>
+                      <div>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>IdDokter <?php echo form_error('idDokter') ?></td>
-            <td>
-              <input list="dokter" name="idDokter" value="<?= $idDokter ?>">
-              <datalist id="dokter">
-                <?php
-                foreach ($idDokter as $dokter) {
-                ?>
-                <option value="<?= $dokter->email ?>"><?= $dokter->last_name ?></option>
-                <?php
-                }
-                ?>
-              </datalist>
-            </select>
-            </td>
+            <td><select class="js-example-basic-single form-control" name="IdDokter">
+                                <option>Nama Dokter</option>
+                                <?php
+                                    $row = $this->ion_auth->users('Dokter')->result();
+                                    foreach ($row as $data) {
+                                ?>
+                                <option value="<?= $data->email ?>"><?= $data->first_name ?> <?= $data->last_name ?></option>
+                                <?php
+                                    }
+                                ?>  
+                            </select>
+        </td>
 	    <tr><td>Hari <?php echo form_error('Hari') ?></td>
-            <td><input list="hari" name="Hari" value="<?= $Hari ?>">
-              <datalist id="hari">
-                <option>Senin</option>
-                <option>Selasa</option>
-                <option>Rabu</option>
-                <option>Kamis</option>
-                <option>Jumat</option>
-                <option>Sabtu</option>
-                <option>Minggu</option>
-              </datalist>
+            <td>
+            <select name="Hari" class="form-control">
+              <option>Senin</option>
+              <option>Selasa</option>
+              <option>Rabu</option>
+              <option>Kamis</option>
+              <option>Jumat</option>
+              <option>Sabtu</option>
+              <option>Minggu</option>
+            </select>
         </td>
 	    <tr><td>DariJam <?php echo form_error('DariJam') ?></td>
             <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />

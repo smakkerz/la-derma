@@ -40,7 +40,7 @@ class Auth extends CI_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->template->load('template','auth/index',$this->data);
+			redirect('Menu','refresh');
 		}
 	}
 
@@ -64,7 +64,11 @@ class Auth extends CI_Controller {
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
+				if ($this->ion_auth->is_admin()) {
+					redirect('Menu','refresh');
+				}else{
+					redirect('/', 'refresh');
+				}
 			}
 			else
 			{

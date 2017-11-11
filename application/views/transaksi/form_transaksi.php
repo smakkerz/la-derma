@@ -11,6 +11,7 @@
                         <table>
                             <div class="panel-body">
                                 <?php echo form_open('transaksi', array('class'=>'form-horizontal')); ?>
+                                
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Nama Barang</label>
                                         <div class="col-sm-10">
@@ -41,6 +42,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-sm-2 control-label">Jenis Transaksi</label>
+                                        <div class="col-sm-10">
+                                          <select name="jenis">
+                                              <option>Penjualan Jasa</option>
+                                              <option>Penjualan Resep</option>
+                                              <option>Penjualan Non Resep</option>
+                                              <option>Lain-Lain</option>
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                           <button type="submit" name="selesai" class="btn btn-success btn-sm">Selesai</button>
                                         </div>
@@ -49,18 +61,18 @@
 
                                 <datalist id="barang">
                                     <?php foreach ($barang->result() as $b) {
-                                        echo "<option value='$b->nama_barang'>";
+                                        echo "<option value='$b->barang_id'>$b->nama_barang</option>";
                                     } ?>
                                     
                                 </datalist>
                                 <datalist id="pasien">
-                                    <?php foreach ($user->result() as $c) {
+                                    <?php foreach ($this->ion_auth->users('5')->result() as $c) {
                                         echo "<option value='$c->email'>$c->first_name $c->last_name</option>";
                                     } ?>
                                     
                                 </datalist>
                                 <datalist id="dokter">
-                                    <?php foreach ($user->result() as $d) {
+                                    <?php foreach ($this->ion_auth->users('4')->result() as $d) {
                                         echo "<option value='$d->email'>$d->first_name $d->last_name</option>";
                                     } ?>
                                     
@@ -100,6 +112,7 @@
                                                 <td colspan="4">T O T A L</td>
                                                 <td>Rp. <?php echo number_format($total,2);?></td>
                                             </tr>
+
                                         </tbody>
                                     </table>
                                 </div>

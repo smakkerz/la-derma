@@ -76,6 +76,14 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
+	/** JIKA DI HOSTING
+	'username' => 'id2503814_root_proyek',
+	'password' => '5m4kk3rZ',
+	'database' => 'id2503814_proyek',
+	**/
+	/**
+	JIKA DI LOKAL
+	**/
 	'username' => 'root',
 	'password' => 'junandia98',
 	'database' => 'klinik',

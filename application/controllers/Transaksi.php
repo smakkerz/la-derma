@@ -25,7 +25,7 @@ class transaksi extends ci_controller{
         }
         else
         {
-            $data['user']=  $this->ion_auth->users();
+            $data['dokter']=  $this->ion_auth->users('4');
             $data['barang']=  $this->model_barang->tampil_data();
             $data['detail']=  $this->model_transaksi->tampilkan_detail_transaksi()->result();
             $this->load->view('admin/tema2');
@@ -44,10 +44,6 @@ class transaksi extends ci_controller{
     
     function selesai_belanja()
     {
-        $users = $this->ion_auth->user()->row();
-        $tanggal=date('Y-m-d');
-        $user=  $users->email;
-        $data=array('pasien_email' => $pasien,'dokter_email' => $dokter,'operator_id'=>$user,'tanggal_transaksi'=>$tanggal);
         $this->model_transaksi->selesai_belanja($data);
         redirect('transaksi');
     }

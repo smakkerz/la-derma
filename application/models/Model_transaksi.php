@@ -7,11 +7,12 @@ class model_transaksi extends ci_model
     {
         $nama_barang    =  $this->input->post('barang');
         $qty            =  $this->input->post('qty');
-        $idbarang       = $this->db->get_where('barang',array('nama_barang'=>$nama_barang))->row_array();
+        $idbarang       = $this->db->get_where('barang',array('barang_id'=>$nama_barang))->row_array();
         $data           = array('barang_id'=>$idbarang['barang_id'],
                                 'qty'=>$qty,
                                 'harga'=>$idbarang['harga'],
                                 'status'=>'0');
+
         $this->db->insert('transaksi_detail',$data);
     }
     
@@ -32,10 +33,22 @@ class model_transaksi extends ci_model
     
     function selesai_belanja($data)
     {
+        $users = $this->ion_auth->user()->row();
+        $pasien = $this->input->post('pasien');
+        $dokter = $this->input->post('dokter');
+        $jenis = $this->input->post('jenis');
+        $tanggal=date('Y-m-d');
+        $user=  $users->email;
+        $data=array('pasien_email' => $pasien,'dokter_email' => $dokter,'operator_id'=>$user,'tanggal_transaksi'=>$tanggal,'jenis'=> $jenis);
+        
         $this->db->insert('transaksi',$data);
         $last_id=  $this->db->query("select transaksi_id from transaksi order by transaksi_id desc")->row_array();
+        
         $this->db->query("update transaksi_detail set transaksi_id='".$last_id['transaksi_id']."' where status='0'");
         $this->db->query("update transaksi_detail set status='1' where status='0'");
+        $masuk = $this->db->query("SELECT SUM(harga) as total FROM transaksi_detail as total WHERE transaksi_id = '$last_id[transaksi_id]'")->row_array();
+        $kas = array('transaksi'=>$jenis,'idtransaksi'=>$last_id['transaksi_id'],'IdPengguna'=>$user,'waktu'=>$tanggal,'masuk'=>$masuk['total'],'verifikasi'=>'1');
+        $this->db->insert('arus_kas',$kas);
     }
     
     
