@@ -192,7 +192,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
         <a href="#&amp;Master-Data" id="groupTitle2" class="groupTitle" style="margin-left: 1040px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(2);"><h3>Master Data</h3></a>
         <a href="#&amp;Laporan" id="groupTitle3" class="groupTitle" style="margin-left: 1560px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(3);"><h3>Laporan</h3></a>
         <a href="<?= base_url('Transaksi') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 520px; width: 125px; height: 125px; background: rgb(0, 144, 0); display: block;" data-pos="45-520-125"> 
-        <a href="#!/pemesanan" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 520px; width: 125px; height: 125px; background: rgb(0, 144, 0); display: block;" data-pos="45-520-125"> 
+        <a href="<?= base_url('Pemesanan') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 520px; width: 125px; height: 125px; background: rgb(0, 144, 0); display: block;" data-pos="45-520-125"> 
     <img src="<?= base_url('Metro') ?>/pemesanan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Billing</div>    </div>
     </a>
