@@ -11,7 +11,7 @@
                     <?= form_close() ?>
                     <?= $cetak ?>
                     <tr>
-                        <th colspan="5">Laporan Pemasukan <?= $kapan ?></th>
+                        <th colspan="5">Laporan <?= $kapan ?></th>
                     </tr>
                     <tr>
                         <th>ID Transaksi</th>

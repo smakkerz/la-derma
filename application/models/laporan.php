@@ -22,7 +22,7 @@
     function pengeluaran(){
         $date = date('Y-m');
         $awal = $date."-01";
-        $query = $this->db->query("SELECT * FROM arus_kas WHERE masuk = '0' AND waktu BETWEEN $awal AND CURRENT_DATE()");
+        $query = $this->db->query("SELECT idtransaksi,waktu,IdPengguna,keluar as masuk,keterangan FROM arus_kas WHERE masuk = '0' AND waktu BETWEEN $awal AND CURRENT_DATE()");
         return $query->result();
     }
     function priode($tgl1,$tgl2,$type){
