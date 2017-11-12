@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/jquery.autocomplete.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/plugin.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/metro-icons.css">
+        <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
     <style>
 html{background-color:#0F6D32;}
 

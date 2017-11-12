@@ -42,7 +42,8 @@ class Pasien extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->template->load('template','pasien_list', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('pasien_list', $data);
     }
 
     public function read($id) //fungsi tampil data
@@ -60,7 +61,8 @@ class Pasien extends CI_Controller
 		'birth_date' => $row->birth_date,
 		'status' => $row->status,
 	    );
-            $this->template->load('template','pasien_read', $data);
+            $this->load->view('admin/tema2');
+            $this->load->view('pasien_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pasien'));
@@ -82,7 +84,8 @@ class Pasien extends CI_Controller
 	    'birth_date' => set_value('birth_date'),
 	    'status' => set_value('status'),
 	);
-        $this->template->load('template','pasien_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('pasien_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
@@ -109,7 +112,7 @@ class Pasien extends CI_Controller
                                 'first_name' => $this->input->post('identitas', TRUE),
                                 'last_name' => $this->input->post('nama', TRUE),
                                 );
-        $group = array('5'); // Sets user to admin.
+        $group = array('5'); // Sets user to pasien.
 
         $this->ion_auth->register($username, $password, $email, $additional_data, $group);
             $this->Pasien_model->insert($data);
@@ -136,7 +139,8 @@ class Pasien extends CI_Controller
 		'birth_date' => set_value('birth_date', $row->birth_date),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->template->load('template','pasien_form', $data);
+            $this->load->view('admin/tema2');
+            $this->load->view('pasien_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pasien'));

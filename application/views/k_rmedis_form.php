@@ -12,7 +12,12 @@
             <td><?= cmb_dinamis("id_tindakan","k_tindakan","tindakan","id_tindakan","id_tindakan") ?>
         </td>
 	    <tr><td>Id Pasien <?php echo form_error('id_pasien') ?></td>
-            <td><input type="text" class="form-control" name="id_pasien" id="id_pasien" placeholder="Id Pasien" value="<?php echo $id_pasien; ?>" />
+            <td><input list="pasien" name="id_pasien" placeholder="masukan nama pasien" class="form-control">
+        <datalist id="pasien">
+          <?php foreach ($this->ion_auth->users('5')->result() as $c) {
+            echo "<option value='$c->email'>$c->first_name $c->last_name</option>";
+          } ?>                         
+        </datalist>
         </td>
 	    <tr><td>Diagnosa <?php echo form_error('diagnosa') ?></td>
             <td><input type="text" class="form-control" name="diagnosa" id="diagnosa" placeholder="Diagnosa" value="<?php echo $diagnosa; ?>" />
@@ -24,7 +29,7 @@
             <td><input type="text" class="form-control" name="resep" id="resep" placeholder="Resep" value="<?php echo $resep; ?>" />
         </td>
 	    <tr><td>Waktu <?php echo form_error('waktu') ?></td>
-            <td><input type="text" class="form-control" name="waktu" id="waktu" placeholder="Waktu" value="<?php echo $waktu; ?>" />
+            <td><input type="date" class="form-control" name="waktu" id="waktu" placeholder="Waktu" value="<?php echo $waktu; ?>" />
         </td>
 	    <tr><td>Keterangan <?php echo form_error('keterangan') ?></td>
             <td><input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" value="<?php echo $keterangan; ?>" />

@@ -42,7 +42,8 @@ class K_rmedis extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
-        $this->template->load('template','k_rmedis_list', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('k_rmedis_list', $data);
     }
 
     public function read($id) //fungsi tampil data
@@ -60,7 +61,8 @@ class K_rmedis extends CI_Controller
 		'keterangan' => $row->keterangan,
 		'id_pengguna' => $row->id_pengguna,
 	    );
-            $this->template->load('template','k_rmedis_read', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('k_rmedis_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('k_rmedis'));
@@ -81,7 +83,8 @@ class K_rmedis extends CI_Controller
 	    'waktu' => set_value('waktu'),
 	    'keterangan' => set_value('keterangan'),
 	);
-        $this->template->load('template','k_rmedis_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('k_rmedis_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
@@ -127,7 +130,8 @@ class K_rmedis extends CI_Controller
 		'waktu' => set_value('waktu', $row->waktu),
 		'keterangan' => set_value('keterangan', $row->keterangan),
 	    );
-            $this->template->load('template','k_rmedis_form', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('k_rmedis_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('k_rmedis'));

@@ -41,6 +41,8 @@ html{background-color:#0F6D32;}
 	transition-duration: 0.25s, 0.5s, 0.5s;
 	}
 </style> 
+    <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
     <!--[if lt IE 9]>
     <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="js/html5.js">
@@ -199,14 +201,14 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pemesanan</div>    </div>
     </a>
         <!-- Awal Menu Pemeriksaan Pasien -->
-        <a href="#!/pemeriksaan" class="tile tileImg group0  " style="margin-top: 45px; margin-left: 130px; width: 125px; height: 125px; background: rgb(0, 159, 176); display: block;" data-pos="45-130-125"> 
+        <a href="<?= base_url('K_rmedis') ?>" class="tile tileImg group0  " style="margin-top: 45px; margin-left: 130px; width: 125px; height: 125px; background: rgb(0, 159, 176); display: block;" data-pos="45-130-125"> 
     <img src="<?= base_url('Metro') ?>/pendaftaran.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Tindakan Dan Perawatan</div>    </div>
     </a>
             <!-- Akhir Menu Pemeriksaan Pasien -->
 
         <!-- Awal Menu Pendaftaran Pasien -->
-        <a href="#!/pendaftaran" class="tile tileImg group0  " style="margin-top: 45px; margin-left: 0px; width: 125px; height: 125px; background: rgb(255, 0, 132); display: block;" data-pos="45-0-125"> 
+        <a href="<?= base_url('Pasien/create') ?>" class="tile tileImg group0  " style="margin-top: 45px; margin-left: 0px; width: 125px; height: 125px; background: rgb(255, 0, 132); display: block;" data-pos="45-0-125"> 
     <img src="<?= base_url('Metro') ?>/pendaftaran2.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pendaftaran Pasien</div>    </div>
     </a>
@@ -235,7 +237,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Upload Data</div>    </div>
     </a>
-        <a href="#!/farmakoterapi" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(232, 100, 27); display: block;" data-pos="175-1170-125"> 
+        <a href="<?= base_url('Arus_kas') ?>" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(232, 100, 27); display: block;" data-pos="175-1170-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Arus Kas</div>    </div>
     </a>
