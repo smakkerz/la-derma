@@ -23,7 +23,7 @@
 			$users = $this->ion_auth->user()->row();
 			$user = $users->email;
 			$data = [
-				'transaksi' => 'Lain - Lain',
+				'transaksi' => 'Hutang',
 				'IdPengguna' => $user,
 				'waktu' => $tanggal,
 				'keluar' => $hutang,

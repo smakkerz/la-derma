@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Okt 2017 pada 13.26
+-- Generation Time: 12 Nov 2017 pada 17.30
 -- Versi Server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -28,22 +28,26 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `arus_kas` (
   `id` int(11) NOT NULL,
-  `transaksi` enum('Penjualan Jasa','Penjualan Resep','Penjualan Non Resep','Lain - Lain') NOT NULL,
+  `transaksi` enum('Penjualan Jasa','Penjualan Resep','Penjualan Non Resep','Lain - Lain','Pemesanan','Hutang') NOT NULL,
   `idtransaksi` varchar(32) DEFAULT NULL,
   `IdPengguna` varchar(50) NOT NULL,
-  `waktu` datetime NOT NULL,
+  `waktu` date NOT NULL,
   `masuk` double NOT NULL,
   `keluar` double NOT NULL,
-  `keterangan` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `keterangan` text NOT NULL,
+  `verifikasi` int(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `arus_kas`
 --
 
-INSERT INTO `arus_kas` (`id`, `transaksi`, `idtransaksi`, `IdPengguna`, `waktu`, `masuk`, `keluar`, `keterangan`) VALUES
-(1, 'Lain - Lain', '10.001.092017.LD', 'admin@admin.com', '2017-09-10 00:00:00', 100000, 0, ''),
-(2, 'Penjualan Jasa', '10.001.092017.LD', 'admin@admin.com', '2017-08-10 00:00:00', 100000, 0, '');
+INSERT INTO `arus_kas` (`id`, `transaksi`, `idtransaksi`, `IdPengguna`, `waktu`, `masuk`, `keluar`, `keterangan`, `verifikasi`) VALUES
+(1, 'Lain - Lain', '10.001.092017.LD', 'admin@admin.com', '2017-09-10', 100000, 0, '', 1),
+(2, 'Penjualan Jasa', '10.001.092017.LD', 'admin@admin.com', '2017-08-10', 100000, 0, '', 1),
+(3, 'Penjualan Non Resep', '24', 'admin@admin.com', '2017-11-12', 50000, 0, '', 1),
+(4, 'Lain - Lain', NULL, 'admin@admin.com', '2017-11-12', 0, 10000, 'Bensin', 1),
+(5, 'Pemesanan', '25', 'admin@admin.com', '2017-11-12', 50000, 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -63,15 +67,6 @@ CREATE TABLE IF NOT EXISTS `barang` (
 --
 
 INSERT INTO `barang` (`barang_id`, `kategori_id`, `nama_barang`, `harga`) VALUES
-(1, 1, 'mie sedap kari ayam', 2000),
-(4, 1, 'mie sedap goreng', 1500),
-(5, 1, 'mie soto ayam', 2300),
-(6, 2, 'minuman ringan', 3000),
-(7, 1, 'mie g enak', 4000),
-(8, 6, 'nokia x400', 1300),
-(9, 9, 'tas kulit', 400000),
-(10, 9, 'tas kertas', 300000),
-(12, 13, 'Kecap Manis', 2000),
 (13, 14, 'Nurscare', 50000),
 (14, 15, 'Operasi Ringan', 1000000);
 
@@ -142,7 +137,14 @@ CREATE TABLE IF NOT EXISTS `jadwal` (
   `Hari` varchar(7) NOT NULL,
   `DariJam` time NOT NULL,
   `SampaiJam` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `jadwal`
+--
+
+INSERT INTO `jadwal` (`idJadwal`, `idDokter`, `Hari`, `DariJam`, `SampaiJam`) VALUES
+(1, 'junandia08@gmail.com', 'Senin', '09:00:00', '11:30:00');
 
 -- --------------------------------------------------------
 
@@ -268,6 +270,13 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   `time` int(11) unsigned DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
+(1, '::1', 'admin', 1510495270);
+
 -- --------------------------------------------------------
 
 --
@@ -330,15 +339,14 @@ CREATE TABLE IF NOT EXISTS `percakapan` (
   `judul` varchar(50) NOT NULL,
   `dari` varchar(200) NOT NULL,
   `untuk` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `percakapan`
 --
 
 INSERT INTO `percakapan` (`id_percakapan`, `judul`, `dari`, `untuk`) VALUES
-(1, 'test', 'pasien@la-derma.com', 'admin@admin.com'),
-(2, 'Test 2', 'pasien@la-derma.com', 'admin@admin.com');
+(4, 'Test Kelola Pesan', 'admin@admin.com', 'junandia08@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -352,18 +360,15 @@ CREATE TABLE IF NOT EXISTS `pesan` (
   `jam` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dari` varchar(100) NOT NULL,
   `pesan` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pesan`
 --
 
 INSERT INTO `pesan` (`id_pesan`, `id_percakapan`, `jam`, `dari`, `pesan`) VALUES
-(1, 1, '2017-08-03 03:01:53', 'admin@admin.com', 'test'),
-(2, 1, '2017-08-10 16:15:15', 'pasien@la-derma.com', 'test jg'),
-(4, 1, '2017-08-10 17:00:48', 'pasien@la-derma.com', 'test again'),
-(5, 1, '2017-08-13 01:57:38', 'admin@admin.com', 'lol'),
-(6, 1, '2017-08-13 01:57:46', 'admin@admin.com', 'July4');
+(12, 4, '2017-10-22 10:51:27', 'admin@admin.com', 'aaaa'),
+(13, 4, '2017-10-22 10:51:44', 'admin@admin.com', 'aaaa');
 
 -- --------------------------------------------------------
 
@@ -376,22 +381,30 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `tanggal_transaksi` date NOT NULL,
   `operator_id` varchar(50) NOT NULL,
   `pasien_email` varchar(50) NOT NULL,
-  `dokter_email` varchar(50) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `dokter_email` varchar(50) NOT NULL,
+  `jenis` enum('Penjualan Jasa','Penjualan Resep','Penjualan Non Resep','Lain-Lain','Pemesanan') NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`transaksi_id`, `tanggal_transaksi`, `operator_id`, `pasien_email`, `dokter_email`) VALUES
-(7, '2014-07-18', '1', '', ''),
-(6, '2014-07-17', '2', '', ''),
-(5, '2014-07-17', '2', '', ''),
-(8, '2016-05-23', '5', '', ''),
-(9, '2017-10-06', '4', '', ''),
-(10, '2017-10-06', '0', '', ''),
-(11, '2017-10-06', '0', '', ''),
-(12, '2017-10-06', 'admin@admin.com', 'pasien@la-derma.com', 'doketer@la-derma.com');
+INSERT INTO `transaksi` (`transaksi_id`, `tanggal_transaksi`, `operator_id`, `pasien_email`, `dokter_email`, `jenis`) VALUES
+(13, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(12, '2017-10-06', 'admin@admin.com', 'pasien@la-derma.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(14, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(15, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(16, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(17, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(18, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(19, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(20, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(21, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(22, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(23, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Jasa'),
+(24, '2017-11-11', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Penjualan Non Resep'),
+(25, '2017-11-12', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Pemesanan'),
+(26, '2017-11-12', 'admin@admin.com', 'junandia08@gmail.com', 'doketer@la-derma.com', 'Pemesanan');
 
 -- --------------------------------------------------------
 
@@ -406,26 +419,18 @@ CREATE TABLE IF NOT EXISTS `transaksi_detail` (
   `transaksi_id` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
   `status` enum('0','1') NOT NULL COMMENT '1= sudah diproses , 0 belum diproses'
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `transaksi_detail`
 --
 
 INSERT INTO `transaksi_detail` (`t_detail_id`, `barang_id`, `qty`, `transaksi_id`, `harga`, `status`) VALUES
-(10, 1, 6, 6, 2000, '1'),
-(9, 6, 3, 5, 3000, '1'),
-(8, 1, 4, 5, 2000, '1'),
-(11, 5, 4, 6, 2300, '1'),
-(12, 4, 4, 6, 1500, '1'),
-(13, 1, 3, 7, 2000, '1'),
-(14, 6, 2, 7, 3000, '1'),
-(15, 4, 4, 8, 1500, '1'),
-(22, 5, 7, 8, 2300, '1'),
-(21, 5, 6, 8, 2300, '1'),
-(26, 8, 2, 9, 1300, '1'),
-(27, 1, 0, 10, 2000, '1'),
-(28, 4, 3, 11, 1500, '1'),
+(35, 13, 1, 24, 50000, '1'),
+(34, 13, 2, 22, 50000, '1'),
+(33, 13, 1, 20, 50000, '1'),
+(32, 13, 2, 19, 50000, '1'),
+(31, 14, 2, 13, 1000000, '1'),
 (29, 13, 2, 12, 50000, '1'),
 (30, 14, 1, 12, 1000000, '1');
 
@@ -460,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '327262626262', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1507285062, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '327262626262', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1510496708, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (2, '3132323232323', 'pasien@la-derma.com', '$2y$08$Pn8porgrcHoRWuVJ5gW47.LpR9euGlwKZzfwatvsKFYsxTdT64him', NULL, 'pasien@la-derma.com', NULL, NULL, NULL, NULL, 1501726388, 1502800334, 1, 'Pasien', 'Satu', 'Pasien', '08080808'),
 (3, '313232323235', 'doketer@la-derma.com', '$2y$08$cT0mQdyvgffjViAn.pCwFOP8TJKoAmP5/YWB4.xP1oCuH62LJNDdq', NULL, 'doketer@la-derma.com', NULL, NULL, NULL, NULL, 1501726460, 1502800241, 1, 'Dokter', 'Satu', 'La-Derma', '0808081088'),
 (4, '3132323232222', 'junandia08@gmail.com', '$2y$08$9LnF5z3fxZpqyKrjTizjAeMz7.E5Yt2ze8F2W4qngRZCd5ZPhQWMi', NULL, 'junandia08@gmail.com', NULL, NULL, NULL, NULL, 1505478507, NULL, 1, '123455678888', 'Rismawan Junandia', NULL, NULL);
@@ -587,7 +592,7 @@ ALTER TABLE `percakapan`
 -- Indexes for table `pesan`
 --
 ALTER TABLE `pesan`
-  ADD PRIMARY KEY (`id_pesan`);
+  ADD PRIMARY KEY (`id_pesan`), ADD KEY `id_percakapan` (`id_percakapan`);
 
 --
 -- Indexes for table `transaksi`
@@ -599,7 +604,7 @@ ALTER TABLE `transaksi`
 -- Indexes for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  ADD PRIMARY KEY (`t_detail_id`);
+  ADD PRIMARY KEY (`t_detail_id`), ADD KEY `transaksi_id` (`transaksi_id`);
 
 --
 -- Indexes for table `users`
@@ -621,7 +626,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `arus_kas`
 --
 ALTER TABLE `arus_kas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `barang`
 --
@@ -641,7 +646,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `idJadwal` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `idJadwal` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kategori_barang`
 --
@@ -681,22 +686,22 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `percakapan`
 --
 ALTER TABLE `percakapan`
-  MODIFY `id_percakapan` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_percakapan` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `transaksi_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `transaksi_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `t_detail_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `t_detail_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `users`
 --
