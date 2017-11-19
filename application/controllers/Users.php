@@ -25,7 +25,7 @@ class Users extends CI_Controller
 
     public function index()
     {
-        $this->data['users_data'] = $this->ion_auth->users(1)->result();
+        $this->data['users_data'] = $this->ion_auth->users()->result();
 			foreach ($this->data['users_data'] as $k => $user)
 			{
 				$this->data['users_data'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
@@ -67,9 +67,12 @@ class Users extends CI_Controller
 
     public function create()  //fungsi tambah data
     {
+        $groups=$this->ion_auth->groups()->result_array();        
         $data = array(
-            'button' => 'Create',
-            'action' => site_url('users/create_action'),
+        'groups' => $groups,
+        'currentGroups' => '',
+        'button' => 'Create',
+        'action' => site_url('users/create_action'),
 	    'id' => set_value('id'),
 	    'username' => set_value('username'),
 	    'password' => set_value('password'),
@@ -88,8 +91,8 @@ class Users extends CI_Controller
 		$additional_data = array(
 								'first_name' => $this->input->post('first_name',TRUE),
 								'last_name' => $this->input->post('last_name',TRUE),
-								);
-		$group = array('1'); // Sets user to admin.
+		$g = $this->input->post('groups')						);
+		$group = array($g);
 
 		$this->ion_auth->register($username, $password, $email, $additional_data, $group);
             redirect('users','refresh');
@@ -100,7 +103,11 @@ class Users extends CI_Controller
         $row = $this->Users_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $groups=$this->ion_auth->groups()->result_array();
+        $currentGroups = $this->ion_auth->get_users_groups($id)->result();
+        $data = array(
+        'groups' => $groups,
+        'currentGroups' => $currentGroups,
                 'button' => 'Update',
                 'action' => site_url('users/update_action'),
 		'id' => set_value('id', $row->id),
@@ -110,7 +117,7 @@ class Users extends CI_Controller
 		'last_name' => set_value('last_name', $row->last_name),
 	    );
         $this->load->view('admin/tema2');
-        $this->load->view('admin/F3-27/users_form', $data);
+        $this->load->view('admin/F3-27/edit_users_form', $data);
 
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -127,6 +134,17 @@ class Users extends CI_Controller
 					'last_name' => $this->input->post('last_name',TRUE),
 					'password' => $this->input->post('password',TRUE),
 					 );
+        $groupData = $this->input->post('groups');
+
+                    if (isset($groupData) && !empty($groupData)) {
+
+                        $this->ion_auth->remove_from_group('', $id);
+
+                        foreach ($groupData as $grp) {
+                            $this->ion_auth->add_to_group($grp, $id);
+                        }
+
+                    }
 		$this->ion_auth->update($id, $data);
 		redirect('users','refresh');
     }

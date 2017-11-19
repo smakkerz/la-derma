@@ -229,10 +229,6 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="<?= base_url('Metro') ?>/billing.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Hutang</div>    </div>
     </a>
-        <a href="#!/barang" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(105, 80, 171); display: block;" data-pos="45-1040-125"> 
-    <img src="<?= base_url('Metro') ?>/karyawan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">Karyawan</div>    </div>
-    </a>
         <a href="#!/customer" class="tile tileImg group2  " style="margin-top: 305px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(24, 0, 82); display: block;" data-pos="305-1040-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Upload Data</div>    </div>
