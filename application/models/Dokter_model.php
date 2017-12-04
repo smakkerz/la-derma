@@ -25,12 +25,7 @@
 		{
 			$user_data = $this->ion_auth->user()->row();
 			$email = $user_data->email;
-			$data = $this->db->get_where('k_janji',array('idDokter' => $email))->result();
-			foreach ($data as $janji) {
-				$pasien = $janji->id_pasien;
-				$query = $this->db->query("SELECT k_janji.* , users.last_name FROM k_janji,users WHERE users.email = '$pasien' ORDER BY k_janji.Tanggal DESC LIMIT 5")->result();
-			}
-			return $query;
+			return $data = $this->db->get_where('k_janji',array('idDokter' => $email))->result();
 		}
 	}
 ?>

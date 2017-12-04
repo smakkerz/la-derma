@@ -20,25 +20,21 @@
         <table class="word-table" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-		<th>Nik</th>
 		<th>Nama Karyawan</th>
 		<th>Email Karyawan</th>
 		<th>Jk</th>
 		<th>Alamat Karyawan</th>
-		<th>Jabatan</th>
 		
             </tr><?php
-            foreach ($karyawan_data as $karyawan)
+            foreach ($Karyawanld_data as $karyawanld)
             {
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
-		      <td><?php echo $karyawan->nik ?></td>
-		      <td><?php echo $karyawan->nama_karyawan ?></td>
-		      <td><?php echo $karyawan->email_karyawan ?></td>
-		      <td><?php echo $karyawan->jk ?></td>
-		      <td><?php echo $karyawan->alamat_karyawan ?></td>
-		      <td><?php echo $karyawan->jabatan ?></td>	
+		      <td><?php echo $karyawanld->nama_karyawan ?></td>
+		      <td><?php echo $karyawanld->email_karyawan ?></td>
+		      <td><?php echo $karyawanld->jk ?></td>
+		      <td><?php echo $karyawanld->alamat_karyawan ?></td>	
                 </tr>
                 <?php
             }

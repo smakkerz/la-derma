@@ -111,7 +111,7 @@
                                   <td><?php echo $no++?></td>
                                   <td><?php echo $janji_data->Tanggal ?></td>
                                   <td><?php echo $janji_data->Jam ?></td>
-                                  <td><?php echo $janji_data->last_name ?></td>
+                                  <td><?php echo $janji_data->id_pasien ?></td>
                                 </tr>
                                 <?php
                                   }

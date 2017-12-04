@@ -28,14 +28,22 @@
         <tr>
         <td>Grup</td>
         <td>
-          <select name="groups">
-            <?php foreach ($groups as $group):?>
+
+              <select name="groups">
+            <?php
+              $data = $this->Karyawanld_model->cek_group($email_karyawan);
+                foreach ($data as $g) {
+            ?>
+            <option value="<?php echo $g->id;  ?>"><?php echo $g->name; ?></option>
+            <?php
+                }
+          foreach ($groups as $group):?>
               <option value="<?php echo $group['id'];?>">
 
               <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
             </option>
           <?php endforeach?>
-          </select>
+              </select>
           
         </td>
       </tr>

@@ -41,7 +41,7 @@ class C_Jadwal extends CI_Controller
         $this->load->view('jadwal_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         }
     }
 
@@ -49,9 +49,9 @@ class C_Jadwal extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('c_jadwal/create_action'),
+            'action' => site_url('C_Jadwal/create_action'),
 	    'idJadwal' => set_value('idJadwal'),
-	    'idDokter' => $this->ion_auth->user('4')->result(),
+	    'idDokter' => '',
 	    'Hari' => set_value('Hari'),
 	    'DariJam' => set_value('DariJam'),
 	    'SampaiJam' => set_value('SampaiJam'),
@@ -76,7 +76,7 @@ class C_Jadwal extends CI_Controller
 
             $this->Jadwal_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         }
     }
     
@@ -87,7 +87,7 @@ class C_Jadwal extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('c_jadwal/update_action'),
+                'action' => site_url('C_Jadwal/update_action'),
 		'idJadwal' => set_value('idJadwal', $row->idJadwal),
 		'idDokter' => set_value('idDokter', $row->idDokter),
 		'Hari' => set_value('Hari', $row->Hari),
@@ -98,7 +98,7 @@ class C_Jadwal extends CI_Controller
         $this->load->view('jadwal_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         }
     }
     
@@ -118,7 +118,7 @@ class C_Jadwal extends CI_Controller
 
             $this->Jadwal_model->update($this->input->post('idJadwal', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         }
     }
     
@@ -129,10 +129,10 @@ class C_Jadwal extends CI_Controller
         if ($row) {
             $this->Jadwal_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('c_jadwal'));
+            redirect(site_url('C_Jadwal'));
         }
     }
 

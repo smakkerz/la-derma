@@ -5,8 +5,8 @@
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>JADWAL VIEW <?php echo anchor('c_jadwal/create/','Create',array('class'=>'btn btn-primary btn-sm'));?>
-		<?php echo anchor(site_url('c_jadwal/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-primary btn-sm"'); ?></h3>
+                  <h3 class='box-title'>JADWAL VIEW <?php echo anchor('C_Jadwal/create/','Create',array('class'=>'btn btn-primary btn-sm'));?>
+		<?php echo anchor(site_url('C_Jadwal/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-primary btn-sm"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
         <table class="table table-bordered table-striped" id="mytable">
@@ -23,19 +23,19 @@
 	    <tbody>
             <?php
             $start = 0;
-            foreach ($c_jadwal_data as $c_jadwal)
+            foreach ($c_jadwal_data as $C_Jadwal)
             {
                 ?>
                 <tr>
 		    <td><?php echo ++$start ?></td>
-		    <td>Dr.<?php echo $c_jadwal->last_name ?></td>
-		    <td><?php echo $c_jadwal->Hari ?></td>
-		    <td><?php echo $c_jadwal->DariJam ?></td>
-		    <td><?php echo $c_jadwal->SampaiJam ?></td>
+		    <td>Dr.<?php echo $C_Jadwal->last_name ?></td>
+		    <td><?php echo $C_Jadwal->Hari ?></td>
+		    <td><?php echo $C_Jadwal->DariJam ?></td>
+		    <td><?php echo $C_Jadwal->SampaiJam ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('c_jadwal/update/'.$c_jadwal->idJadwal),'Ubah',array('title'=>'edit','class'=>'button button-primary')); 
-			echo anchor(site_url('c_jadwal/delete/'.$c_jadwal->idJadwal),'Hapus','title="delete" class="button button-primary" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('C_Jadwal/update/'.$C_Jadwal->idJadwal),'Ubah',array('title'=>'edit','class'=>'button button-primary')); 
+			echo anchor(site_url('C_Jadwal/delete/'.$C_Jadwal->idJadwal),'Hapus','title="delete" class="button button-primary" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>
