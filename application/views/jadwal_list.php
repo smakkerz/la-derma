@@ -29,7 +29,7 @@
                 <tr>
 		    <td><?php echo ++$start ?></td>
 		    <td>Dr.<?php echo $C_Jadwal->last_name ?></td>
-		    <td><?php echo $C_Jadwal->Hari ?></td>
+		    <td><?php echo $C_Jadwal->Hari ?>, <?php echo $C_Jadwal->tanggal ?></td>
 		    <td><?php echo $C_Jadwal->DariJam ?></td>
 		    <td><?php echo $C_Jadwal->SampaiJam ?></td>
 		    <td style="text-align:center" width="140px">

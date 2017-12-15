@@ -25,13 +25,14 @@ class Barang extends CI_Controller{
                                 'kategori_id'=>$kategori,
                                 'harga'=>$harga);
             $this->model_barang->post($data);
-            redirect('barang');
+            redirect('Barang');
         }
         else{
             $this->load->model('model_kategori');
             $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
             //$this->load->view('barang/form_input',$data);
-            $this->template->load('template','barang/form_input',$data);
+            $this->load->view('admin/tema2');
+            $this->load->view('barang/form_input',$data);
         }
     }
     
@@ -48,7 +49,7 @@ class Barang extends CI_Controller{
                                 'kategori_id'=>$kategori,
                                 'harga'=>$harga);
             $this->model_barang->edit($data,$id);
-            redirect('barang');
+            redirect('Barang');
         }
         else{
             $id=  $this->uri->segment(3);
@@ -66,6 +67,6 @@ class Barang extends CI_Controller{
     {
         $id=  $this->uri->segment(3);
         $this->model_barang->delete($id);
-        redirect('barang');
+        redirect('Barang');
     }
 }

@@ -32,7 +32,7 @@
                 <tr>
 		      <td><?php echo ++$start ?></td>
 		      <td><?php echo $c_jadwal->idDokter ?></td>
-		      <td><?php echo $c_jadwal->Hari ?></td>
+		      <td><?php echo $c_jadwal->Hari ?>, <?php echo $Tanggal ?></td>
 		      <td><?php echo $c_jadwal->DariJam ?></td>
 		      <td><?php echo $c_jadwal->SampaiJam ?></td>	
                 </tr>

@@ -217,7 +217,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="<?= base_url('Metro') ?>/penerimaan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Produk Dan Obat</div>    </div>
     </a>
-        <a href="#!/stok-opname" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 780px; width: 125px; height: 125px; background: rgb(21, 170, 100); display: block;" data-pos="175-780-125"> 
+        <a href="<?= base_url('History') ?>" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 780px; width: 125px; height: 125px; background: rgb(21, 170, 100); display: block;" data-pos="175-780-125"> 
     <img src="<?= base_url('Metro') ?>/resep.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">History</div>    </div>
     </a>
@@ -228,6 +228,10 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
         <a href="<?= base_url('Hutang') ?>" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 650px; width: 125px; height: 125px; background: rgb(211, 73, 39); display: block;" data-pos="175-650-125"> 
     <img src="<?= base_url('Metro') ?>/billing.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Hutang</div>    </div>
+    </a>
+    <a href="<?= base_url('Karyawanld') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(105, 80, 171); display: block;" data-pos="45-1040-125"> 
+    <img src="http://july4dev.net76.net/Metro/karyawan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">Karyawan</div>    </div>
     </a>
         <a href="#!/customer" class="tile tileImg group2  " style="margin-top: 305px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(24, 0, 82); display: block;" data-pos="305-1040-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">

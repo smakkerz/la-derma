@@ -34,6 +34,7 @@ class C_Jadwal extends CI_Controller
 		'idJadwal' => $row->idJadwal,
 		'idDokter' => $row->idDokter,
 		'Hari' => $row->Hari,
+        'Tanggal' => $row->tanggal,
 		'DariJam' => $row->DariJam,
 		'SampaiJam' => $row->SampaiJam,
 	    );
@@ -53,6 +54,7 @@ class C_Jadwal extends CI_Controller
 	    'idJadwal' => set_value('idJadwal'),
 	    'idDokter' => '',
 	    'Hari' => set_value('Hari'),
+        'tanggal' => set_value('tanggal'),
 	    'DariJam' => set_value('DariJam'),
 	    'SampaiJam' => set_value('SampaiJam'),
 	);
@@ -70,6 +72,7 @@ class C_Jadwal extends CI_Controller
             $data = array(
 		'idDokter' => $this->input->post('idDokter',TRUE),
 		'Hari' => $this->input->post('Hari',TRUE),
+        'tanggal' => $this->input->post('tanggal', TRUE), 
 		'DariJam' => $this->input->post('DariJam',TRUE),
 		'SampaiJam' => $this->input->post('SampaiJam',TRUE),
 	    );
@@ -91,6 +94,7 @@ class C_Jadwal extends CI_Controller
 		'idJadwal' => set_value('idJadwal', $row->idJadwal),
 		'idDokter' => set_value('idDokter', $row->idDokter),
 		'Hari' => set_value('Hari', $row->Hari),
+        'tanggal' => set_value('tanggal', $row->tanggal),
 		'DariJam' => set_value('DariJam', $row->DariJam),
 		'SampaiJam' => set_value('SampaiJam', $row->SampaiJam),
 	    );
@@ -112,6 +116,7 @@ class C_Jadwal extends CI_Controller
             $data = array(
 		'idDokter' => $this->input->post('idDokter',TRUE),
 		'Hari' => $this->input->post('Hari',TRUE),
+        'tanggal' => $this->input->post('tanggal',TRUE),
 		'DariJam' => $this->input->post('DariJam',TRUE),
 		'SampaiJam' => $this->input->post('SampaiJam',TRUE),
 	    );
@@ -140,6 +145,7 @@ class C_Jadwal extends CI_Controller
     {
 	$this->form_validation->set_rules('idDokter', 'iddokter', 'trim|required');
 	$this->form_validation->set_rules('Hari', 'hari', 'trim|required');
+    $this->form_validation->set_rules('Tanggal','tanggal','trim|required');
 	$this->form_validation->set_rules('DariJam', 'darijam', 'trim|required');
 	$this->form_validation->set_rules('SampaiJam', 'sampaijam', 'trim|required');
 
@@ -170,7 +176,7 @@ class C_Jadwal extends CI_Controller
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
 	xlsWriteLabel($tablehead, $kolomhead++, "IdDokter");
-	xlsWriteLabel($tablehead, $kolomhead++, "Hari");
+	xlsWriteLabel($tablehead, $kolomhead++, "Hari, Tanggal");
 	xlsWriteLabel($tablehead, $kolomhead++, "DariJam");
 	xlsWriteLabel($tablehead, $kolomhead++, "SampaiJam");
 
@@ -180,7 +186,7 @@ class C_Jadwal extends CI_Controller
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->idDokter);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Hari);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Hari, $data->tanggal);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->DariJam);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->SampaiJam);
 

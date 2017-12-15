@@ -29,7 +29,8 @@ class kategori extends CI_Controller{
         }
         else{
             //$this->load->view('kategori/form_input');
-            $this->template->load('template','kategori/form_input');
+            $this->load->view('admin/tema2');
+        $this->load->view('kategori/form_input');
         }
     }
     

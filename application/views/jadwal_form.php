@@ -34,6 +34,10 @@
                 <option>Minggu</option>
               </datalist>
         </td>
+        <tr>
+          <td>Tanggal <?php echo form_error('tanggal') ?></td>
+          <td><input type="date" name="tanggal" placeholder="Tanggal" class="form-control" id="tanggal" value="<?php echo $tanggal ?>"></td>
+        </tr>
 	    <tr><td>DariJam <?php echo form_error('DariJam') ?></td>
             <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />
         </td>

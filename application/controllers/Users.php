@@ -25,7 +25,8 @@ class Users extends CI_Controller
 
     public function index()
     {
-        $this->data['users_data'] = $this->ion_auth->users()->result();
+        $group = array('1','3');
+        $this->data['users_data'] = $this->ion_auth->users($group)->result();
 			foreach ($this->data['users_data'] as $k => $user)
 			{
 				$this->data['users_data'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();

@@ -12,18 +12,26 @@ class Karyawan extends CI_Controller
         parent::__construct();
         $this->load->model('Karyawan_model');
         $this->load->library('form_validation');
+        $this->load->library(array('ion_auth','form_validation'));
+		$this->load->helper(array('url','language'));
+
+		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth')); 
+		$this->data['informasi'] = $this->informasi->web();
+		$this->lang->load('auth');
+		if (!$this->ion_auth->is_admin()) {
+			redirect('auth','refresh');
+		}
     }
 
     public function index()
     {
-        $karyawan = $this->Karyawan_model->get_all();
-
-        $data = array(
-            'karyawan_data' => $karyawan
-        );
-
+        $this->data['users_data'] = $this->ion_auth->users()->result();
+			foreach ($this->data['users_data'] as $k => $user)
+			{
+				$this->data['users_data'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			}
         $this->load->view('admin/tema2');
-        $this->load->view('admin/karyawan/karyawan_list', $data);
+        $this->load->view('admin/F3-27/users_list',$this->data);
     }
 
     public function read($id) //fungsi tampil data
@@ -31,72 +39,63 @@ class Karyawan extends CI_Controller
         $row = $this->Karyawan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'nik' => $row->nik,
-		'nama_karyawan' => $row->nama_karyawan,
-		'email_karyawan' => $row->email_karyawan,
-		'jk' => $row->jk,
-		'alamat_karyawan' => $row->alamat_karyawan,
-		'jabatan' => $row->jabatan,
+		'id' => $row->id,
+		'ip_address' => $row->ip_address,
+		'username' => $row->username,
+		'password' => $row->password,
+		'salt' => $row->salt,
+		'email' => $row->email,
+		'activation_code' => $row->activation_code,
+		'forgotten_password_code' => $row->forgotten_password_code,
+		'forgotten_password_time' => $row->forgotten_password_time,
+		'remember_code' => $row->remember_code,
+		'created_on' => $row->created_on,
+		'last_login' => $row->last_login,
+		'active' => $row->active,
+		'first_name' => $row->first_name,
+		'last_name' => $row->last_name,
+		'company' => $row->company,
+		'phone' => $row->phone,
 	    );
             $this->load->view('admin/tema2');
-        $this->load->view('admin/karyawan/karyawan_read', $data);
+        $this->load->view('admin/F3-27/users_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('karyawan'));
+            redirect(site_url('users'));
         }
     }
 
     public function create()  //fungsi tambah data
     {
+        $groups=$this->ion_auth->groups()->result_array();        
         $data = array(
-            'button' => 'Create',
-            'action' => site_url('karyawan/create_action'),
-	    'nik' => $this->Karyawan_model->nik(),
-	    'nama_karyawan' => set_value('nama_karyawan'),
-	    'email_karyawan' => set_value('email_karyawan'),
-	    'jk' => set_value('jk'),
-	    'alamat_karyawan' => set_value('alamat_karyawan'),
-	    'jabatan' => set_value('jabatan'),
+        'groups' => $groups,
+        'currentGroups' => '',
+        'button' => 'Create',
+        'action' => site_url('users/create_action'),
+	    'id' => set_value('id'),
+	    'username' => set_value('username'),
+	    'password' => set_value('password'),
+	    'first_name' => set_value('first_name'),
+	    'last_name' => set_value('last_name'),
 	);
         $this->load->view('admin/tema2');
-        $this->load->view('admin/karyawan/karyawan_form', $data);
+        $this->load->view('admin/F3-27/users_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
     {
-        $this->_rules();
+        $username = $this->input->post('username',TRUE);
+		$password = $this->input->post('password',TRUE);
+		$email = $this->input->post('username',TRUE);
+		$additional_data = array(
+								'first_name' => $this->input->post('first_name',TRUE),
+								'last_name' => $this->input->post('last_name',TRUE),
+		$g = $this->input->post('groups')						);
+		$group = array($g);
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'nik' => $this->input->post('nik',TRUE),
-		'nama_karyawan' => $this->input->post('nama_karyawan',TRUE),
-		'email_karyawan' => $this->input->post('email_karyawan',TRUE),
-		'jk' => $this->input->post('jk',TRUE),
-		'alamat_karyawan' => $this->input->post('alamat_karyawan',TRUE),
-		'jabatan' => $this->input->post('jabatan',TRUE),
-	    );
-
-            $this->Karyawan_model->insert($data);
-            $username = $this->input->post('email_karyawan', TRUE);
-            $password = $this->input->post('password', TRUE);
-            $additional_data = array(
-            'first_name' => $this->input->post('nama_karyawan',TRUE));
-
-            if ($this->input->post('jabatan') == "Admin") {
-                $g = "1";
-            }elseif ($this->input->post('jabatan') == "Dokter") {
-                $g = "3";
-            }elseif ($this->input->post('jabatan') == "Owner") {
-                $g = "4";
-            }
-            $group = array($g);
-
-        $this->ion_auth->register($username, $password, $email, $additional_data, $group);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('karyawan'));
-        }
+		$this->ion_auth->register($username, $password, $email, $additional_data, $group);
+            redirect('users','refresh');
     }
     
     public function update($id)  //fungsi perbarui data
@@ -104,44 +103,50 @@ class Karyawan extends CI_Controller
         $row = $this->Karyawan_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $groups=$this->ion_auth->groups()->result_array();
+        $currentGroups = $this->ion_auth->get_users_groups($id)->result();
+        $data = array(
+        'groups' => $groups,
+        'currentGroups' => $currentGroups,
                 'button' => 'Update',
-                'action' => site_url('karyawan/update_action'),
-		'nik' => set_value('nik', $row->nik),
-		'nama_karyawan' => set_value('nama_karyawan', $row->nama_karyawan),
-		'email_karyawan' => set_value('email_karyawan', $row->email_karyawan),
-		'jk' => set_value('jk', $row->jk),
-		'alamat_karyawan' => set_value('alamat_karyawan', $row->alamat_karyawan),
-		'jabatan' => set_value('jabatan', $row->jabatan),
+                'action' => site_url('users/update_action'),
+		'id' => set_value('id', $row->id),
+		'username' => set_value('username', $row->username),
+		'password' => set_value('password', $row->password),
+		'first_name' => set_value('first_name', $row->first_name),
+		'last_name' => set_value('last_name', $row->last_name),
 	    );
-            $this->load->view('admin/tema2');
-        $this->load->view('admin/karyawan/karyawan_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('admin/F3-27/edit_users_form', $data);
+
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('karyawan'));
+            redirect(site_url('users'));
         }
     }
     
     public function update_action() //fungsi validasi sebelum diperbarui data
     {
-        $this->_rules();
+        
+        $id = $this->input->post('id',TRUE);
+		$data = array(
+					'first_name' => $this->input->post('first_name',TRUE),
+					'last_name' => $this->input->post('last_name',TRUE),
+					'password' => $this->input->post('password',TRUE),
+					 );
+        $groupData = $this->input->post('groups');
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('', TRUE));
-        } else {
-            $data = array(
-		'nik' => $this->input->post('nik',TRUE),
-		'nama_karyawan' => $this->input->post('nama_karyawan',TRUE),
-		'email_karyawan' => $this->input->post('email_karyawan',TRUE),
-		'jk' => $this->input->post('jk',TRUE),
-		'alamat_karyawan' => $this->input->post('alamat_karyawan',TRUE),
-		'jabatan' => $this->input->post('jabatan',TRUE),
-	    );
+                    if (isset($groupData) && !empty($groupData)) {
 
-            $this->Karyawan_model->update($this->input->post('', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('karyawan'));
-        }
+                        $this->ion_auth->remove_from_group('', $id);
+
+                        foreach ($groupData as $grp) {
+                            $this->ion_auth->add_to_group($grp, $id);
+                        }
+
+                    }
+		$this->ion_auth->update($id, $data);
+		redirect('users','refresh');
     }
     
     public function delete($id)  //fungsi hapus data
@@ -151,31 +156,41 @@ class Karyawan extends CI_Controller
         if ($row) {
             $this->Karyawan_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('karyawan'));
+            redirect(site_url('users'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('karyawan'));
+            redirect(site_url('users'));
         }
     }
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('nik', 'nik', 'trim|required');
-	$this->form_validation->set_rules('nama_karyawan', 'nama karyawan', 'trim|required');
-	$this->form_validation->set_rules('email_karyawan', 'email karyawan', 'trim|required');
-	$this->form_validation->set_rules('jk', 'jk', 'trim|required');
-	$this->form_validation->set_rules('alamat_karyawan', 'alamat karyawan', 'trim|required');
-	$this->form_validation->set_rules('jabatan', 'jabatan', 'trim|required');
+	$this->form_validation->set_rules('ip_address', 'ip address', 'trim|required');
+	$this->form_validation->set_rules('username', 'username', 'trim|required');
+	$this->form_validation->set_rules('password', 'password', 'trim|required');
+	$this->form_validation->set_rules('salt', 'salt', 'trim|required');
+	$this->form_validation->set_rules('email', 'email', 'trim|required');
+	$this->form_validation->set_rules('activation_code', 'activation code', 'trim|required');
+	$this->form_validation->set_rules('forgotten_password_code', 'forgotten password code', 'trim|required');
+	$this->form_validation->set_rules('forgotten_password_time', 'forgotten password time', 'trim|required');
+	$this->form_validation->set_rules('remember_code', 'remember code', 'trim|required');
+	$this->form_validation->set_rules('created_on', 'created on', 'trim|required');
+	$this->form_validation->set_rules('last_login', 'last login', 'trim|required');
+	$this->form_validation->set_rules('active', 'active', 'trim|required');
+	$this->form_validation->set_rules('first_name', 'first name', 'trim|required');
+	$this->form_validation->set_rules('last_name', 'last name', 'trim|required');
+	$this->form_validation->set_rules('company', 'company', 'trim|required');
+	$this->form_validation->set_rules('phone', 'phone', 'trim|required');
 
-	$this->form_validation->set_rules('', '', 'trim');
+	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()  //fungsi untuk export data ke format excel
     {
         $this->load->helper('exportexcel');
-        $namaFile = "karyawan.xls";
-        $judul = "karyawan";
+        $namaFile = "users.xls";
+        $judul = "users";
         $tablehead = 0;
         $tablebody = 1;
         $nourut = 1;
@@ -193,24 +208,20 @@ class Karyawan extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nik");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama Karyawan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Email Karyawan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Jk");
-	xlsWriteLabel($tablehead, $kolomhead++, "Alamat Karyawan");
-	xlsWriteLabel($tablehead, $kolomhead++, "Jabatan");
+	xlsWriteLabel($tablehead, $kolomhead++, "Username");
+	xlsWriteLabel($tablehead, $kolomhead++, "Password");
+	xlsWriteLabel($tablehead, $kolomhead++, "First Name");
+	xlsWriteLabel($tablehead, $kolomhead++, "Last Name");
 
 	foreach ($this->Karyawan_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nik);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->nama_karyawan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->email_karyawan);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->jk);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->alamat_karyawan);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->jabatan);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->username);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->password);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->first_name);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->last_name);
 
 	    $tablebody++;
             $nourut++;
@@ -222,17 +233,18 @@ class Karyawan extends CI_Controller
 
     function pdf()
     {
-        $data = array(
-            'karyawan_data' => $this->Karyawan_model->get_all(),
-            'start' => 0
-        );
+            $this->data['users_data'] = $this->ion_auth->users(1)->result();
+			foreach ($this->data['users_data'] as $k => $user)
+			{
+				$this->data['users_data'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			}
         
         ini_set('memory_limit', '32M');
-        $html = $this->load->view('karyawan_pdf', $data, true);
+        $html = $this->load->view('admin/F3-27/users_pdf', $this->data, true);
         $this->load->library('pdf');
         $pdf = $this->pdf->load();
         $pdf->WriteHTML($html);
-        $pdf->Output('karyawan.pdf', 'D'); 
+        $pdf->Output('users.pdf', 'D'); 
     }
 
 }

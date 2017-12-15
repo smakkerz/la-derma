@@ -6,8 +6,8 @@ if (!defined('BASEPATH'))
 class Karyawan_model extends CI_Model
 {
 
-    public $table = 'karyawan';
-    public $id = 'nik';
+    public $table = 'users';
+    public $id = 'id';
     public $order = 'DESC';
 
     function __construct()
@@ -15,16 +15,6 @@ class Karyawan_model extends CI_Model
         parent::__construct();
     }
 
-    //set nik baru
-    function nik()
-        {
-            $data = $this->db->query("SELECT MAX(nik) AS akhir FROM karyawan")->row();
-            $i = $data->akhir;
-            $nextnis = explode('-', $i);
-            $next = $nextnis[1]+1;
-            $idnew = 'LDR-'.sprintf('%05s', $next);
-            return $idnew;
-        }
     // get all
     function get_all()
     {
@@ -41,13 +31,23 @@ class Karyawan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('', $q);
-	$this->db->or_like('nik', $q);
-	$this->db->or_like('nama_karyawan', $q);
-	$this->db->or_like('email_karyawan', $q);
-	$this->db->or_like('jk', $q);
-	$this->db->or_like('alamat_karyawan', $q);
-	$this->db->or_like('jabatan', $q);
+        $this->db->like('id', $q);
+	$this->db->or_like('ip_address', $q);
+	$this->db->or_like('username', $q);
+	$this->db->or_like('password', $q);
+	$this->db->or_like('salt', $q);
+	$this->db->or_like('email', $q);
+	$this->db->or_like('activation_code', $q);
+	$this->db->or_like('forgotten_password_code', $q);
+	$this->db->or_like('forgotten_password_time', $q);
+	$this->db->or_like('remember_code', $q);
+	$this->db->or_like('created_on', $q);
+	$this->db->or_like('last_login', $q);
+	$this->db->or_like('active', $q);
+	$this->db->or_like('first_name', $q);
+	$this->db->or_like('last_name', $q);
+	$this->db->or_like('company', $q);
+	$this->db->or_like('phone', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -55,13 +55,23 @@ class Karyawan_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('', $q);
-	$this->db->or_like('nik', $q);
-	$this->db->or_like('nama_karyawan', $q);
-	$this->db->or_like('email_karyawan', $q);
-	$this->db->or_like('jk', $q);
-	$this->db->or_like('alamat_karyawan', $q);
-	$this->db->or_like('jabatan', $q);
+        $this->db->like('id', $q);
+	$this->db->or_like('ip_address', $q);
+	$this->db->or_like('username', $q);
+	$this->db->or_like('password', $q);
+	$this->db->or_like('salt', $q);
+	$this->db->or_like('email', $q);
+	$this->db->or_like('activation_code', $q);
+	$this->db->or_like('forgotten_password_code', $q);
+	$this->db->or_like('forgotten_password_time', $q);
+	$this->db->or_like('remember_code', $q);
+	$this->db->or_like('created_on', $q);
+	$this->db->or_like('last_login', $q);
+	$this->db->or_like('active', $q);
+	$this->db->or_like('first_name', $q);
+	$this->db->or_like('last_name', $q);
+	$this->db->or_like('company', $q);
+	$this->db->or_like('phone', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

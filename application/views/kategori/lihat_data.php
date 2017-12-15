@@ -11,16 +11,17 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                 <?php echo anchor('kategori/post','Tambah Data',array('class'=>'btn btn-danger btn-sm')) ?>
+                                 <?php echo anchor('Barang/post','Tambah Data',array('class'=>'button button danger')) ?>
+                                 <?php echo anchor('Kategori','Kategori Barang',array('class'=>'button button warning')) ?>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
-                                                <th>Nama Kategori</th>
-                                                <th>Aksi</th>
+                                                <th style="color: white">No.</th>
+                                                <th style="color: white">Nama Kategori</th>
+                                                <th style="color: white">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
