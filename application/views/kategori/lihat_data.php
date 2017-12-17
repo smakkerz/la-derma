@@ -16,7 +16,7 @@
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <table class="table striped bordered hovered" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th style="color: white">No.</th>
