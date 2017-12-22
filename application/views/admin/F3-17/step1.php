@@ -1,97 +1,24 @@
-<div class="row">
-    <div class="col-md-12">
-        <h2 class="page-header">
-            POS (Point of Sale) <small>Pemesanan</small>
-        </h2>
-    </div>
-</div> 
-<!-- /. ROW  -->
-
-<div class="row">
-        <table class="table bordered striped">
-                <?php echo form_open('Pemesanan/step2', array('class'=>'form-horizontal')); ?>
-                <tr>
-                    <td colspan="2"><label class="col-sm-2 control-label"><?php echo date('Y-m-d'); ?></label></td>
-                </tr>
-                <tr>
-                        <td><label class="col-sm-2 control-label">Pasien</label>
-                            <input name="pasien" value="<?php echo $pasien ?>" class="form-control">
-                        </td>
-                        <td>
-                        <label class="col-sm-2 control-label">Dokter</label>
-                            <input  name="dokter" value="<?php echo $dokter ?>" class="form-control">
-                    </td>
-                    </tr>
-<tr>
-    <td colspan="2">
-    <label class="col-sm-2 control-label">Nama Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control">
-    <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="form-control">
-    </td colspan="2">
-</tr>
-<tr>
-    <td colspan="2">
-        <button type="submit" name="submit" class="btn btn-primary btn-sm">Tambah Barang</button>
-    </td>
-</tr>                                   
-<datalist id="barang">
-    <?php foreach ($barang->result() as $b) {
-        echo "<option value='$b->barang_id'>$b->nama_barang</option>";
-    } ?>
-</datalist>
-        </div>
-    </div>
-                        <!-- /. PANEL  -->
+<div>
+	<?php echo form_open('Pemesanan/step1_next'); ?>
+	<table class="table hovered bordered striped">
+		<tr>
+			<th colspan="2">Form Pemesanan La-Derma</th>
+		</tr>
+		<tr align="center">
+			<td>Nama Dokter</td>
+			<td><input list="dokter" name="dokter" placeholder="masukan nama dokter" class="form-control"></td>
+		</tr>
+		<tr align="center">
+			<td>Nama Pasien</td>
+			<td><input list="pasien" name="pasien" placeholder="masukan nama pasien" class="form-control"></td>
+		</tr>
+		<tr align="center">
+			<td colspan="2"><input type="submit" name="next" class="button warning" value="Selanjutnya"></td>
+		</tr>
+	</table>
+	<?php echo form_close(); ?>
 </div>
-
-
-<div class="col-md-12">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered" width="100%">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Nama Barabg</th>
-                            <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Sub Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php $no=1; $total=0; foreach ($detail as $r){ ?>
-                        <tr class="gradeU">
-                                <td><?php echo $no ?></td>
-                                <td><?php echo $r->nama_barang.' - '.anchor('Pemesanan/step2/hapusitem/'.$r->t_detail_id,'Hapus',array('style'=>'color:red;')) ?></td>
-                                <td><?php echo $r->qty ?></td>
-                                <td>Rp. <?php echo number_format($r->harga,2) ?></td>
-                                <td><?php echo uang($r->qty*$r->harga) ?></td>
-                            </tr>
-                        <?php $total=$total+($r->qty*$r->harga);
-                        $no++; } ?>
-                            <tr class="gradeA">
-                                <td colspan="4">T O T A L</td>
-                                <td><?php echo uang($total);?></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                                <!-- /. TABLE  -->
-            </div>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" name="selesai" class="btn btn-success btn-sm">Selesai</button>
-    </div>
-</div>
-<!-- /. ROW  -->
-
-                                <table class="table bordered striped hovered" id="mytable">
+<table class="table bordered striped hovered" id="mytable">
                                     <thead>
                                     <tr>
                                         <th colspan="7" style="color: white;">Daftar Pemesanan ( Lebih dari 7 Hari Belum Dibayar Akan Otomatis Terhapus )</th>
@@ -162,3 +89,15 @@
             });
         </script>
                 <!-- /. ROW  -->
+<datalist id="pasien">
+	<?php foreach ($this->ion_auth->users('5')->result() as $c) {
+	echo "<option value='$c->email'>$c->first_name $c->last_name</option>";
+	} ?>
+                                    
+</datalist>
+<datalist id="dokter">
+   	<?php foreach ($this->ion_auth->users('4')->result() as $d) {
+    echo "<option value='$d->email'>$d->first_name $d->last_name</option>";
+    } ?>
+                                    
+</datalist>

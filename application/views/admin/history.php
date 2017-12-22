@@ -30,10 +30,10 @@
             <td><?php echo $data->pasien_email ?></td>
             <td><?php echo $data->dokter_email ?></td>
             <td><?php echo $data->jenis ?></td>
-            <td><?php if ($data->status == 1) {
-                echo "Sudah Di Proses";
+            <td><?php if ($data->verifikasi == 1) {
+                echo "Sudah Lunas";
                 }else{
-                    echo "Belum di Proses";
+                    echo "Belum Lunas";
                 } ?></td>
         </tr>
         <?php

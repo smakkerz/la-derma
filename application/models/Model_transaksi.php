@@ -1,8 +1,29 @@
 <?php
 class model_transaksi extends ci_model
 {
-    
-    
+    function faktur()
+        {
+                $this->db->order_by('transaksi_id','DESC');
+                $this->db->get_where('transaksi',array('tanggal_transaksi' => 'current_date' , ));
+                $data = $this->db->get('transaksi')->result();
+                foreach ($data as $row) {
+                    $tx = explode('.', $row->transaksi_id);
+                    $antri = $tx[1];
+                }
+                $date = date('Y-m-d');
+                $cekantri = $this->db->query("SELECT COUNT(*) as jml FROM transaksi WHERE tanggal_transaksi = '$date'")->result();
+                foreach ($cekantri as $cek) {
+                    if ($cek->jml == 0) {
+                        $antri = $cek->jml+1;
+                    }else{
+                        $antri = $antri+1;
+                    }
+                }
+                $d = date('d');
+                $my = date('mY');
+                $newfaktur = $d.".00".$antri.".".$my.".LD";
+                return $newfaktur;
+        }
     function simpan_barang()
     {
         $nama_barang    =  $this->input->post('barang');
@@ -33,6 +54,7 @@ class model_transaksi extends ci_model
     
     function selesai_belanja($data)
     {
+        $this->db->insert('transaksi',$data);
         $users = $this->ion_auth->user()->row();
         $pasien = $this->input->post('pasien');
         $dokter = $this->input->post('dokter');
@@ -41,7 +63,7 @@ class model_transaksi extends ci_model
         $user=  $users->email;
         $data=array('pasien_email' => $pasien,'dokter_email' => $dokter,'operator_id'=>$user,'tanggal_transaksi'=>$tanggal,'jenis'=> $jenis);
         
-        $this->db->insert('transaksi',$data);
+        
         $last_id=  $this->db->query("select transaksi_id from transaksi order by transaksi_id desc")->row_array();
         
         $this->db->query("update transaksi_detail set transaksi_id='".$last_id['transaksi_id']."' where status='0'");
@@ -69,5 +91,15 @@ class model_transaksi extends ci_model
                 and t.tanggal_transaksi between '$tanggal1' and '$tanggal2'
                 group by t.transaksi_id";
         return $this->db->query($query);
+    }
+    function transaksi_terakhir()
+    {
+        $this->db->order_by('transaksi_id', 'DESC');
+        return $this->db->get('transaksi',1)->result();
+    }
+    function transaksi_detail_terakhir($id)
+    {
+        $this->db->join('barang', 'barang.barang_id = transaksi_detail.barang_id');
+        return $this->db->get_where('transaksi_detail',array('transaksi_id' => $id))->result();
     }
 }

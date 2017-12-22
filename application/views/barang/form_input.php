@@ -28,7 +28,10 @@
                                     <label>Harga</label>
                                     <input class="form-control" name="harga" placeholder="harga">
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Stok</label>
+                                    <input class="form-control" name="stok" placeholder="Stok">
+                                </div>
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm">Simpan</button> | 
                                 <?php echo anchor('barang','Kembali',array('class'=>'btn btn-danger btn-sm'))?>
                                 </form>

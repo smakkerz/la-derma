@@ -31,7 +31,10 @@
                                     <label>Harga</label>
                                     <input class="form-control" name="harga" value="<?php echo $record['harga']?>">
                                 </div>
-
+                                <div class="form-group">
+                                    <label>Stok</label>
+                                    <input class="form-control" name="stok" value="<?php echo $record['stok'] ?>">
+                                </div>
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm">Update</button> | 
                                 <?php echo anchor('barang','Kembali',array('class'=>'btn btn-danger btn-sm'))?>
                                 </form>

@@ -5,20 +5,28 @@
             <div class='col-xs-12'>
               <div class=''>
                 <div class=''>
-                  <h3 class='box-title'>User Akun </h3>
+                  <h3 class='box-title'>
+                    <?php
+                        $url = $this->uri->segment(1);
+                        if ($url == "Karyawanld") {
+                             echo "User Karyawan";
+                         }else{
+                            echo "User Akun";
+                         }
+                    ?> </h3>
                   <?php echo anchor('users/create/','Create',array('class'=>'button primary'));?>
 		<?php echo anchor(site_url('users/pdf'), 'Export to PDF', 'class="button"'); ?>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table table-bordered table-striped" id="mytable" width="100%">
+        <table class="table bordered hovered striped" id="mytable" width="100%">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
-		    <th>Nama Pengguna</th>
-		    <th>Nama Pertama</th>
-		    <th>Nama Terakhir</th>
-		    <th>Group</th>
-		    <th>Action</th>
+            <th width="80px"><font color="white">No</font></th>
+		    <th><font color="white">Nama Pengguna</font></th>
+		    <th><font color="white">Nama Pertama</font></th>
+		    <th><font color="white">Nama Terakhir</font></th>
+		    <th><font color="white">Group</font></th>
+		    <th><font color="white">Action</font></th>
                 </tr>
             </thead>
 	    <tbody>
@@ -34,7 +42,7 @@
 		    <td><?php echo $users->last_name ?></td>
 		    <td>
 		    	<?php foreach ($users->groups as $group):?>
-					<?php echo anchor("auth/edit_group/".$group->id, htmlspecialchars($group->name,ENT_QUOTES,'UTF-8')) ;?><br />
+					<?php echo $group->name ?><br />
                 <?php endforeach?>
 			</td>
 		    <td style="text-align:center" width="140px">

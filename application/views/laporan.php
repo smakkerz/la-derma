@@ -6,10 +6,13 @@
                 <div class='box-header'>
                 <h3 class='box-title'>Laporan</h3>
                 <table class="table bordered hovered striped" width="100%">
-                    <?= form_open('Laporan_pemasukan/priode') ?>
+                    <?php
+                        $url = $this->uri->segment(1);
+                    ?>
+                    <?php echo form_open($url."/priode") ?>
                     <?= $tgl ?>
                     <?= form_close() ?>
-                    <?= $cetak ?>
+                    
                     <tr>
                         <th colspan="5">Laporan <?= $kapan ?></th>
                     </tr>
@@ -33,7 +36,9 @@
                         <?php
                             }
                         ?>
-                    
+                    <tr>
+                        <th colspan="5"><?= $cetak ?></td>
+                    </tr>
                 </table>
             </div>
         </div><!-- /.box-body -->

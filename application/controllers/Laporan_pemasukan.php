@@ -15,7 +15,7 @@
 				<tr>
 					<th>Dari Tanggal <input type='date' name='tgl1'></th>
 					<th>Sampai Tanggal <input type='date' name='tgl2'></th>
-					<th><input type='submit' value='Cek'></th>
+					<th colspan='3'><input type='submit' value='Cek'></th>
 				</tr>
 			";
 			$kapan = "Pemasukan Bulan Ini";
@@ -47,7 +47,7 @@
 				<tr>
 					<th>Dari Tanggal <input type='date' name='tgl1'></th>
 					<th>Sampai Tanggal <input type='date' name='tgl2'></th>
-					<th><input type='submit' value='Cek'></th>
+					<th colspan='3'><input type='submit' value='Cek'></th>
 				</tr>
 			";
 			$tgl1 = $this->input->post('tgl1');

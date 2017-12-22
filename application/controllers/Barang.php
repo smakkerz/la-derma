@@ -21,9 +21,11 @@ class Barang extends CI_Controller{
             $nama       =   $this->input->post('nama_barang');
             $kategori   =   $this->input->post('kategori');
             $harga      =   $this->input->post('harga');
+            $stok       =   $this->input->post('stok');
             $data       = array('nama_barang'=>$nama,
                                 'kategori_id'=>$kategori,
-                                'harga'=>$harga);
+                                'harga'=>$harga,
+                                'stok'=>$stok);
             $this->model_barang->post($data);
             redirect('Barang');
         }
@@ -45,9 +47,11 @@ class Barang extends CI_Controller{
             $nama       =   $this->input->post('nama_barang');
             $kategori   =   $this->input->post('kategori');
             $harga      =   $this->input->post('harga');
+            $stok       =   $this->input->post('stok');
             $data       = array('nama_barang'=>$nama,
                                 'kategori_id'=>$kategori,
-                                'harga'=>$harga);
+                                'harga'=>$harga,
+                                'stok'=>$stok);
             $this->model_barang->edit($data,$id);
             redirect('Barang');
         }

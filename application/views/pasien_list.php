@@ -5,24 +5,21 @@
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>PASIEN VIEW <?php echo anchor('pasien/create/','Create',array('class'=>'btn btn-primary btn-sm'));?>
-		<?php echo anchor(site_url('pasien/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-primary btn-sm"'); ?>
-		<?php echo anchor(site_url('pasien/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="btn btn-primary btn-sm"'); ?></h3>
+                  <h3 class='box-title'>DATA PASIEN <?php echo anchor('pasien/create/','Create',array('class'=>'button primary'));?>
+		<?php echo anchor(site_url('pasien/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button primary"'); ?>
+		<?php echo anchor(site_url('pasien/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table table-bordered table-striped" id="mytable">
+        <table class="table bordered hovered striped" id="mytable">
             <thead>
                 <tr>
                     <th width="80px">No</th>
-		    <th>Identitas</th>
-		    <th>Nama</th>
-		    <th>Alamat</th>
-		    <th>User</th>
-		    <th>Pass</th>
-		    <th>Sex</th>
-		    <th>Birth Date</th>
-		    <th>Status</th>
-		    <th>Action</th>
+		    <th><font color="white">Identitas</font></th>
+		    <th><font color="white">Nama</font></th>
+		    <th><font color="white">Jenis Kelamin</font></th>
+		    <th><font color="white">Birth Date</font></th>
+		    <th><font color="white">Status</font></th>
+		    <th><font color="white">Action</font></th>
                 </tr>
             </thead>
 	    <tbody>
@@ -35,19 +32,16 @@
 		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $pasien->identitas ?></td>
 		    <td><?php echo $pasien->nama ?></td>
-		    <td><?php echo $pasien->alamat ?></td>
-		    <td><?php echo $pasien->user ?></td>
-		    <td><?php echo $pasien->pass ?></td>
 		    <td><?php echo $pasien->sex ?></td>
 		    <td><?php echo $pasien->birth_date ?></td>
 		    <td><?php echo $pasien->status ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('pasien/read/'.$pasien->id_pasien),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo anchor(site_url('pasien/read/'.$pasien->id_pasien),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('pasien/update/'.$pasien->id_pasien),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo anchor(site_url('pasien/update/'.$pasien->id_pasien),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'button success btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('pasien/delete/'.$pasien->id_pasien),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('pasien/delete/'.$pasien->id_pasien),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>

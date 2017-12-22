@@ -14,18 +14,25 @@ class transaksi extends ci_controller{
             redirect('transaksi');
         }
         else if (isset($_POST['selesai'])) {
+            $faktur = $this->model_transaksi->faktur();
             $users = $this->ion_auth->user()->row();
             $tanggal=date('Y-m-d');
             $user=  $users->email;
+            $jenis = $this->input->post('jenis');
             $pasien = $this->input->post('pasien');
             $dokter = $this->input->post('dokter');
-            $data=array('pasien_email' => $pasien,'dokter_email' => $dokter,'operator_id'=>$user,'tanggal_transaksi'=>$tanggal);
+            $data=array('transaksi_id'=>$faktur,'pasien_email' => $pasien,'dokter_email' => $dokter,'operator_id'=>$user,'tanggal_transaksi'=>$tanggal,'jenis'=>$jenis);
             $this->model_transaksi->selesai_belanja($data);
-            redirect('transaksi');
+            redirect('transaksi/result');
+
         }
         else
         {
-            $data['dokter']=  $this->ion_auth->users('4');
+            $data = [
+                'dokter' => $this->session->userdata('dokter'),
+                'pasien' => $this->session->userdata('pasien'),
+                'jenis' => $this->session->userdata('jenis')
+            ];
             $data['barang']=  $this->model_barang->tampil_data();
             $data['detail']=  $this->model_transaksi->tampilkan_detail_transaksi()->result();
             $this->load->view('admin/tema2');
@@ -33,7 +40,35 @@ class transaksi extends ci_controller{
         }
     }
     
-    
+    function result()
+    {
+        $idakhir = $this->model_transaksi->transaksi_terakhir();
+        foreach ($idakhir as $id) {
+            $idtx = $id->transaksi_id;
+        }
+        $barang = $this->model_transaksi->transaksi_detail_terakhir($idtx);
+        $data = 
+        [
+            'data' => $idakhir,
+            'barang' => $barang
+        ];
+        $this->load->view('admin/tema2');
+        $this->load->view('transaksi/result',$data);
+    }
+    function cetak()
+    {
+        $idakhir = $this->model_transaksi->transaksi_terakhir();
+        foreach ($idakhir as $id) {
+            $idtx = $id->transaksi_id;
+        }
+        $barang = $this->model_transaksi->transaksi_detail_terakhir($idtx);
+        $data = 
+        [
+            'data' => $idakhir,
+            'barang' => $barang
+        ];
+        $this->load->view('transaksi/result',$data);
+    }
     function hapusitem()
     {
         $id=  $this->uri->segment(3);
@@ -110,5 +145,9 @@ class transaksi extends ci_controller{
         $pdf->Cell(67,7,'Total',1,0,'R');
         $pdf->Cell(38,7,$total,1,0);
         $pdf->Output();
+    }
+    function test()
+    {
+        echo $this->model_transaksi->faktur();
     }
 }

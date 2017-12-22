@@ -61,30 +61,11 @@ $(document).ready(function() {
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>MENU UTAMA</h3>
-                <ul class="nav side-menu">
-                    <li><a href="<?= base_url('auth') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
-                    <li><a><i class="fa fa-desktop"></i> Master Data <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="<?= base_url('Users') ?>">User Management</a></li>
-                            <li><a href="<?= base_url('Kategori') ?>">Kategori Obat / Paket</a></li>
-                            <li><a href="<?= base_url('Barang') ?>">Obat / Paket</a></li>
-                            <li><a href="<?= base_url('c_jadwal') ?>">Jadwal</a></li>
-                            <li><a href="<?= base_url('k_tindakan') ?>">Tindakan</a></li>
-                        </ul>
-                    </li>
-                        <li><a href="<?= base_url('transaksi') ?>"><i class="fa fa-edit"></i> Kasir</a></li>
-                        <li><a href="<?= base_url('K_janji') ?>"><i class="fa fa-table"></i>Janji </a></li>
-                  
-                        <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-envelope"></i>Pesan </a></li>
-                        <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-laptop"></i>Rekam Medis </a></li>
-                        <li><a href="<?= base_url('transaksi/laporan') ?>"><i class="fa fa-bar-chart-o"></i> Laporan</a></li>
-
-                </ul>
-              </div>
-            </div>
+            <?php
+              if ($this->ion_auth->in_group(3)) {
+                $this->load->view('Menu/menu_owner');
+              }
+            ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -123,8 +104,10 @@ $(document).ready(function() {
                          echo "Administrator";
                         }elseif ($this->ion_auth->in_group("Dokter")) {
                           echo "Dokter";
-                        }else{
+                        }elseif ($this->ion_auth->in_group("Pasien")){
                           echo "Pasien";
+                        }else{
+                          echo "Owner";
                         }
                      ?>
                     <span class="fa fa-angle-down"></span>

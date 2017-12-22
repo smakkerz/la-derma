@@ -16,13 +16,14 @@
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table striped table-bordered table-hover" id="dataTables-example">
+                                    <table class="table table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
                                                 <th style="color: white">No.</th>
                                                 <th style="color: white">Nama Barang</th>
                                                 <th style="color: white">Kategori</th>
                                                 <th style="color: white">Harga</th>
+                                                <th style="color: white">Stok</th>
                                                 <th style="color: white">Aksi</th>
                                             </tr>
                                         </thead>
@@ -32,7 +33,8 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $r->nama_barang ?></td>
                                                 <td><?php echo $r->nama_kategori ?></td>
-                                                <td>Rp. <?php echo number_format($r->harga,2) ?></td>
+                                                <td><?php echo uang($r->harga) ?></td>
+                                                <td><?php echo $r->stok ?></td>
                                                 <td class="center" >
                                                     <font color="black"><?php echo anchor('barang/edit/'.$r->barang_id,'Edit'); ?> | 
                                                     <?php echo anchor('barang/delete/'.$r->barang_id,'Delete'); ?></font>

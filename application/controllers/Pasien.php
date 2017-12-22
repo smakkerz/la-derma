@@ -60,9 +60,9 @@ class Pasien extends CI_Controller
 	    'alamat' => set_value('alamat'),
 	    'user' => set_value('user'),
 	    'pass' => set_value('pass'),
-	    'sex' => set_value('sex'),
+	    'sex' => 'Pilih',
 	    'birth_date' => set_value('birth_date'),
-	    'status' => set_value('status'),
+	    'status' => 'Pilih',
 	);
         $this->load->view('admin/tema2');
         $this->load->view('pasien_form', $data);
@@ -93,7 +93,8 @@ class Pasien extends CI_Controller
         $email = $this->input->post('user',TRUE);
         $additional_data = array(
                                 'first_name' => $this->input->post('nama',TRUE),
-                                'last_name' => $this->input->post('identitas',TRUE),
+                                'last_name' => $this->input->post('identitas',TRUE)
+                            );
         $group = array('5');
 
         $this->ion_auth->register($username, $password, $email, $additional_data, $group);

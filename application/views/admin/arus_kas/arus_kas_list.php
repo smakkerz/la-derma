@@ -5,9 +5,9 @@
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>ARUS_KAS VIEW <?php echo anchor('arus_kas/create/','Create',array('class'=>'btn btn-primary btn-sm'));?>
-		<?php echo anchor(site_url('arus_kas/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="btn btn-primary btn-sm"'); ?>
-		<?php echo anchor(site_url('arus_kas/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="btn btn-primary btn-sm"'); ?></h3>
+                  <h3 class='box-title'>DATA ARUS KAS <?php echo anchor('arus_kas/create/','Create',array('class'=>'button primary btn-sm'));?>
+		<?php echo anchor(site_url('arus_kas/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button primary btn-sm"'); ?>
+		<?php echo anchor(site_url('arus_kas/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary btn-sm"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
         <table class="table bordered" id="mytable">
@@ -43,11 +43,11 @@
 		    <td><?php echo $arus_kas->verifikasi ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('arus_kas/read/'.$arus_kas->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo anchor(site_url('arus_kas/read/'.$arus_kas->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('arus_kas/update/'.$arus_kas->id),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo anchor(site_url('arus_kas/update/'.$arus_kas->id),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'button success btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('arus_kas/delete/'.$arus_kas->id),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('arus_kas/delete/'.$arus_kas->id),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>

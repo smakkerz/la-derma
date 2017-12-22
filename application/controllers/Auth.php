@@ -36,7 +36,7 @@ class Auth extends CI_Controller {
 			}
 
 			redirect('Menu','refresh');
-		}else if ($this->ion_auh->in_group(3)) {
+		}else if ($this->ion_auth->in_group(3)) {
 			redirect('C_Owner','refresh');
 		}else if ($this->ion_auth->in_group(4)) {
 			redirect('C_Dokter','refresh');
