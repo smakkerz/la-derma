@@ -18,6 +18,7 @@
 		    <th><font color="white">Nama</font></th>
 		    <th><font color="white">Jenis Kelamin</font></th>
 		    <th><font color="white">Birth Date</font></th>
+            <th><font color="white">No Hp</font></th>
 		    <th><font color="white">Status</font></th>
 		    <th><font color="white">Action</font></th>
                 </tr>
@@ -34,6 +35,7 @@
 		    <td><?php echo $pasien->nama ?></td>
 		    <td><?php echo $pasien->sex ?></td>
 		    <td><?php echo $pasien->birth_date ?></td>
+            <td><?php echo $pasien->no_hp ?></td>
 		    <td><?php echo $pasien->status ?></td>
 		    <td style="text-align:center" width="140px">
 			<?php 

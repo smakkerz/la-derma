@@ -18,7 +18,7 @@
                         	$user = $this->Owner_model->last_login();
                         	foreach ($user as $data) {
                         		echo "<li>";
-                        		echo date('d-m-Y',strtotime(unix_to_human($data->last_login)));
+                        		echo $data->last_login;
                         		echo "- ".$data->first_name." ".$data->last_name;
                         		echo "</li>";
                         	}
@@ -50,6 +50,7 @@
                     <div>
                     	<table class="table">
                     		<tr>
+                          <th>ID Transaksi</th>
                     			<th>Tanggal Transaksi</th>
                     			<th>Operator</th>
                     			<th>Jenis Jasa</th>
@@ -58,6 +59,7 @@
                       	foreach ($transaksi_trakhir as $data_tx) {
                       ?>
                       <tr>
+                        <td><?= $data_tx->transaksi_id ?></td>
                       	<td><?= $data_tx->tanggal_transaksi ?></td>
                       	<td><?= $data_tx->operator_id ?></td>
                       	<td><?= $data_tx->jenis ?></td>

@@ -5,9 +5,9 @@
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                <h3 class='box-title'>K_rmedis Read</h3>
+                <h3 class='box-title'>Rekam Medis Read</h3>
         <table class="table table-bordered">
-	    <tr><td>Id Tindakan</td><td><?php echo $id_tindakan; ?></td></tr>
+	    <tr><td>Id Tindakan</td><td><?php echo $tindakan; ?></td></tr>
 	    <tr><td>Id Pasien</td><td><?php echo $id_pasien; ?></td></tr>
 	    <tr><td>Diagnosa</td><td><?php echo $diagnosa; ?></td></tr>
 	    <tr><td>Keluhan</td><td><?php echo $keluhan; ?></td></tr>
@@ -15,6 +15,7 @@
 	    <tr><td>Waktu</td><td><?php echo $waktu; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $keterangan; ?></td></tr>
 	    <tr><td>Id Pengguna</td><td><?php echo $id_pengguna; ?></td></tr>
+	    <tr><td>Id Dokter</td><td><?php echo $id_dokter; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('k_rmedis') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
         </div><!-- /.box-body -->

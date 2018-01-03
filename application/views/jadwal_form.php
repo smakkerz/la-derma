@@ -8,18 +8,15 @@
                   <h3 class='box-title'>JADWAL</h3>
                       <div class='box box-primary'>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
-	    <tr><td>IdDokter <?php echo form_error('idDokter') ?></td>
+	    <tr><td>Nama Dokter <?php echo form_error('idDokter') ?></td>
             <td>
               <input list="dokter" name="idDokter" value="<?= $idDokter ?>">
               <datalist id="dokter">
-                <?php
-                foreach ($idDokter as $dokter) {
-                ?>
-                <option value="<?= $dokter->email ?>"><?= $dokter->last_name ?></option>
-                <?php
-                }
-                ?>
-              </datalist>
+    <?php foreach ($this->ion_auth->users('4')->result() as $d) {
+    echo "<option value='$d->email'>$d->first_name $d->last_name</option>";
+    } ?>
+                                    
+</datalist>
             </select>
             </td>
 	    <tr><td>Hari <?php echo form_error('Hari') ?></td>

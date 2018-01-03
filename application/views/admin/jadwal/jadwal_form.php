@@ -9,18 +9,9 @@
                       <div>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>IdDokter <?php echo form_error('idDokter') ?></td>
-            <td><select class="js-example-basic-single form-control" name="IdDokter">
-                                <option>Nama Dokter</option>
-                                <?php
-                                    $row = $this->ion_auth->users('Dokter')->result();
-                                    foreach ($row as $data) {
-                                ?>
-                                <option value="<?= $data->email ?>"><?= $data->first_name ?> <?= $data->last_name ?></option>
-                                <?php
-                                    }
-                                ?>  
-                            </select>
+            <td><input list="idDokter" name="idDokter" placeholder="masukan nama dokter" class="form-control">
         </td>
+        
 	    <tr><td>Hari <?php echo form_error('Hari') ?></td>
             <td>
             <select name="Hari" class="form-control">
@@ -49,3 +40,10 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+
+        <datalist id="idDokter">
+    <?php foreach ($this->ion_auth->users('4')->result() as $d) {
+    echo "<option value='$d->email'>$d->first_name $d->last_name</option>";
+    } ?>
+                                    
+</datalist>

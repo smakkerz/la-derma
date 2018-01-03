@@ -37,9 +37,11 @@ class Auth extends CI_Controller {
 
 			redirect('Menu','refresh');
 		}else if ($this->ion_auth->in_group(3)) {
-			redirect('C_Owner','refresh');
+			redirect('C_owner','refresh');
 		}else if ($this->ion_auth->in_group(4)) {
-			redirect('C_Dokter','refresh');
+			redirect('C_dokter','refresh');
+		}else{
+			redirect('C_pasien','refresh');
 		}
 	}
 
@@ -63,11 +65,17 @@ class Auth extends CI_Controller {
 				//if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				if ($this->ion_auth->is_admin()) {
+				$email = $this->input->post('identity');
+					if ($this->ion_auth->is_admin()) {
 					redirect('Menu','refresh');
-				}else{
-					redirect('/', 'refresh');
-				}
+					}else if ($this->ion_auth->in_group(3)){
+
+					redirect('C_owner','refresh');
+					}else if ($this->ion_auth->in_group(4)){
+					redirect('C_dokter','refresh');
+					}else{
+					redirect('C_pasien','refresh');
+					}
 			}
 			else
 			{

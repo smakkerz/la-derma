@@ -39,6 +39,7 @@ class Pasien extends CI_Controller
 		'pass' => $row->pass,
 		'sex' => $row->sex,
 		'birth_date' => $row->birth_date,
+        'no_hp' => $row->no_hp,
 		'status' => $row->status,
 	    );
             $this->load->view('admin/tema2');
@@ -60,6 +61,7 @@ class Pasien extends CI_Controller
 	    'alamat' => set_value('alamat'),
 	    'user' => set_value('user'),
 	    'pass' => set_value('pass'),
+        'no_hp' => set_value('no_hp'),
 	    'sex' => 'Pilih',
 	    'birth_date' => set_value('birth_date'),
 	    'status' => 'Pilih',
@@ -76,12 +78,14 @@ class Pasien extends CI_Controller
             $this->create();
         } else {
             $data = array(
+        'id_pasien' => $this->Pasien_model->idpasien(),
 		'identitas' => $this->input->post('identitas',TRUE),
 		'nama' => $this->input->post('nama',TRUE),
 		'alamat' => $this->input->post('alamat',TRUE),
 		'user' => $this->input->post('user',TRUE),
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
+        'no_hp' => $this->input->post('no_hp',TRUE),
 		'birth_date' => $this->input->post('birth_date',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
@@ -117,6 +121,7 @@ class Pasien extends CI_Controller
 		'user' => set_value('user', $row->user),
 		'pass' => set_value('pass', $row->pass),
 		'sex' => set_value('sex', $row->sex),
+        'no_hp' => set_value('no_hp', $row->no_hp),
 		'birth_date' => set_value('birth_date', $row->birth_date),
 		'status' => set_value('status', $row->status),
 	    );
@@ -142,6 +147,7 @@ class Pasien extends CI_Controller
 		'user' => $this->input->post('user',TRUE),
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
+        'no_hp' => $this->input->post('no_hp',TRUE),
 		'birth_date' => $this->input->post('birth_date',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
@@ -174,6 +180,7 @@ class Pasien extends CI_Controller
 	$this->form_validation->set_rules('user', 'user', 'trim|required');
 	$this->form_validation->set_rules('pass', 'pass', 'trim|required');
 	$this->form_validation->set_rules('sex', 'sex', 'trim|required');
+    $this->form_validation->set_rules('no_hp','no_hp','trim|required');
 	$this->form_validation->set_rules('birth_date', 'birth date', 'trim|required');
 	$this->form_validation->set_rules('status', 'status', 'trim|required');
 
@@ -247,6 +254,12 @@ class Pasien extends CI_Controller
         $pdf = $this->pdf->load();
         $pdf->WriteHTML($html);
         $pdf->Output('pasien.pdf', 'D'); 
+    }
+
+    //testidpasien
+    function test()
+    {
+        echo $this->Pasien_model->idpasien();
     }
 
 }

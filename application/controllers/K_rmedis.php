@@ -16,32 +16,12 @@ class K_rmedis extends CI_Controller
 
     public function index()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'k_rmedis/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'k_rmedis/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'k_rmedis/index.html';
-            $config['first_url'] = base_url() . 'k_rmedis/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->K_rmedis_model->total_rows($q);
-        $k_rmedis = $this->K_rmedis_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $k_rmedis = $this->K_rmedis_model->get_all();
 
         $data = array(
-            'k_rmedis_data' => $k_rmedis,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
+            'k_rmedis_data' => $k_rmedis
         );
+
         $this->load->view('admin/tema2');
         $this->load->view('k_rmedis_list', $data);
     }
@@ -53,6 +33,7 @@ class K_rmedis extends CI_Controller
             $data = array(
 		'id_rmedis' => $row->id_rmedis,
 		'id_tindakan' => $row->id_tindakan,
+        'tindakan' => $row->tindakan,
 		'id_pasien' => $row->id_pasien,
 		'diagnosa' => $row->diagnosa,
 		'keluhan' => $row->keluhan,
@@ -60,28 +41,30 @@ class K_rmedis extends CI_Controller
 		'waktu' => $row->waktu,
 		'keterangan' => $row->keterangan,
 		'id_pengguna' => $row->id_pengguna,
+		'id_dokter' => $row->id_dokter,
 	    );
             $this->load->view('admin/tema2');
         $this->load->view('k_rmedis_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('k_rmedis'));
+            redirect(site_url('K_rmedis'));
         }
     }
 
     public function create()  //fungsi tambah data
     {
         $data = array(
+            'tindakan' => $this->K_rmedis_model->tindakan(),
             'button' => 'Create',
-            'action' => site_url('k_rmedis/create_action'),
+            'action' => site_url('K_rmedis/create_action'),
 	    'id_rmedis' => set_value('id_rmedis'),
 	    'id_tindakan' => set_value('id_tindakan'),
 	    'id_pasien' => set_value('id_pasien'),
 	    'diagnosa' => set_value('diagnosa'),
 	    'keluhan' => set_value('keluhan'),
 	    'resep' => set_value('resep'),
-	    'waktu' => set_value('waktu'),
 	    'keterangan' => set_value('keterangan'),
+	    'id_dokter' => set_value('id_dokter'),
 	);
         $this->load->view('admin/tema2');
         $this->load->view('k_rmedis_form', $data);
@@ -91,26 +74,27 @@ class K_rmedis extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-        $user = $this->ion_auth->user()->row();
-        $id_pengguna = $user->email;
-        $data = array(
+        //if ($this->form_validation->run() == FALSE) {
+          //  $this->create();
+        //} else {
+                $user = $this->ion_auth->user()->row();
+            
+            $data = array(
 		'id_tindakan' => $this->input->post('id_tindakan',TRUE),
 		'id_pasien' => $this->input->post('id_pasien',TRUE),
 		'diagnosa' => $this->input->post('diagnosa',TRUE),
 		'keluhan' => $this->input->post('keluhan',TRUE),
 		'resep' => $this->input->post('resep',TRUE),
-		'waktu' => $this->input->post('waktu',TRUE),
+		'waktu' => date('Y-m-d'),
 		'keterangan' => $this->input->post('keterangan',TRUE),
-		'id_pengguna' => $id_pengguna,
+		'id_pengguna' => $user->email,
+		'id_dokter' => $this->input->post('id_dokter',TRUE),
 	    );
 
-            $this->K_rmedis_model->insert($data);
+            $this->db->insert('k_rmedis', $data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('k_rmedis'));
-        }
+            redirect('K_rmedis','refresh');
+       // }
     }
     
     public function update($id)  //fungsi perbarui data
@@ -120,7 +104,7 @@ class K_rmedis extends CI_Controller
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('k_rmedis/update_action'),
+                'action' => site_url('K_rmedis/update_action'),
 		'id_rmedis' => set_value('id_rmedis', $row->id_rmedis),
 		'id_tindakan' => set_value('id_tindakan', $row->id_tindakan),
 		'id_pasien' => set_value('id_pasien', $row->id_pasien),
@@ -129,12 +113,14 @@ class K_rmedis extends CI_Controller
 		'resep' => set_value('resep', $row->resep),
 		'waktu' => set_value('waktu', $row->waktu),
 		'keterangan' => set_value('keterangan', $row->keterangan),
+		'id_pengguna' => set_value('id_pengguna', $row->id_pengguna),
+		'id_dokter' => set_value('id_dokter', $row->id_dokter),
 	    );
             $this->load->view('admin/tema2');
         $this->load->view('k_rmedis_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('k_rmedis'));
+            redirect(site_url('K_rmedis'));
         }
     }
     
@@ -153,11 +139,13 @@ class K_rmedis extends CI_Controller
 		'resep' => $this->input->post('resep',TRUE),
 		'waktu' => $this->input->post('waktu',TRUE),
 		'keterangan' => $this->input->post('keterangan',TRUE),
+		'id_pengguna' => $this->input->post('id_pengguna',TRUE),
+		'id_dokter' => $this->input->post('id_dokter',TRUE),
 	    );
 
             $this->K_rmedis_model->update($this->input->post('id_rmedis', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('k_rmedis'));
+            redirect(site_url('K_rmedis'));
         }
     }
     
@@ -168,10 +156,10 @@ class K_rmedis extends CI_Controller
         if ($row) {
             $this->K_rmedis_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('k_rmedis'));
+            redirect(site_url('K_rmedis'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('k_rmedis'));
+            redirect(site_url('K_rmedis'));
         }
     }
 
@@ -185,6 +173,7 @@ class K_rmedis extends CI_Controller
 	$this->form_validation->set_rules('waktu', 'waktu', 'trim|required');
 	$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
 	$this->form_validation->set_rules('id_pengguna', 'id pengguna', 'trim|required');
+	$this->form_validation->set_rules('id_dokter', 'id dokter', 'trim|required');
 
 	$this->form_validation->set_rules('id_rmedis', 'id_rmedis', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -220,6 +209,7 @@ class K_rmedis extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Waktu");
 	xlsWriteLabel($tablehead, $kolomhead++, "Keterangan");
 	xlsWriteLabel($tablehead, $kolomhead++, "Id Pengguna");
+	xlsWriteLabel($tablehead, $kolomhead++, "Id Dokter");
 
 	foreach ($this->K_rmedis_model->get_all() as $data) {
             $kolombody = 0;
@@ -227,13 +217,14 @@ class K_rmedis extends CI_Controller
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
 	    xlsWriteNumber($tablebody, $kolombody++, $data->id_tindakan);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->id_pasien);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->id_pasien);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->diagnosa);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->keluhan);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->resep);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->waktu);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->keterangan);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->id_pengguna);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->id_pengguna);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->id_dokter);
 
 	    $tablebody++;
             $nourut++;
@@ -241,19 +232,6 @@ class K_rmedis extends CI_Controller
 
         xlsEOF();
         exit();
-    }
-
-    public function word()
-    {
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=k_rmedis.doc");
-
-        $data = array(
-            'k_rmedis_data' => $this->K_rmedis_model->get_all(),
-            'start' => 0
-        );
-        
-        $this->load->view('k_rmedis_doc',$data);
     }
 
     function pdf()

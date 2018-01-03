@@ -2,7 +2,7 @@
 $.extend(true, $.fn.dataTable.defaults, {
     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>" + "t" + "<'row'<'col-sm-6'i><'col-sm-6'p>>",
     "oLanguage": {
-        "sLengthMenu": "_MENU_ records per page"
+        "sLengthMenu": "_MENU_ <font color='white'>records per page</font>"
     }
 });
 
@@ -139,8 +139,8 @@ if ($.fn.dataTable.Api) {
 
                 $(nPaging).append(
                     '<ul class="pagination">' +
-                    '<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
-                    '<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
+                    '<li class="prev disabled"><font color='black'><a href="#">&larr; ' + oLang.sPrevious + '</font></a></li>' +
+                    '<li class="next disabled"><font color='black'><a href="#">' + oLang.sNext + ' &rarr; </font></a></li>' +
                     '</ul>'
                 );
                 var els = $('a', nPaging);

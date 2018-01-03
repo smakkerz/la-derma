@@ -10571,7 +10571,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Belum ada data ditemukan.",
 	
 	
 			/**

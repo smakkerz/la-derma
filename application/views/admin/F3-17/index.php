@@ -24,10 +24,10 @@
                     </tr>
 <tr>
     <td colspan="2">
-    <label class="col-sm-2 control-label">Nama Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control">
+    <label class="col-sm-2 control-label">Kode Barang</label>
+        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control" required="">
     <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="form-control">
+            <input type="text" name="qty" placeholder="QTY" class="form-control" required="">
     </td colspan="2">
 </tr>
 <tr>
@@ -65,11 +65,18 @@
                         <tr class="gradeU">
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $r->nama_barang.' - '.anchor('Pemesanan/step2/hapusitem/'.$r->t_detail_id,'Hapus',array('style'=>'color:red;')) ?></td>
-                                <td><?php echo $r->qty ?></td>
+                                <td><?php 
+                                    if ($r->qty<1) {
+                                        $qty = 1;
+                                    }else{
+                                        $qty = $r->qty;
+                                    }
+                                    echo $qty;
+                                 ?></td>
                                 <td>Rp. <?php echo number_format($r->harga,2) ?></td>
-                                <td><?php echo uang($r->qty*$r->harga) ?></td>
+                                <td><?php echo uang($qty*$r->harga) ?></td>
                             </tr>
-                        <?php $total=$total+($r->qty*$r->harga);
+                        <?php $total=$total+($qty*$r->harga);
                         $no++; } ?>
                             <tr class="gradeA">
                                 <td colspan="4">T O T A L</td>

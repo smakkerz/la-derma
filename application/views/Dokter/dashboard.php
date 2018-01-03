@@ -62,9 +62,9 @@
 
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
+                          
                             <!-- start user projects -->
-                            <table class="data table table-striped no-margin">
+                            <table class="table">
                               <thead>
                                 <tr>
                                   <th>No</th>
@@ -90,7 +90,7 @@
                               </tbody>
                             </table>
                             <!-- end user projects -->
-
+                            </div>
                           </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                             <table class="data table table-striped no-margin">

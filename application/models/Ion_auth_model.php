@@ -1006,8 +1006,11 @@ class Ion_auth_model extends CI_Model
 				}
 
 				$this->set_session($user);
-
-				$this->update_last_login($user->id);
+				date_default_timezone_set('Asia/Jakarta');
+				$datenow = date("Y-m-d H:i:s");
+				$this->db->set('last_login', $datenow);
+				$this->db->where('id', $user->id);
+				$this->db->update('users');
 
 				$this->clear_login_attempts($identity);
 

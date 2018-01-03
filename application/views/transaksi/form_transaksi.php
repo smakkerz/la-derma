@@ -28,10 +28,10 @@
                     </tr>
 <tr>
     <td colspan="2">
-    <label class="col-sm-2 control-label">Nama Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control">
+    <label class="col-sm-2 control-label">Kode Barang</label>
+        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control" required="">
     <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="form-control">
+            <input type="text" name="qty" placeholder="QTY" class="form-control" required="">
     </td colspan="2">
 </tr>
 <tr>
@@ -57,11 +57,11 @@
                 <table class="table table-striped table-bordered" width="100%">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Nama Barabg</th>
-                            <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Sub Total</th>
+                            <th style="color: white;">No.</th>
+                            <th style="color: white;">Nama Barang</th>
+                            <th style="color: white;">Qty</th>
+                            <th style="color: white;">Harga</th>
+                            <th style="color: white;">Sub Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,11 +69,17 @@
                         <tr class="gradeU">
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $r->nama_barang.' - '.anchor('transaksi/hapusitem/'.$r->t_detail_id,'Hapus',array('style'=>'color:red;')) ?></td>
-                                <td><?php echo $r->qty ?></td>
+                                <td><?php if ($r->qty<1) {
+                                    $qty = 1;
+                                }else{
+                                    $qty = $r->qty;
+                                }
+                                echo $qty;
+                                 ?></td>
                                 <td>Rp. <?php echo number_format($r->harga,2) ?></td>
-                                <td>Rp. <?php echo number_format($r->qty*$r->harga,2) ?></td>
+                                <td>Rp. <?php echo number_format($qty*$r->harga,2) ?></td>
                             </tr>
-                        <?php $total=$total+($r->qty*$r->harga);
+                        <?php $total=$total+($qty*$r->harga);
                         $no++; } ?>
                             <tr class="gradeA">
                                 <td colspan="4">T O T A L</td>

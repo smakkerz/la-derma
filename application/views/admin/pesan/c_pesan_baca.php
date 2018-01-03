@@ -61,13 +61,25 @@
            </tr>
          </tbody>
         </table>
+        <style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+</style>
+<div class="footer">
         <?= form_open('Kelola_pesan/kirim_pesan'); ?>
            <input type="hidden" name="id_percakapan" value="<?= $this->uri->segment(3) ?>">
-           <div class="input-control text" data-role="input" style="width: 100%; height: 50px;">
-            <input type="text" name="pesan" placeholder="Tulis pesan disini">
-            <button class="button" type="submit"><span class="mif-compass mif-4x"></span>
+           <div class="input-control text" data-role="input" style="width: 90%; height: 50px;">
+            <input type="text" class="input-control" name="pesan" placeholder="Tulis pesan disini" />
+            <button class="button warning" type="submit" style="height: 50px;"><span class="mif-compass mif-8x">Kirim</span></button>
             </div>
           <?= form_close() ?>
+</div>
         </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

@@ -64,6 +64,10 @@ $(document).ready(function() {
             <?php
               if ($this->ion_auth->in_group(3)) {
                 $this->load->view('Menu/menu_owner');
+              }elseif ($this->ion_auth->in_group(4)){
+                $this->load->view('Menu/menu_dokter');
+              }else{
+                $this->load->view('Menu/menu_pasien');
               }
             ?>
             <!-- /sidebar menu -->

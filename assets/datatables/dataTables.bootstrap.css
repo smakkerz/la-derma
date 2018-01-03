@@ -2,6 +2,7 @@ div.dataTables_length label {
 	font-weight: normal;
 	float: left;
 	text-align: left;
+	color: white;
 }
 
 div.dataTables_length select {
@@ -24,11 +25,13 @@ div.dataTables_info {
 div.dataTables_paginate {
 	float: right;
 	margin: 0;
+	color: black;
 }
 
 div.dataTables_paginate ul.pagination {
 	margin: 2px 0;
 	white-space: nowrap;
+	color: black;
 }
 
 table.dataTable,

@@ -79,6 +79,8 @@ class Users extends CI_Controller
 	    'password' => set_value('password'),
 	    'first_name' => set_value('first_name'),
 	    'last_name' => set_value('last_name'),
+        'company' => set_value('company'),
+        'phone' => set_value('phone')
 	);
         $this->load->view('admin/tema2');
         $this->load->view('admin/F3-27/users_form', $data);
@@ -92,6 +94,8 @@ class Users extends CI_Controller
 		$additional_data = array(
 								'first_name' => $this->input->post('first_name',TRUE),
 								'last_name' => $this->input->post('last_name',TRUE),
+                                'company' => $this->input->post('company',TRUE),
+                                'phone' =>$this->input->post('phone',TRUE),
 		$g = $this->input->post('groups')						);
 		$group = array($g);
 
@@ -116,6 +120,8 @@ class Users extends CI_Controller
 		'password' => set_value('password', $row->password),
 		'first_name' => set_value('first_name', $row->first_name),
 		'last_name' => set_value('last_name', $row->last_name),
+        'company' => set_value('company', $row->company),
+        'phone' => set_value('phone', $row->phone)
 	    );
         $this->load->view('admin/tema2');
         $this->load->view('admin/F3-27/edit_users_form', $data);
@@ -134,6 +140,8 @@ class Users extends CI_Controller
 					'first_name' => $this->input->post('first_name',TRUE),
 					'last_name' => $this->input->post('last_name',TRUE),
 					'password' => $this->input->post('password',TRUE),
+                    'company' => $this->input->post('company', TRUE),
+                    'phone' => $this->input->post('phone', TRUE)
 					 );
         $groupData = $this->input->post('groups');
 
@@ -213,6 +221,8 @@ class Users extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Password");
 	xlsWriteLabel($tablehead, $kolomhead++, "First Name");
 	xlsWriteLabel($tablehead, $kolomhead++, "Last Name");
+    xlsWriteLabel($tablehead, $kolomhead++, "Address");
+    xlsWriteLabel($tablehead, $kolomhead++, "Phone");
 
 	foreach ($this->Users_model->get_all() as $data) {
             $kolombody = 0;
@@ -223,6 +233,8 @@ class Users extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->password);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->first_name);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->last_name);
+        xlsWriteLabel($tablebody, $kolombody++, $data->company);
+        xlsWriteLabel($tablebody, $kolombody++, $data->phone);
 
 	    $tablebody++;
             $nourut++;

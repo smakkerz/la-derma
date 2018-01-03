@@ -1,84 +1,66 @@
-<section class='content'>
-<h2 style="margin-top:0px">K_rmedis List</h2>
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-4">
-                <?php echo anchor(site_url('k_rmedis/create'),'Create', 'class="btn btn-primary"'); ?>
-            </div>
-            <div class="col-md-4 text-center">
-                <div style="margin-top: 8px" id="message">
-                    <?php echo $this->session->userdata('message') <> '' ? $this->session->userdata('message') : ''; ?>
-                </div>
-            </div>
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('k_rmedis/index'); ?>" class="form-inline" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
-                        <span class="input-group-btn">
-                            <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo site_url('k_rmedis'); ?>" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
-            <tr>
-                <th>No</th>
-		<th>Id Tindakan</th>
-		<th>Id Pasien</th>
-		<th>Diagnosa</th>
-		<th>Keluhan</th>
-		<th>Resep</th>
-		<th>Waktu</th>
-		<th>Keterangan</th>
-		<th>Id Pengguna</th>
-		<th>Action</th>
-            </tr><?php
+
+        <!-- Main content -->
+        <section class='content'>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <div class='box'>
+                <div class='box-header'>
+                  <h3 class='box-title'>Rekam Medis VIEW <?php echo anchor('K_rmedis/create/','Create',array('class'=>'button primary btn-sm'));?>
+		<?php echo anchor(site_url('K_rmedis/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button primary btn-sm"'); ?>
+		<?php echo anchor(site_url('K_rmedis/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary btn-sm"'); ?></h3>
+                </div><!-- /.box-header -->
+                <div class='box-body'>
+        <table class="table table-bordered table-striped" id="mytable" bgcolor="white">
+            <thead>
+                <tr>
+            <th width="80px" style="color: white;">No</th>
+		    <th style="color: white;">Id Tindakan</th>
+		    <th style="color: white;">Id Pasien</th>
+            <th style="color: white;">Id Dokter</th>
+		    <th style="color: white;">Waktu</th>
+		    <th style="color: white;">Id Pengguna</th>
+		    <th style="color: white;">Action</th>
+                </tr>
+            </thead>
+	    <tbody>
+            <?php
+            $start = 0;
             foreach ($k_rmedis_data as $k_rmedis)
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $k_rmedis->id_tindakan ?></td>
-			<td><?php echo $k_rmedis->id_pasien ?></td>
-			<td><?php echo $k_rmedis->diagnosa ?></td>
-			<td><?php echo $k_rmedis->keluhan ?></td>
-			<td><?php echo $k_rmedis->resep ?></td>
-			<td><?php echo $k_rmedis->waktu ?></td>
-			<td><?php echo $k_rmedis->keterangan ?></td>
-			<td><?php echo $k_rmedis->id_pengguna ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('k_rmedis/read/'.$k_rmedis->id_rmedis),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('k_rmedis/update/'.$k_rmedis->id_rmedis),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('k_rmedis/delete/'.$k_rmedis->id_rmedis),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
-			</td>
-		</tr>
+		    <td><?php echo ++$start ?></td>
+		    <td><?php echo $k_rmedis->tindakan ?></td>
+		    <td><?php echo $k_rmedis->id_pasien ?></td>
+            <td><?php echo $k_rmedis->id_dokter ?></td>
+		    <td><?php echo $k_rmedis->waktu ?></td>
+		    <td><?php echo $k_rmedis->id_pengguna ?></td>
+		    
+		    <td style="text-align:center" width="140px">
+			<?php 
+			echo anchor(site_url('K_rmedis/read/'.$k_rmedis->id_rmedis),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo '  '; 
+			echo anchor(site_url('K_rmedis/update/'.$k_rmedis->id_rmedis),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo '  '; 
+			echo anchor(site_url('K_rmedis/delete/'.$k_rmedis->id_rmedis),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			?>
+		    </td>
+	        </tr>
                 <?php
             }
             ?>
+            </tbody>
         </table>
-        <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-		<?php echo anchor(site_url('k_rmedis/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('k_rmedis/word'), 'Word', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('k_rmedis/pdf'), 'PDF', 'class="btn btn-primary"'); ?>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
-        </section>
+        <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
+        <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#mytable").dataTable();
+            });
+        </script>
+                    </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->

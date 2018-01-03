@@ -34,6 +34,9 @@
 	    <td>Birth Date <?php echo form_error('birth_date') ?></td>
             <td><input type="date" class="input-control" name="birth_date" id="birth_date" placeholder="Birth Date" value="<?php echo $birth_date; ?>" />
         </td>
+        <tr>
+            <td><input type="text" name="no_hp" id="no_hp" placeholder="Nomor Handphone" value="<?php echo $no_hp ?>"></td>
+        </tr>
 	    <tr><td>Status <?php echo form_error('status') ?></td>
             <td>
                 <select name="status" class="input-control">

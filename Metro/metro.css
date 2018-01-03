@@ -455,7 +455,7 @@ dl.horizontal dd {
   margin-left: 11.25rem;
 }
 a {
-  color: #2086bf;
+  color: black;
 }
 a:visited {
   color: #2086bf;
@@ -15191,7 +15191,7 @@ video::-webkit-media-controls-enclosure {
 .dataTables_paginate .paginate_button:disabled,
 .dataTables_paginate .paginate_button.disabled {
   cursor: default;
-  background-color: #eeeeee;
+  background-color: black;
   border-color: #eeeeee;
   color: #999999;
 }
