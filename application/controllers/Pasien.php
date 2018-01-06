@@ -214,7 +214,7 @@ class Pasien extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
 	xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
 	xlsWriteLabel($tablehead, $kolomhead++, "User");
-	xlsWriteLabel($tablehead, $kolomhead++, "Pass");
+	xlsWriteLabel($tablehead, $kolomhead++, "No Hp");
 	xlsWriteLabel($tablehead, $kolomhead++, "Sex");
 	xlsWriteLabel($tablehead, $kolomhead++, "Birth Date");
 	xlsWriteLabel($tablehead, $kolomhead++, "Status");
@@ -228,7 +228,7 @@ class Pasien extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->nama);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->user);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->pass);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->no_hp);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->sex);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->birth_date);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->status);

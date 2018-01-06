@@ -10,7 +10,7 @@
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Nama Dokter <?php echo form_error('idDokter') ?></td>
             <td>
-              <input list="dokter" name="idDokter" value="<?= $idDokter ?>">
+              <input list="dokter" name="idDokter" value="<?= $idDokter ?>" required="">
               <datalist id="dokter">
     <?php foreach ($this->ion_auth->users('4')->result() as $d) {
     echo "<option value='$d->email'>$d->first_name $d->last_name</option>";
@@ -33,13 +33,13 @@
         </td>
         <tr>
           <td>Tanggal <?php echo form_error('tanggal') ?></td>
-          <td><input type="date" name="tanggal" placeholder="Tanggal" class="form-control" id="tanggal" value="<?php echo $tanggal ?>"></td>
+          <td><input type="date" name="tanggal" placeholder="Tanggal" class="form-control" id="tanggal" value="<?php echo $tanggal ?>" required=""></td>
         </tr>
 	    <tr><td>DariJam <?php echo form_error('DariJam') ?></td>
-            <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />
+            <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" required="" />
         </td>
 	    <tr><td>SampaiJam <?php echo form_error('SampaiJam') ?></td>
-            <td><input type="time" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" />
+            <td><input type="time" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" required="" />
         </td>
 	    <input type="hidden" name="idJadwal" value="<?php echo $idJadwal; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

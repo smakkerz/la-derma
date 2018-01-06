@@ -13,12 +13,12 @@
                 <table class="table table-bordered">
                   <tr>
                     <td>Judul Pesan</td>
-                    <td><input type="text" name="judul" class="form-control"></td>
+                    <td><input type="text" name="judul" class="form-control" required=""></td>
                   </tr>
                   <tr>
                     <td>Penerima Pesan</td>
                     <td>
-                      <select name="untuk" class="form-control">
+                      <select name="untuk" class="form-control" required="">
                         <?php 
                           if ($this->ion_auth->is_admin()) {
                             $users = $this->ion_auth->users()->result();

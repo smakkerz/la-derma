@@ -53,11 +53,11 @@
                 <table class="table table-striped table-bordered" width="100%">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Nama Barabg</th>
-                            <th>Qty</th>
-                            <th>Harga</th>
-                            <th>Sub Total</th>
+                            <th style="color: white;">No.</th>
+                            <th style="color: white;">Nama Barabg</th>
+                            <th style="color: white;">Qty</th>
+                            <th style="color: white;">Harga</th>
+                            <th style="color: white;">Sub Total</th>
                         </tr>
                     </thead>
                     <tbody>

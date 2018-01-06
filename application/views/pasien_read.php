@@ -11,7 +11,7 @@
 	    <tr><td>Nama</td><td><?php echo $nama; ?></td></tr>
 	    <tr><td>Alamat</td><td><?php echo $alamat; ?></td></tr>
 	    <tr><td>User</td><td><?php echo $user; ?></td></tr>
-	    <tr><td>Pass</td><td><?php echo $pass; ?></td></tr>
+	    <tr><td>No Hp</td><td><?php echo $no_hp; ?></td></tr>
 	    <tr><td>Sex</td><td><?php echo $sex; ?></td></tr>
 	    <tr><td>Birth Date</td><td><?php echo $birth_date; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $status; ?></td></tr>

@@ -9,20 +9,20 @@
                       <div class='box box-primary'>
         <form action="<?php echo $action; ?>" method="post"><table class='table bordered hovered striped'>
 	    <tr><td>No Identitas <?php echo form_error('identitas') ?></td>
-            <td><input type="text" class="input-control" name="identitas" id="identitas" placeholder="Identitas" value="<?php echo $identitas; ?>" />
+            <td><input type="text" class="input-control" name="identitas" id="identitas" placeholder="Identitas" value="<?php echo $identitas; ?>"  required="" />
         </td>
 	    <td>Nama <?php echo form_error('nama') ?></td>
-            <td><input type="text" class="input-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
+            <td><input type="text" class="input-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>"  required="" />
         </td>
 	    <tr><td>Alamat <?php echo form_error('alamat') ?></td>
             <td colspan="3"><textarea rows="5" cols="150" name="alamat" id="alamat" placeholder="Alamat" class="input-control textarea"
-    data-role="input" data-text-auto-resize="true" data-text-max-height="200"><?php echo $alamat; ?></textarea>
+    data-role="input" data-text-auto-resize="true" data-text-max-height="200" required="" ><?php echo $alamat; ?></textarea>
         </td></tr>
 	    <tr><td>User <?php echo form_error('user') ?></td>
-            <td><input type="text" class="input-control" name="user" id="user" placeholder="User" value="<?php echo $user; ?>" />
+            <td><input type="text" class="input-control" name="user" id="user" placeholder="User" value="<?php echo $user; ?>"  required="" />
         </td>
 	    <td>Pass <?php echo form_error('pass') ?></td>
-            <td><input type="text" class="input-control" name="pass" id="pass" placeholder="Pass" value="<?php echo $pass; ?>" />
+            <td><input type="text" class="input-control" name="pass" id="pass" placeholder="Pass" value="<?php echo $pass; ?>"  required="" />
         </td>
 	    <tr><td>Sex <?php echo form_error('sex') ?></td>
             <td>
@@ -32,12 +32,12 @@
                 <option>Perempuan</option>
             </select></td>
 	    <td>Birth Date <?php echo form_error('birth_date') ?></td>
-            <td><input type="date" class="input-control" name="birth_date" id="birth_date" placeholder="Birth Date" value="<?php echo $birth_date; ?>" />
+            <td><input type="date" class="input-control" name="birth_date" id="birth_date" placeholder="Birth Date" value="<?php echo $birth_date; ?>"  required="" />
         </td>
         <tr>
-            <td><input type="text" name="no_hp" id="no_hp" placeholder="Nomor Handphone" value="<?php echo $no_hp ?>"></td>
-        </tr>
-	    <tr><td>Status <?php echo form_error('status') ?></td>
+            <td>Nomor Handphone <?php echo form_error('no_hp'); ?></td>
+            <td><input type="text" name="no_hp" id="no_hp" placeholder="Nomor Handphone" value="<?php echo $no_hp ?>" required="" ></td>
+        <td>Status <?php echo form_error('status') ?></td>
             <td>
                 <select name="status" class="input-control">
                     <option><?php echo $status; ?></option>
@@ -46,6 +46,8 @@
                 </select>
             </td>
 	    <input type="hidden" name="id_pasien" value="<?php echo $id_pasien; ?>" /> 
+        </tr>
+        <tr>
 	    <td colspan='2'><button type="submit" class="button primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pasien') ?>" class="button default">Cancel</a></td></tr>
 	

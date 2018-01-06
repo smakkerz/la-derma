@@ -188,6 +188,13 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
             <img id="arrowLeft" class="navArrows" src="<?= base_url('Metro') ?>/arrowLeft.png" onclick="javascript:$group.goLeft();" alt="left arrow" style="display: none;">
             <img id="arrowRight" class="navArrows" src="<?= base_url('Metro') ?>/arrowRight.png" onclick="javascript:$group.goRight();" alt="right arrow" style="margin-left: 397px; opacity: 0.5; display: inline;">
              <a href="#&amp;Pelayanan" id="groupTitle0" class="groupTitle" style="margin-left: 0px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(0);"><h3>Pelayanan</h3></a>
+        <a  href='<?= base_url('Pasien') ?>' class="tile tileImg group0  " style="
+    margin-top:45px; margin-left:260px;
+    width:125px; height:125px;
+    background:#6950AB;"   data-pos='45-260-125' > 
+    <img src="<?= base_url('Metro') ?>/pendaftaran2.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
+    <div class='tileLabelWrapper bottom'><div class='imgDesc' >Data Pasien</div>    </div>
+    </a>
         <a href="#&amp;Transaksi" id="groupTitle1" class="groupTitle" style="margin-left: 520px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(1);"><h3>Operasional</h3></a>
         <a href="#&amp;Master-Data" id="groupTitle2" class="groupTitle" style="margin-left: 1040px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(2);"><h3>Master Data</h3></a>
         <a href="#&amp;Laporan" id="groupTitle3" class="groupTitle" style="margin-left: 1560px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(3);"><h3>Laporan</h3></a>
@@ -233,19 +240,23 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="http://july4dev.net76.net/Metro/karyawan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Karyawan</div>    </div>
     </a>
+    <!-- UPLOAD DATA / blm dikerjakan 
         <a href="#!/customer" class="tile tileImg group2  " style="margin-top: 305px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(24, 0, 82); display: block;" data-pos="305-1040-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Upload Data</div>    </div>
     </a>
+    -->
         <a href="<?= base_url('Arus_kas') ?>" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(232, 100, 27); display: block;" data-pos="175-1170-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Arus Kas</div>    </div>
     </a>
+    <!-- Backup data / blm dikerjakan
         <a href="#!/penyakit" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1300px; width: 125px; height: 125px; background: rgb(0, 112, 159); display: block;" data-pos="175-1300-125"> 
     <img src="<?= base_url('Metro') ?>/lap-abc.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Backup Data</div>    </div>
     </a>
-        <a href="#!/pabrik" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1300px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-1300-125"> 
+-->
+        <a href="<?= base_url('Kelola_pesan') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1300px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-1300-125"> 
     <span class="mif-mail mif-4x"></span>
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pesan</div>    </div>
     </a>
@@ -253,10 +264,14 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="<?= base_url('Metro') ?>/karyawan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">User Akun</div>    </div>
     </a>
+
+    <!-- Pendapatan Jasa / blm dikerjakan
         <a href="#!/layanan" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(24, 0, 82); display: block;" data-pos="175-1040-125"> 
     <img src="<?= base_url('Metro') ?>/lap-resep.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pendapatan Jasa</div>    </div>
     </a>
+
+    -->
         <a href="<?= base_url('Laporan_pemasukan') ?>" class="tile tileImg group3  " style="margin-top: 45px; margin-left: 1560px; width: 125px; height: 125px; background: rgb(95, 95, 95); display: block;" data-pos="45-1560-125"> 
     <img src="<?= base_url('Metro') ?>/chart.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Laporan Pemasukan</div>    </div>

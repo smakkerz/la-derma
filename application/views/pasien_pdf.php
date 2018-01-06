@@ -24,7 +24,7 @@
 		<th>Nama</th>
 		<th>Alamat</th>
 		<th>User</th>
-		<th>Pass</th>
+		<th>Phone</th>
 		<th>Sex</th>
 		<th>Birth Date</th>
 		<th>Status</th>
@@ -39,7 +39,7 @@
 		      <td><?php echo $pasien->nama ?></td>
 		      <td><?php echo $pasien->alamat ?></td>
 		      <td><?php echo $pasien->user ?></td>
-		      <td><?php echo $pasien->pass ?></td>
+		      <td><?php echo $pasien->no_hp ?></td>
 		      <td><?php echo $pasien->sex ?></td>
 		      <td><?php echo $pasien->birth_date ?></td>
 		      <td><?php echo $pasien->status ?></td>	

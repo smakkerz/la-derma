@@ -36,10 +36,10 @@
                             </select>
         </td>
 	    <tr><td>Tanggal <?php echo form_error('Tanggal') ?></td>
-            <td><input type="date" class="form-control" name="Tanggal" id="Tanggal" placeholder="Tanggal" value="<?php echo $Tanggal; ?>" />
+            <td><input type="date" class="form-control" name="Tanggal" id="Tanggal" placeholder="Tanggal" value="<?php echo $Tanggal; ?>" required="" />
         </td>
 	    <tr><td>Jam <?php echo form_error('Jam') ?></td>
-            <td><input type="time" class="form-control" name="Jam" id="Jam" placeholder="Jam" value="<?php echo $Jam; ?>" />
+            <td><input type="time" class="form-control" name="Jam" id="Jam" placeholder="Jam" value="<?php echo $Jam; ?>" required="" />
         </td>
 	    <tr><td>IdPengguna <?php echo form_error('IdPengguna') ?></td>
             <td><input type="text" class="form-control" name="IdPengguna" id="IdPengguna" placeholder="IdPengguna" value="<?php echo $user->email; ?>" readonly />

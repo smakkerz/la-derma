@@ -9,16 +9,16 @@
                       <div class=''>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Nama Pengguna </td>
-            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" />
+            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />
         </td>
 	    <tr><td>Kata Sandi </td>
-            <td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" />
+            <td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" required="" />
         </td>
 	    <tr><td>Nama Pertama </td>
-            <td><input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="<?php echo $first_name; ?>" />
+            <td><input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="<?php echo $first_name; ?>"  required=""/>
         </td>
 	    <tr><td>Nama Terakhir</td>
-            <td><input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="<?php echo $last_name; ?>" />
+            <td><input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="<?php echo $last_name; ?>" required="" />
         </td>
       </tr>
       <tr>

@@ -9,10 +9,10 @@
                       <div>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Kategori Obat <?php echo form_error('kategori_obat') ?></td>
-            <td><input type="text" class="form-control" name="kategori_obat" id="kategori_obat" placeholder="Kategori Obat" value="<?php echo $kategori_obat; ?>" />
+            <td><input type="text" class="form-control" name="kategori_obat" id="kategori_obat" placeholder="Kategori Obat" value="<?php echo $kategori_obat; ?>" required="" />
         </td>
 	    <tr><td>Kategori <?php echo form_error('kategori') ?></td>
-            <td><input type="text" class="form-control" name="kategori" id="kategori" placeholder="Kategori" value="<?php echo $kategori; ?>" />
+            <td><input type="text" class="form-control" name="kategori" id="kategori" placeholder="Kategori" value="<?php echo $kategori; ?>" required="" />
         </td>
 	     
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

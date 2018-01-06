@@ -50,7 +50,7 @@
                                   <br />
                                   <p class="url">
                                     <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                    <a href="<?php echo base_url('Kelola_pesan/baca/'.$pesan_data->id_percakapan) ?>"><i class="fa fa-paperclip"></i> Baca Pesan </a>
+                                    <a href="<?php echo base_url('C_dokter/baca/'.$pesan_data->id_percakapan) ?>"><i class="fa fa-paperclip"></i> Baca Pesan </a>
                                   </p>
                                 </div>
                               </li>
@@ -91,7 +91,6 @@
                             </table>
                             <!-- end user projects -->
                             </div>
-                          </div>
                           <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                             <table class="data table table-striped no-margin">
                               <thead>

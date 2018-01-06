@@ -14,17 +14,17 @@
                     <tr>
                         <td>Tanggal</td>
                         <td>:</td>
-                        <td><input type="date" name="tanggal" value="<?php echo date('Y-m-d') ?>"></td>
+                        <td><input type="date" name="tanggal" value="<?php echo date('Y-m-d') ?>" required=""></td>
                     </tr>
                     <tr>
                         <td>Jumlah Hutang (Rp.)</td>
                         <td>:</td>
-                        <td><input type="number" name="hutang"></td>
+                        <td><input type="number" name="hutang" required=""></td>
                     </tr>
                     <tr>
                         <td>Keterangan</td>
                         <td>:</td>
-                        <td><textarea name="keterangan"></textarea></td>
+                        <td><textarea name="keterangan" required=""></textarea></td>
                     </tr>
                     <tr>
                         <td colspan="3"><input type="submit" value="Tambah"></td>

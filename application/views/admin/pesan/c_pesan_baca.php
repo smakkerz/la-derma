@@ -75,7 +75,7 @@
         <?= form_open('Kelola_pesan/kirim_pesan'); ?>
            <input type="hidden" name="id_percakapan" value="<?= $this->uri->segment(3) ?>">
            <div class="input-control text" data-role="input" style="width: 90%; height: 50px;">
-            <input type="text" class="input-control" name="pesan" placeholder="Tulis pesan disini" />
+            <input type="text" class="input-control" name="pesan" placeholder="Tulis pesan disini" required=""/>
             <button class="button warning" type="submit" style="height: 50px;"><span class="mif-compass mif-8x">Kirim</span></button>
             </div>
           <?= form_close() ?>

@@ -24,16 +24,16 @@ $op = $this->ion_auth->user()->row();
             <td><input type="text" class="form-control" name="IdPengguna" id="IdPengguna" placeholder="IdPengguna" value="<?php echo $op->email; ?>" disabled/>
         </td>
 	    <tr><td>Waktu <?php echo form_error('waktu') ?></td>
-            <td><input type="date" class="form-control" name="waktu" id="waktu" placeholder="Waktu" value="<?php echo $waktu; ?>" />
+            <td><input type="date" class="form-control" name="waktu" id="waktu" placeholder="Waktu" value="<?php echo $waktu; ?>" required="" />
         </td>
 	    <tr><td>Uang Masuk (Rp.) <?php echo form_error('masuk') ?></td>
-            <td><input type="number" class="form-control" name="masuk" id="masuk" placeholder="Masuk" value="<?php echo $masuk; ?>" />
+            <td><input type="number" class="form-control" name="masuk" id="masuk" placeholder="Masuk" value="<?php echo $masuk; ?>" required="" />
         </td>
 	    <tr><td>Uang Keluar (Rp.) <?php echo form_error('keluar') ?></td>
-            <td><input type="number" class="form-control" name="keluar" id="keluar" placeholder="Keluar" value="<?php echo $keluar; ?>" />
+            <td><input type="number" class="form-control" name="keluar" id="keluar" placeholder="Keluar" value="<?php echo $keluar; ?>" required="" />
         </td>
 	    <tr><td>Keterangan <?php echo form_error('keterangan') ?></td>
-            <td><textarea class="form-control" rows="3" name="keterangan" id="keterangan" placeholder="Keterangan"><?php echo $keterangan; ?></textarea>
+            <td><textarea class="form-control" rows="3" name="keterangan" id="keterangan" placeholder="Keterangan" required=""><?php echo $keterangan; ?></textarea>
         </td></tr>
 	    <input type="hidden" class="form-control" name="verifikasi" id="verifikasi" placeholder="Verifikasi" value="1" />
         

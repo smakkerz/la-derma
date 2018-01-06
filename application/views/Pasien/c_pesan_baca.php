@@ -53,7 +53,7 @@
 
            <input type="hidden" name="id_percakapan" value="<?= $this->uri->segment(3) ?>">
            <tr>
-             <td><textarea type="text" name="pesan" class="form-control"></textarea></td><td style="width: 150px; text-align: center;"><input type="submit" value="Balas" class="btn btn-primary"></td>
+             <td><textarea type="text" name="pesan" class="form-control" required=""></textarea></td><td style="width: 150px; text-align: center;"><input type="submit" value="Balas" class="btn btn-primary"></td>
            </tr>
            </form>
         </table>

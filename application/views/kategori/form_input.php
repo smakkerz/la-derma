@@ -14,7 +14,7 @@
                                 <?php echo form_open('kategori/post'); ?>
                                 <div class="form-group">
                                     <label>Nama Kategori</label>
-                                    <input type="text" name="kategori" class="form-control" placeholder="kategori">
+                                    <input type="text" name="kategori" class="form-control" placeholder="kategori" required="">
                                 </div>
 
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm">Simpan</button> | 

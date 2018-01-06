@@ -6,11 +6,11 @@
 		</tr>
 		<tr align="center">
 			<td>Nama Dokter</td>
-			<td><input list="dokter" name="dokter" placeholder="masukan nama dokter" class="form-control"></td>
+			<td><input list="dokter" name="dokter" placeholder="masukan nama dokter" class="form-control" required=""></td>
 		</tr>
 		<tr align="center">
 			<td>Nama Pasien</td>
-			<td><input list="pasien" name="pasien" placeholder="masukan nama pasien" class="form-control"></td>
+			<td><input list="pasien" name="pasien" placeholder="masukan nama pasien" class="form-control" required=""></td>
 		</tr>
 		<tr align="center">
 			<td>Jenis Transaksi</td>
