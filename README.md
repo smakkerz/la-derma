@@ -9,4 +9,9 @@ Username Pasien : pasien@la-derma.com
 password : JunDevilz991<br/>
 <br/>
 Username Owner : testowner
-password owner : testowner
+password owner : testowner<br/>
+<br/>
+*note : Yang belum/ruwet. :
+- Width tabel - dashboard dokter
+- Pendapatan Jasa - admin
+- Backup File - admin
