@@ -257,7 +257,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     </a>
 -->
         <a href="<?= base_url('Kelola_pesan') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1300px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-1300-125"> 
-    <img src="<?= base_url('Metro') ?>/pesan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
+    <img src="<?= base_url('Metro') ?>/pesan.png" width="80" style="margin-left:-40.5px; margin-top: -33.5px; max-height:55px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pesan</div>    </div>
     </a>
         <a href="<?= base_url('Users') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(190, 30, 74); display: block;" data-pos="45-1170-125"> 
