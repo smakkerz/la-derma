@@ -28,7 +28,7 @@
                             <td><?php echo $dk->Jam; ?></td>
                             <td>
                             <?php
-                              $dok = $this->Pasien_Login->dokter_kunjungan($dk->idDokter);
+                              $dok = $this->Pasien_login->dokter_kunjungan($dk->idDokter);
                               echo $dok;
                             ?></td>
                           </tr>
@@ -74,7 +74,7 @@
                         <tr>
                           <td><?php echo $rm->waktu; ?></td>
                           <td><?php
-                            $dok = $this->Pasien_Login->dokter_kunjungan($rm->id_dokter);
+                            $dok = $this->Pasien_login->dokter_kunjungan($rm->id_dokter);
                               echo $dok;
                           ?></td>
                           <td><?php echo $rm->tindakan ?></td>

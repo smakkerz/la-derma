@@ -9,7 +9,7 @@
                       <div class='box box-primary'>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Id Tindakan <?php echo form_error('id_tindakan') ?></td>
-            <td><input  list="tindakan" name="id_tindakan" placeholder="masukan tindakan" required=""></td>
+            <td><input  list="tindakan" name="id_tindakan" placeholder="masukan tindakan" required="" value="<?= $id_tindakan ?>"></td>
             <datalist id="tindakan">
                 <?php
                     foreach ($tindakan as $data) {
@@ -18,10 +18,10 @@
                 ?>
             </datalist>
 	    <tr><td>Id Pasien <?php echo form_error('id_pasien') ?></td>
-            <td><input list="pasien" name="id_pasien" placeholder="masukan nama pasien" class="form-control" required="">
+            <td><input list="pasien" name="id_pasien" placeholder="masukan nama pasien" class="form-control" required="" value="<?= $id_pasien ?>">
         </td>
         <tr><td>Id Dokter <?php echo form_error('id_dokter') ?></td>
-            <td><input list="dokter" name="id_dokter" placeholder="masukan nama dokter" class="form-control" required="">
+            <td><input list="dokter" name="id_dokter" placeholder="masukan nama dokter" class="form-control" required="" value="<?= $id_dokter ?>">
         </td>
 	    <tr><td>Diagnosa <?php echo form_error('diagnosa') ?></td>
             <td><textarea name="diagnosa" id="diagnosa" placeholder="Diagnosa"><?php echo $diagnosa; ?></textarea>
@@ -58,3 +58,4 @@
     } ?>
                                     
 </datalist>
+  <script>tinymce.init({ selector:'textarea' });</script>

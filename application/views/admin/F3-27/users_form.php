@@ -21,6 +21,13 @@
             <td><input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="<?php echo $last_name; ?>" required="" />
         </td>
       </tr>
+      <tr><td>Alamat</td>
+            <td><textarea type="text" class="form-control" name="company" id="company" required="" ><?php echo $company; ?></textarea>
+        </td>
+        <tr><td>No Telepon</td>
+            <td><input type="text" class="form-control" name="phone" id="phone" placeholder="Last Name" value="<?php echo $phone; ?>" required="" />
+        </td>
+      </tr>
       <tr>
         <td>Grup</td>
         <td>
@@ -35,6 +42,7 @@
           
         </td>
       </tr>
+
 	    <input type="hidden" name="id" value="<?php echo $id; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('users') ?>" class="btn btn-default">Cancel</a></td></tr>

@@ -9,14 +9,13 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="panel panel-default">
                             <div class="panel-heading">
                                  <?php echo anchor('Barang/post','Tambah Data',array('class'=>'button button danger')) ?>
                                  <?php echo anchor('Kategori','Kategori Barang',array('class'=>'button button warning')) ?>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover" id="dataTables-example">
+                                    <table class="table table-bordered table-hover" id="mytable">
                                         <thead>
                                             <tr>
                                                 <th style="color: white">No.</th>
@@ -44,12 +43,18 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                
                             </div>
-                        </div>
                         <!-- /. PANEL  -->
                     </div>
                 </div>
                 <!-- /. ROW  -->
 
 
+<script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
+        <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
+        <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#mytable").dataTable();
+            });
+        </script>

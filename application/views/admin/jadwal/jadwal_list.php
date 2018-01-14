@@ -1,4 +1,3 @@
-
         <!-- Main content -->
         <section class='content'>
           <div class='row'>
@@ -14,12 +13,12 @@
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
-		    <th>IdDokter</th>
-		    <th>Hari</th>
-		    <th>DariJam</th>
-		    <th>SampaiJam</th>
-		    <th>Action</th>
+                    <th width="80px"><font color="white">No</font></th>
+		            <th><font color="white">IdDokter</font></th>
+		            <th><font color="white">Hari</font></th>
+		            <th><font color="white">DariJam</font></th>
+		            <th><font color="white">SampaiJam</font></th>
+		            <th><font color="white">Action</font></th>
                 </tr>
             </thead>
 	    <tbody>

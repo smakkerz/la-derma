@@ -35,6 +35,7 @@ class Jadwal_model extends CI_Model
         $this->db->like('idJadwal', $q);
 	$this->db->or_like('idDokter', $q);
 	$this->db->or_like('Hari', $q);
+     $this->db->or_like('tanggal', $q);
 	$this->db->or_like('DariJam', $q);
 	$this->db->or_like('SampaiJam', $q);
 	$this->db->from($this->table);
@@ -46,6 +47,7 @@ class Jadwal_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         $this->db->like('idJadwal', $q);
 	$this->db->or_like('idDokter', $q);
+    $this->db->or_like('tanggal', $q);
 	$this->db->or_like('Hari', $q);
 	$this->db->or_like('DariJam', $q);
 	$this->db->or_like('SampaiJam', $q);

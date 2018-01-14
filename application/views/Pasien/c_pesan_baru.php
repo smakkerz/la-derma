@@ -9,11 +9,11 @@
                   Buat Pesan Baru
                 </h3>
                 <h4>
-                <a href="<?= base_url('C_dokter/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
-                <a href="<?= base_url('C_dokter/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
-                <a href="<?= base_url('C_dokter/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
+                <a href="<?= base_url('C_pasien/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
+                <a href="<?= base_url('C_pasien/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
+                <a href="<?= base_url('C_pasien/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
                 <hr/>
-                <?= form_open('C_dokter/tambah_pesan') ?>
+                <?= form_open('C_pasien/tambah_pesan') ?>
                 <table class="table table-bordered">
                   <tr>
                     <td>Judul Pesan</td>

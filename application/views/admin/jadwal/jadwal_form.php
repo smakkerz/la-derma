@@ -9,7 +9,7 @@
                       <div>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>IdDokter <?php echo form_error('idDokter') ?></td>
-            <td><input list="idDokter" name="idDokter" placeholder="masukan nama dokter" class="form-control" required="">
+            <td><input list="idDokter" name="idDokter" placeholder="masukan nama dokter" class="form-control">
         </td>
         
 	    <tr><td>Hari <?php echo form_error('Hari') ?></td>
@@ -25,10 +25,10 @@
             </select>
         </td>
 	    <tr><td>DariJam <?php echo form_error('DariJam') ?></td>
-            <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" required="" />
+            <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />
         </td>
 	    <tr><td>SampaiJam <?php echo form_error('SampaiJam') ?></td>
-            <td><input type="time" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" required="" />
+            <td><input type="time" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" />
         </td>
 	    <input type="hidden" name="idJadwal" value="<?php echo $idJadwal; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

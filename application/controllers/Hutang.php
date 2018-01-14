@@ -31,7 +31,6 @@
 				'verifikasi' => '1'
 			];
 			$this->Hutang_model->tambah('arus_kas',$data);
-			echo "<script>alert('Berhasil tambah hutang')</script>";
 			redirect('Hutang','refresh');
 
 		}

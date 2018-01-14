@@ -12,9 +12,9 @@
                   ?>
                 </h3>
                 <h4>
-                <a href="<?= base_url('C_dokter/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
-                <a href="<?= base_url('C_dokter/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
-                <a href="<?= base_url('C_dokter/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
+                <a href="<?= base_url('C_pasien/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
+                <a href="<?= base_url('C_pasien/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
+                <a href="<?= base_url('C_pasien/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
         <table class="table table-bordered">
 	         <?php 
             $usern = $this->ion_auth->user()->row();
@@ -48,7 +48,7 @@
            </tr>
            <?php
             }
-           echo form_open('C_dokter/kirim_pesan');
+           echo form_open('C_pasien/kirim_pesan');
            ?>
 
            <input type="hidden" name="id_percakapan" value="<?= $this->uri->segment(3) ?>">

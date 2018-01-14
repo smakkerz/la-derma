@@ -5,8 +5,9 @@
             <div class='col-xs-12'>
               
                 <h3 class='box-title'>Data Pasien</h3>
-        		<table class="table table-bordered">
-	    			<tr>
+        		<table class="table table-bordered table-hovered">
+	    			<tbody>
+	    				<tr>
 	    				<th>ID Pasien</th>
 	    				<td>:</td>
 	    				<td><?php echo $id_pasien; ?></td>
@@ -46,7 +47,9 @@
 	    				<td>:</td>
 	    				<td><?php echo $no_hp; ?></td>
 	    			</tr>
+	    			</tbody>
 				</table>
+				<a href="" class="btn btn-primary">Ubah Data</a>
         </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

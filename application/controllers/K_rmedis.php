@@ -81,6 +81,7 @@ class K_rmedis extends CI_Controller
             
             $data = array(
 		'id_tindakan' => $this->input->post('id_tindakan',TRUE),
+        'tindakan' => $this->K_rmedis_model->tindakan(),
 		'id_pasien' => $this->input->post('id_pasien',TRUE),
 		'diagnosa' => $this->input->post('diagnosa',TRUE),
 		'keluhan' => $this->input->post('keluhan',TRUE),
@@ -107,6 +108,7 @@ class K_rmedis extends CI_Controller
                 'action' => site_url('K_rmedis/update_action'),
 		'id_rmedis' => set_value('id_rmedis', $row->id_rmedis),
 		'id_tindakan' => set_value('id_tindakan', $row->id_tindakan),
+        'tindakan' => $this->K_rmedis_model->tindakan(),
 		'id_pasien' => set_value('id_pasien', $row->id_pasien),
 		'diagnosa' => set_value('diagnosa', $row->diagnosa),
 		'keluhan' => set_value('keluhan', $row->keluhan),

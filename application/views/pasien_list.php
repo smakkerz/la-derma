@@ -13,7 +13,7 @@
         <table class="table bordered hovered striped" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
+                    <th width="80px"><font color="white">No<font color="white"></th>
 		    <th><font color="white">Identitas</font></th>
 		    <th><font color="white">Nama</font></th>
 		    <th><font color="white">Jenis Kelamin</font></th>

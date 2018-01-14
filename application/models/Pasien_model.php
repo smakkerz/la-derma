@@ -19,10 +19,12 @@ class Pasien_model extends CI_Model
     	$cek = $this->db->query("SELECT MAX(id_pasien) as id, COUNT(id_pasien) as jml FROM pasien")->row();
         $tahun_now = date('Y');
         $bulan_now = date('m');
-        $antrian = $cek->jml;
-        $antrian = $antrian+1;
-        $antri = sprintf('%05s', $antrian);
-
+        $antrian = $cek->id;
+        $pecah = explode('-', $antrian);
+        
+        $antri = substr($pecah[1],4,4);
+        $antri = $antri+1;
+        $antri = sprintf('%05s', $antri);
 
     	if ($cek->jml == 0) {
     		return $id = "LD-".$tahun_now."0001".$bulan_now;

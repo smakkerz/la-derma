@@ -12,12 +12,12 @@
         <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
-		    <th>Nama Dokter</th>
-		    <th>Hari</th>
-		    <th>DariJam</th>
-		    <th>SampaiJam</th>
-		    <th>Action</th>
+                    <th width="80px" style="color: white;">No</th>
+		    <th style="color: white;">Nama Dokter</th>
+		    <th style="color: white;">Hari</th>
+		    <th style="color: white;">DariJam</th>
+		    <th style="color: white;">SampaiJam</th>
+		    <th style="color: white;">Action</th>
                 </tr>
             </thead>
 	    <tbody>

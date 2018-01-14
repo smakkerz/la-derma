@@ -1,4 +1,4 @@
- required=""<!-- Main content -->
+<!-- Main content -->
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
@@ -11,9 +11,7 @@
 	    <tr><td>Nama Pengguna </td>
             <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />
         </td>
-	    <tr><td>Kata Sandi </td>
-            <td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" required="" />
-        </td>
+	    <tr><td></td>
 	    <tr><td>Nama Pertama </td>
             <td><input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="<?php echo $first_name; ?>" required="" />
         </td>

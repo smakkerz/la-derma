@@ -21,7 +21,6 @@
         <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>">
     <script src="<?php echo base_url('\assets\tinymce\js\tinymce\tinymce.min.js') ?>"></script>
-  <script>tinymce.init({ selector:'textarea' });</script>
     <style>
 html{background-color:#0F6D32;}
 

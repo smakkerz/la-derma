@@ -9,14 +9,14 @@
 		{
 			parent::__construct();
 			$this->load->model('K_pesan_model');
-			$this->load->model('Pasien_Login');
+			$this->load->model('Pasien_login');
 	        $this->load->model('K_prmedis_model');
 		}
 		function index()
 		{
 			$data = [
-				'kunjungan' => $this->Pasien_Login->kunjungan(),
-				'rmedis' => $this->Pasien_Login->rmedisfive(),
+				'kunjungan' => $this->Pasien_login->kunjungan(),
+				'rmedis' => $this->Pasien_login->rmedisfive(),
 			];
 			$this->template->load('template','Pasien/dashboard',$data);
 		}
@@ -143,7 +143,7 @@
 		function profil()
 		{
 			$user = $this->ion_auth->user()->row();
-			$data = $this->Pasien_Login->profil($user->email);
+			$data = $this->Pasien_login->profil($user->email);
 			if ($data) {
 				$row = [
 					'id_pasien' => $data->id_pasien,
@@ -160,7 +160,7 @@
 		}
 		function jadwal()
 		{
-			$data['jadwal'] = $this->Pasien_Login->jadwal();
+			$data['jadwal'] = $this->Pasien_login->jadwal();
 			$this->template->load('template','Pasien/jadwal',$data);
 
 		}

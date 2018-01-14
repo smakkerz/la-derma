@@ -64,7 +64,7 @@
                     <?php $no=1; $total=0; foreach ($detail as $r){ ?>
                         <tr class="gradeU">
                                 <td><?php echo $no ?></td>
-                                <td><?php echo $r->nama_barang.' - '.anchor('Pemesanan/step2/hapusitem/'.$r->t_detail_id,'Hapus',array('style'=>'color:red;')) ?></td>
+                                <td><?php echo $r->nama_barang.' - '.anchor('Pemesanan/hapusitem/'.$r->t_detail_id,'Hapus',array('style'=>'color:red;')) ?></td>
                                 <td><?php 
                                     if ($r->qty<1) {
                                         $qty = 1;

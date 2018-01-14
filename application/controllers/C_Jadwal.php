@@ -34,7 +34,7 @@ class C_Jadwal extends CI_Controller
 		'idJadwal' => $row->idJadwal,
 		'idDokter' => $row->idDokter,
 		'Hari' => $row->Hari,
-        'Tanggal' => $row->tanggal,
+        'tanggal' => $row->tanggal,
 		'DariJam' => $row->DariJam,
 		'SampaiJam' => $row->SampaiJam,
 	    );
@@ -145,7 +145,7 @@ class C_Jadwal extends CI_Controller
     {
 	$this->form_validation->set_rules('idDokter', 'iddokter', 'trim|required');
 	$this->form_validation->set_rules('Hari', 'hari', 'trim|required');
-    $this->form_validation->set_rules('Tanggal','tanggal','trim|required');
+    $this->form_validation->set_rules('tanggal','tanggal','trim|required');
 	$this->form_validation->set_rules('DariJam', 'darijam', 'trim|required');
 	$this->form_validation->set_rules('SampaiJam', 'sampaijam', 'trim|required');
 

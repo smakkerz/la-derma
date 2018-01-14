@@ -64,6 +64,7 @@ class Auth extends CI_Controller {
 			{
 				//if the login is successful
 				//redirect them back to the home page
+				
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				$email = $this->input->post('identity');
 					if ($this->ion_auth->is_admin()) {
@@ -164,7 +165,12 @@ class Auth extends CI_Controller {
 			);
 
 			// render
-			$this->_render_page('auth/change_password', $this->data);
+			if ($this->ion_auth->is_admin()) {
+				$this->load->view('admin/tema2');
+				$this->load->view('auth/change_password', $this->data);
+			}else{
+				$this->template->load('template','auth/change_password',$this->data);
+			}
 		}
 		else
 		{

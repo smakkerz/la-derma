@@ -7,9 +7,9 @@
                 <div class='box-header'>
                 <h3 class='box-title'>Kotak Masuk</h3>
                 <h4>
-                <a href="<?= base_url('C_dokter/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
-                <a href="<?= base_url('C_dokter/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
-                <a href="<?= base_url('C_dokter/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
+                <a href="<?= base_url('C_pasien/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
+                <a href="<?= base_url('C_pasien/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
+                <a href="<?= base_url('C_pasien/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
         <table class="table table-bordered">
 	         <?php 
             foreach ($k_pesan as $pesan) {
@@ -22,7 +22,7 @@
                Penerima : <?= $pesan->untuk ?>
               </div>
             </td> 
-            <td align="center"><br/><br/><a href="<?= base_url('C_dokter/baca/'.$pesan->id_percakapan) ?>" class="btn btn-primary">BACA</a></td>
+            <td align="center"><br/><br/><a href="<?= base_url('C_pasien/baca/'.$pesan->id_percakapan) ?>" class="btn btn-primary">Balas</a></td>
            </tr>
            <?php
             }
