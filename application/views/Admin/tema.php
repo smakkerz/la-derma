@@ -163,7 +163,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
 		<div id="headerCenter">
 			<div id="headerTitles">
 				<h1><a href="#!">Klinik La-Derma</a></h1>
-		   		<h2>Sistem Informasi Management Operasional Klinik</h2>
+		   		<h2>Sistem Informasi Operasional Klinik</h2>
 		    </div>
 		    <nav>
             	<a href="<?= base_url('index.php/Menu') ?>" rel="group0" id="menu1" class="navActive">
@@ -184,7 +184,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     </header>
 <div id="wrapper" style="padding-top: 81px;">        
     <div id="centerWrapper">
-        <div id="tileContainer" class="" style="width: 3441px; height: 430px; display: block;">
+        <div id="tileContainer" class="" style="width: 1860px; height: 400px; display: block;">
             <img id="arrowLeft" class="navArrows" src="<?= base_url('Metro') ?>/arrowLeft.png" onclick="javascript:$group.goLeft();" alt="left arrow" style="display: none;">
             <img id="arrowRight" class="navArrows" src="<?= base_url('Metro') ?>/arrowRight.png" onclick="javascript:$group.goRight();" alt="right arrow" style="margin-left: 397px; opacity: 0.5; display: inline;">
              <a href="#&amp;Pelayanan" id="groupTitle0" class="groupTitle" style="margin-left: 0px; margin-top: 0px; display: block;" onclick="javascript:$group.goTo(0);"><h3>Pelayanan</h3></a>
@@ -226,7 +226,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     </a>
         <a href="<?= base_url('History/HistoryTx') ?>" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 780px; width: 125px; height: 125px; background: rgb(21, 170, 100); display: block;" data-pos="175-780-125"> 
     <img src="<?= base_url('Metro') ?>/resep.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">History</div>    </div>
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">History Transaksi</div>    </div>
     </a>
         <a href="<?= base_url('C_Jadwal') ?>" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 520px; width: 125px; height: 125px; background: rgb(154, 15, 15); display: block;" data-pos="175-520-125"> 
     <img src="<?= base_url('Metro') ?>/expiry.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
@@ -257,7 +257,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     </a>
 -->
         <a href="<?= base_url('Kelola_pesan') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1300px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-1300-125"> 
-    <span class="mif-mail mif-4x"></span>
+    <img src="<?= base_url('Metro') ?>/pesan.png" width="80" style="margin-left:-40.5px; margin-top: -33.5px; max-height:55px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pesan</div>    </div>
     </a>
         <a href="<?= base_url('Users') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(190, 30, 74); display: block;" data-pos="45-1170-125"> 
