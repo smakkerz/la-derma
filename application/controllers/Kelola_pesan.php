@@ -50,11 +50,9 @@ class Kelola_pesan extends CI_Controller {
 	public function baca()
 	{
 		$id = $this->uri->segment(3);
-		$pesan = $this->K_pesan_model->baca($id);
-		$judl = $this->K_pesan_model->judul($id);
+		$pesan = $this->K_pesan_model->get_pesan($id);
 		$data = [
 			'baca' => $pesan,
-			'judul' => $judl,
 		];
 		$this->load->view('admin/tema2');
 		$this->load->view('admin/pesan/c_pesan_baca',$data);

@@ -1,52 +1,54 @@
+<div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Buat Pesan Baru</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" action="<?php echo base_url('C_pasien/tambah_pesan') ?>">
 
-        <!-- Main content -->
-        <section class='content'>
-          <div class='row'>
-            <div class='col-xs-12'>
-              <div>
-                <div class='box-header'>
-                <h3 class='box-title'>
-                  Buat Pesan Baru
-                </h3>
-                <h4>
-                <a href="<?= base_url('C_pasien/pesan_baru') ?>" class="btn btn-default">Buat Pesan</a>
-                <a href="<?= base_url('C_pasien/inbox') ?>" class="btn btn-default">Kotak Masuk</a>
-                <a href="<?= base_url('C_pasien/outbox') ?>" class="btn btn-default">Kotak Keluar</a>
-                <hr/>
-                <?= form_open('C_pasien/tambah_pesan') ?>
-                <table class="table table-bordered">
-                  <tr>
-                    <td>Judul Pesan</td>
-                    <td><input type="text" name="judul" class="form-control" required=""></td>
-                  </tr>
-                  <tr>
-                    <td>Penerima Pesan</td>
-                    <td>
-                      <select name="untuk" class="form-control" required="">
-                        <?php 
-                          if ($this->ion_auth->is_admin()) {
-                            $users = $this->ion_auth->users()->result();
-                          }elseif($this->ion_auth->in_group('Dokter')){
-                            $users = $this->ion_auth->users('Pasien')->result();
-                          }else{
-                            $users = $this->ion_auth->users('Dokter')->result();
-                          }
-                          foreach ($users as $user) {
-                            ?>
-                            <option value="<?= $user->email ?>"><?= $user->email ?></option>
-                            <?php
-                          }
-                        ?>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><input type="submit" class="btn btn-primary" value="Buat Pesan"></td>
-                  </tr>
-                </table>
-                </form>
-        </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Judul Pesan <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="judul" name="judul" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Penerima Pesan <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input  list="penerima" name="untuk" placeholder="Penerima Pesan" required="" class="form-control col-md-7 col-xs-12">
+                          <datalist id="penerima">
+                              <?php
+                                  foreach ($penerima as $data) {
+                                      echo "<option value='$data->email'>$data->first_name $data->last_name</option>";
+                                 }
+                              ?>
+                          </datalist>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Pesan</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea name="pesan"></textarea>
+                        </div>
+                      </div>
+                      
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button class="btn btn-primary" type="button">Cancel</button>
+              <button class="btn btn-primary" type="reset">Reset</button>
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+  <script>tinymce.init({ selector:'textarea' });</script>

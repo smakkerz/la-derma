@@ -27,7 +27,8 @@ $(document).ready(function() {
     <link href="<?php echo base_url() ?>template/build/css/custom.min.css" rel="stylesheet">
     <!-- jQuery -->
     <!-- STOK OBAT START -->
- 
+     <script src="<?php echo base_url('\assets\tinymce\js\tinymce\tinymce.min.js') ?>"></script>
+
 <script src="<?= base_url() ?>assets/highcharts/code/highcharts.js"></script>
  <script src="<?= base_url() ?>assets/highcharts/code/modules/exporting.js"></script>
  

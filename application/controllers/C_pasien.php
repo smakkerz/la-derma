@@ -76,7 +76,8 @@
 	}
 	public function pesan_baru()
 	{
-		$this->template->load('template','Pasien/c_pesan_baru');
+		$data = ['penerima' => $penerima = $this->K_pesan_model->penerima()];
+		$this->template->load('template','Pasien/c_pesan_baru',$data);
 	}
 	public function hapus()
 	{
@@ -102,8 +103,9 @@
 				'dari' => $user,
 				'untuk' => $this->input->post('untuk')
 			];
+			$pesan = $this->input->post('pesan');
 
-			$this->K_pesan_model->buat_pesan($data);
+			$this->K_pesan_model->buat_pesan($data,$pesan);
 			redirect('C_pasien/baca/'.$newid);
 }
 			function Pasien_medis()

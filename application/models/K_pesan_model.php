@@ -8,49 +8,41 @@ class K_pesan_model extends CI_Model
 	function get_all_admin(){
 		return $this->db->get('percakapan')->result();
 	}
-	function inbox(){
-		$usern = $this->ion_auth->user()->row();
-		$user = $usern->email;
-		$this->db->where('percakapan.untuk',$user);
-		$this->db->order_by('id_percakapan','DESC');
-		$query = $this->db->get('percakapan');
+	//membuat id_percakapan
+	function id_percakapan()
+	{
+		$query = $this->db->query("SELECT MAX(id_percakapan) as id FROM msg")->row();
+		$id = $query->id;
+		$id = $id+1;
+		$id = sprintf('%032s', $id);
+
+		return $id;
+	}
+	//Mengambil data penerima pesan != User Login
+	function penerima()
+	{
+		$user = $this->ion_auth->user()->row();
+		$email = $user->email;
+		$query = $this->db->query("SELECT email,first_name,last_name FROM users WHERE email != '$email'");
 		return $query->result();
 	}
-	function outbox(){
-		$usern = $this->ion_auth->user()->row();
-		$user = $usern->email;
-		$this->db->where('percakapan.dari',$user);
-		$this->db->order_by('id_percakapan','DESC');
-		$query = $this->db->get('percakapan');
-		return $query->result();
+	//input model
+	function insert($tabel,$data)
+	{
+		$this->db->insert($tabel,$data);
 	}
-	function baca($id){
-		$this->db->where('pesan.id_percakapan',$id);
-		return $this->db->get('pesan')->result();
-	}
-	function get($id){
-		$this->db->order_by('id_pesan','ASC');
-		$this->db->limit(1);
-		$query = $this->db->get('pesan');
-		return $query->result();
-	}
-	function judul($id)
+	//ambil pesan
+	function get_pesan($id)
 	{
 		$this->db->where('id_percakapan',$id);
-		return $this->db->get('percakapan')->result();
+		$this->db->order_by('id_pesan','DESC');
+		return $this->db->get('pesan',10)->result();
 	}
-	function kirim($data)
+	//ambil list percakapan
+	function list_percakapan()
 	{
-		$this->db->insert('pesan',$data);
-	}
-	function buat_pesan($data)
-	{
-		$this->db->insert('percakapan',$data);
-	}
-	function hapus($id)
-	{
-		$tables = array('pesan', 'percakapan');
-		$this->db->where('id_percakapan', $id);
-		$this->db->delete($tables);
+		$pengirim = $this->ion_auth->user()->row();
+		$pengirim = $pengirim->email;
+		return $this->db->query("SELECT id_percakapan,judul,dari,untuk FROM percakapan WHERE dari = '$pengirim' OR untuk ='$pengirim' GROUP BY id_percakapan ORDER BY id_percakapan DESC")->result();
 	}
 }

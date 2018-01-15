@@ -1,3 +1,4 @@
+
 <!-- Main content -->
         <section class='content'>
           <div class='row'>
@@ -58,4 +59,5 @@
     } ?>
                                     
 </datalist>
+
   <script>tinymce.init({ selector:'textarea' });</script>
