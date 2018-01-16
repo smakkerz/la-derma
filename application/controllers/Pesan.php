@@ -15,7 +15,13 @@
 			$data = [
 				'list_percakapan' => $this->K_pesan_model->list_percakapan(),
 			];
-			$this->template->load('template','c_pesan_list',$data);
+			if ($this->ion_auth->is_admin()) {
+				# code...
+				$this->load->view('admin/tema2');
+				$this->load->view('admin/pesan/c_pesan_list',$data);
+			}else{
+				$this->template->load('template','c_pesan_list',$data);
+			}
 		}
 		//new convensation
 		function baru()
@@ -23,7 +29,12 @@
 			$data = [
 				'penerima' => $this->K_pesan_model->penerima(),
 			];
-			$this->template->load('template','c_pesan_baru',$data);
+			if ($this->ion_auth->is_admin()) {
+				$this->load->view('admin/tema2');
+				$this->load->view('admin/pesan/c_pesan_baru',$data);
+			}else{
+				$this->template->load('template','c_pesan_baru',$data);
+			}
 		}
 		//send new convensation
 		function kirim_baru()
@@ -58,7 +69,13 @@
 				'pesan' => $this->K_pesan_model->get_pesan($id),
 				//'reply' => $this->K_pesan_model->reply($id),
 			];
-			$this->template->load('template','c_pesan_baca',$data);
+			if ($this->ion_auth->is_admin()) {
+				# code...
+				$this->load->view('admin/tema2');
+				$this->load->view('admin/pesan/c_pesan_baca',$data);
+			}else{
+				$this->template->load('template','c_pesan_baca',$data);
+			}
 		}
 		//balas pesan
 		function balas_pesan()

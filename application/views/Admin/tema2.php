@@ -171,10 +171,10 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
 	<img src="<?= base_url('Metro') ?>/home.png" alt="home">
 	Pelayanan
 </a>
-<a href="<?= base_url('index.php/Kelola_pesan') ?>" rel="group1" id="menu2">
+<a href="<?= base_url('index.php/Pesan') ?>" rel="group1" id="menu2">
    <span class="mif-mail mif-4x"></span><br/>
 
-    Kelola Pesan
+    Pesan
 </a>
 <a href="<?= base_url('auth/logout') ?>"   rel="group5">
         <img src="<?= base_url('Metro') ?>/logout.png" alt="Logout" align="center">

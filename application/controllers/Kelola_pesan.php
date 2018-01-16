@@ -1,108 +1,75 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
 
-class Kelola_pesan extends CI_Controller {
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->database();
-		$this->load->library(array('ion_auth','form_validation'));
-		$this->load->helper(array('url','language'));
-
-		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-
-		$this->lang->load('auth');
-        $this->load->model('K_pesan_model');
+class Kelola_pesan extends CI_Controller
+{
+    
+        
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Percakapan_model');
         $this->load->library('form_validation');
-	}
-	public function index()
-	{
-		
-		if ($this->ion_auth->is_admin()) {
-			$pesan = $this->K_pesan_model->get_all_admin();
-		}else{
-			$pesan = $this->K_pesan_model->inbox();
-		}
+        $this->load->model('K_pesan_model');
 
-		$data = [
-			'k_pesan' => $pesan
-		];
-		$this->load->view('admin/tema2');
-		$this->load->view('admin/pesan/c_pesan_list',$data);
-		//$this->template->load('template','c_pesan_list', $data);
-	}
-	public function outbox()
-	{
-		
-		if ($this->ion_auth->is_admin()) {
-			$pesan = $this->K_pesan_model->get_all_admin();
-		}else{
-			$pesan = $this->K_pesan_model->outbox();
-		}
+    }
 
-		$data = [
-			'k_pesan' => $pesan
-		];
-		$this->load->view('admin/tema2');
-		$this->load->view('admin/pesan/c_pesan_list', $data);
-	}
-	public function baca()
-	{
-		$id = $this->uri->segment(3);
-		$pesan = $this->K_pesan_model->get_pesan($id);
-		$data = [
-			'baca' => $pesan,
-		];
-		$this->load->view('admin/tema2');
-		$this->load->view('admin/pesan/c_pesan_baca',$data);
-	}
-	public function kirim_pesan()
-	{
-		$usern = $this->ion_auth->user()->row();
-		$user = $usern->email;
-		$id_percakapan = $this->input->post('id_percakapan');
-		$pesan = $this->input->post('pesan');
-		$data = [
-			'id_percakapan' => $id_percakapan,
-			'dari' => $user,
-			'pesan' => $pesan,
-		];
+    public function index()
+    {
+        $kelola_pesan = $this->Percakapan_model->get_all();
 
-		$this->K_pesan_model->kirim($data);
-		redirect('Kelola_pesan/baca/'.$id_percakapan);
-	}
-	public function pesan_baru()
-	{
-		$this->load->view('admin/tema2');
-		$this->load->view('admin/pesan/c_pesan_baru');
-	}
-	public function hapus()
-	{
-		$id = $this->uri->segment(3);
-		$this->K_pesan_model->hapus($id);
-		redirect('Kelola_pesan');
-	}
-	public function tambah_pesan()
-	{
-		$this->db->order_by('id_percakapan','DESC');
-			$this->db->limit(1);
-			$query = $this->db->get('percakapan')->result();
-			foreach ($query as $data) {
-				$newid = $data->id_percakapan;
-				$newid = $newid+1;
-			}
+        $data = array(
+            'kelola_pesan_data' => $kelola_pesan
+        );
 
-			$usern = $this->ion_auth->user()->row();
-			$user = $usern->email;
+        $this->load->view('admin/tema2');
+        $this->load->view('percakapan_list', $data);
+    }
 
-			$data = [
-				'judul' => $this->input->post('judul'),
-				'dari' => $user,
-				'untuk' => $this->input->post('untuk')
-			];
+    public function read($id) //fungsi tampil data
+    {
+        $row = $this->Percakapan_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'id_percakapan' => $row->id_percakapan,
+		'judul' => $row->judul,
+		'dari' => $row->dari,
+		'untuk' => $row->untuk,
+        'baca' => $this->K_pesan_model->get_pesan($id)
+	    );
+            $this->load->view('admin/tema2');
+            $this->load->view('percakapan_read', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('Kelola_pesan'));
+        }
+    }
+        
+    public function delete($id)  //fungsi hapus data
+    {
+        $row = $this->Percakapan_model->get_by_id($id);
 
-			$this->K_pesan_model->buat_pesan($data);
-			redirect('Kelola_pesan/baca/'.$newid);
-	}
+        if ($row) {
+            $this->Percakapan_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('Kelola_pesan'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('Kelola_pesan'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('judul', 'judul', 'trim|required');
+	$this->form_validation->set_rules('dari', 'dari', 'trim|required');
+	$this->form_validation->set_rules('untuk', 'untuk', 'trim|required');
+
+	$this->form_validation->set_rules('id_percakapan', 'id_percakapan', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
 }
+
