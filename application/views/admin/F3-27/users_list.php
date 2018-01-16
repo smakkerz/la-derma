@@ -1,6 +1,6 @@
-
         <!-- Main content -->
-        <section class='content'>
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
           <div class='row'>
             <div class='col-xs-12'>
               <div class=''>
@@ -15,18 +15,18 @@
                          }
                     ?> </h3>
                   <?php echo anchor('users/create/','Create',array('class'=>'button primary'));?>
-		<?php echo anchor(site_url('users/pdf'), 'Export to PDF', 'class="button"'); ?>
+		<?php echo anchor(site_url('users/pdf'), 'Export to PDF', array('class'=>'button warning')); ?>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table bordered hovered striped" id="mytable" width="100%">
+        <table class="list-data" id="mytable" width="100%">
             <thead>
                 <tr>
-            <th width="80px"><font color="white">No</font></th>
-		    <th><font color="white">Nama Pengguna</font></th>
-		    <th><font color="white">Nama Pertama</font></th>
-		    <th><font color="white">Nama Terakhir</font></th>
-		    <th><font color="white">Group</font></th>
-		    <th><font color="white">Action</font></th>
+            <th width="80px">No</th>
+		    <th>Nama Pengguna/Email</th>
+		    <th>Nama</th>
+		    <th>Phone</th>
+		    <th>Group</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    <tbody>
@@ -37,9 +37,9 @@
                 ?>
                 <tr>
 		    <td><?php echo ++$start ?></td>
-		    <td><?php echo $users->username ?></td>
-		    <td><?php echo $users->first_name ?></td>
-		    <td><?php echo $users->last_name ?></td>
+		    <td><?php echo $users->username.'/ ( '.$users->email.' )' ?></td>
+		    <td><?php echo $users->first_name.' '.$users->last_name ?></td>
+		    <td><?php echo $users->phone ?></td>
 		    <td>
 		    	<?php foreach ($users->groups as $group):?>
 					<?php echo $group->name ?><br />
@@ -47,11 +47,11 @@
 			</td>
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('users/read/'.$users->id),'<i class="">Detail</i>',array('title'=>'detail','class'=>'button')); 
+			echo anchor(site_url('users/read/'.$users->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('users/update/'.$users->id),'<i class="fa fa-pencil-square-o">Edit</i>',array('title'=>'edit','class'=>'button success')); 
+			echo anchor(site_url('users/update/'.$users->id),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'button success btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('users/delete/'.$users->id),'<i class="fa fa-trash-o">Hapus</i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('users/delete/'.$users->id),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>
@@ -73,3 +73,4 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+    </div>

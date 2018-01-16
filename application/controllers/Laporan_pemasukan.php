@@ -13,14 +13,14 @@
 		function index(){
 			$tgl = "
 				<tr>
-					<th>Dari Tanggal <input type='date' name='tgl1'></th>
-					<th>Sampai Tanggal <input type='date' name='tgl2'></th>
-					<th colspan='3'><input type='submit' value='Cek'></th>
+					<th>Dari Tanggal <input type='date' class='input-control iconic' name='tgl1'></th>
+					<th>Sampai Tanggal <input type='date' class='input-control iconic' name='tgl2'></th>
+					<th colspan='3'><input type='submit' class='button primary' value='Cek'></th>
 				</tr>
 			";
 			$kapan = "Pemasukan Bulan Ini";
 			$cetak = "<tr>
-                        <th><a href='".base_url('Laporan_pemasukan/cetak')."' class='button button-primary'  target='_blank'>CETAK</a></th>
+                        <th><a href='".base_url('Laporan_pemasukan/cetak')."' class='button primary'  target='_blank'>CETAK</a></th>
                     </tr>'";
 			$data = [
 				'pemasukan' => $this->Laporan->pemasukan(),
@@ -45,9 +45,9 @@
 		function priode(){
 			$tgl = "
 				<tr>
-					<th>Dari Tanggal <input type='date' name='tgl1'></th>
-					<th>Sampai Tanggal <input type='date' name='tgl2'></th>
-					<th colspan='3'><input type='submit' value='Cek'></th>
+					<th>Dari Tanggal <input type='date' class='input-control iconic' name='tgl1'></th>
+					<th>Sampai Tanggal <input type='date' class='input-control iconic' name='tgl2'></th>
+					<th colspan='3'><input type='submit' class='button primary' value='Cek'></th>
 				</tr>
 			";
 			$tgl1 = $this->input->post('tgl1');
@@ -55,7 +55,7 @@
 			$kapan = "Pemasukan Dari $tgl1 Sampai $tgl2";
 
 			$cetak = "<tr>
-                        <th><a href='".base_url('Laporan_pemasukan/cetak2/'.$tgl1."/".$tgl2)."' class='button button-primary'  target='_blank'>CETAK</a></th>
+                        <th><a href='".base_url('Laporan_pemasukan/cetak2/'.$tgl1."/".$tgl2)."' class='button primary'  target='_blank'>CETAK</a></th>
                     </tr>'";
 			
 			$data = [

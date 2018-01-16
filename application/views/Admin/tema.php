@@ -166,11 +166,11 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
 		   		<h2>Sistem Informasi Operasional Klinik</h2>
 		    </div>
 		    <nav>
-            	<a href="<?= base_url('index.php/Menu') ?>" rel="group0" id="menu1" class="navActive">
+            	<a href="<?= base_url('Menu') ?>" rel="group0" id="menu1" >
 	<img src="<?= base_url('Metro') ?>/home.png" alt="home">
 	Pelayanan
 </a>
-<a href="<?= base_url('index.php/Pesan') ?>" rel="group1" id="menu2">
+<a href="<?= base_url('Pesan') ?>" rel="group1" id="menu2">
    <span class="mif-mail mif-4x"></span><br/>
 
     Pesan
@@ -203,7 +203,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <img src="<?= base_url('Metro') ?>/pemesanan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Billing</div>    </div>
     </a>
-        <a href="<?= base_url('index.php/Pos3') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 780px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-780-125"> 
+        <a href="<?= base_url('Pos3') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 780px; width: 125px; height: 125px; background: rgb(0, 114, 188); display: block;" data-pos="45-780-125"> 
     <img src="<?= base_url('Metro') ?>/pemesanan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pemesanan</div>    </div>
     </a>
@@ -220,7 +220,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Pendaftaran Pasien</div>    </div>
     </a>
     <!-- Akhir Menu Pendaftaran Pasien -->
-        <a href="<?= base_url('index.php/Barang') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 650px; width: 125px; height: 125px; background: rgb(97, 64, 64); display: block;" data-pos="45-650-125"> 
+        <a href="<?= base_url('Barang') ?>" class="tile tileImg group1  " style="margin-top: 45px; margin-left: 650px; width: 125px; height: 125px; background: rgb(97, 64, 64); display: block;" data-pos="45-650-125"> 
     <img src="<?= base_url('Metro') ?>/penerimaan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Produk Dan Obat</div>    </div>
     </a>

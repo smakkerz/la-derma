@@ -1,26 +1,26 @@
 
         <!-- Main content -->
-        <section class='content'>
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
           <div class='row'>
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
                   <h3 class='box-title'>DATA PASIEN <?php echo anchor('pasien/create/','Create',array('class'=>'button primary'));?>
-		<?php echo anchor(site_url('pasien/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button primary"'); ?>
 		<?php echo anchor(site_url('pasien/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table bordered hovered striped" id="mytable">
+        <table class="list-data" width="100%" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px"><font color="white">No<font color="white"></th>
-		    <th><font color="white">Identitas</font></th>
-		    <th><font color="white">Nama</font></th>
-		    <th><font color="white">Jenis Kelamin</font></th>
-		    <th><font color="white">Birth Date</font></th>
-            <th><font color="white">No Hp</font></th>
-		    <th><font color="white">Status</font></th>
-		    <th><font color="white">Action</font></th>
+                    <th width="80px">ID</th>
+		    <th>Identitas</th>
+		    <th>Nama</th>
+		    <th>Jenis Kelamin</th>
+		    <th>Birth Date</th>
+            <th>No Hp</th>
+		    <th>Status</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    <tbody>
@@ -30,7 +30,7 @@
             {
                 ?>
                 <tr>
-		    <td><?php echo ++$start ?></td>
+		    <td><?php echo $pasien->id_pasien?></td>
 		    <td><?php echo $pasien->identitas ?></td>
 		    <td><?php echo $pasien->nama ?></td>
 		    <td><?php echo $pasien->sex ?></td>
@@ -65,3 +65,4 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+    </div>

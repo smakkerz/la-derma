@@ -1,6 +1,5 @@
-
-        <!-- Main content -->
-        <section class='content'>
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
           <div class='row'>
             <div class='col-xs-12'>
               <div class='box'>
@@ -10,19 +9,19 @@
 		<?php echo anchor(site_url('arus_kas/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary btn-sm"'); ?></h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table bordered" id="mytable">
+        <table class="list-data" width="100%" id="mytable">
             <thead >
                 <tr>
-                    <th style="color: white;" width="80px">No</th>
-		    <th style="color: white;">Transaksi</th>
-		    <th style="color: white;">Idtransaksi</th>
-		    <th style="color: white;">IdPengguna</th>
-		    <th style="color: white;">Waktu</th>
-		    <th style="color: white;">Masuk</th>
-		    <th style="color: white;">Keluar</th>
-		    <th style="color: white;">Keterangan</th>
-		    <th style="color: white;">Verifikasi</th>
-		    <th style="color: white;">Action</th>
+                    <th width="80px">No</th>
+		    <th>Transaksi</th>
+		    <th>Kode Transaksi</th>
+		    <th>Sales</th>
+		    <th>Waktu</th>
+		    <th>Masuk</th>
+		    <th>Keluar</th>
+		    <th>Keterangan</th>
+		    <th>Verifikasi</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    <tbody>
@@ -69,3 +68,4 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+    </div>
