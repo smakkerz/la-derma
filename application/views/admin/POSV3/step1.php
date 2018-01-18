@@ -1,21 +1,23 @@
+<div id="contentWrapper" style="display: block; padding-top: 70px;">
+        <section id='content' style="display: block;">
 <div>
 	<?php echo form_open('Pos3/step1_next'); ?>
-	<table class="table hovered bordered striped">
+	<table class="list-data" width="100%" >
 		<tr>
-			<th colspan="2">Form Transaksi La-Derma</th>
+			<th colspan="2">Form Transaksi Pemesanan La-Derma</th>
 		</tr>
 		<tr align="center">
 			<td>Nama Dokter</td>
-			<td><input list="dokter" name="dokter" placeholder="masukan nama dokter" class="form-control" required=""></td>
+			<td><input list="dokter" name="dokter" placeholder="masukan nama dokter" class="input-control iconic" required=""></td>
 		</tr>
 		<tr align="center">
 			<td>Nama Pasien</td>
-			<td><input list="pasien" name="pasien" placeholder="masukan nama pasien" class="form-control" required=""></td>
+			<td><input list="pasien" name="pasien" placeholder="masukan nama pasien" class="input-control iconic" required=""></td>
 		</tr>
 		<tr align="center">
 			<td>Jenis Transaksi</td>
 			<td>
-				<select name="jenis">
+				<select name="jenis" class="input-control iconic">
 					<option>Penjualan Jasa</option>
 					<option>Penjualan Resep</option>
 					<option>Penjualan Non Resep</option>
@@ -41,3 +43,5 @@
     } ?>
                                     
 </datalist>
+</section>
+</div>

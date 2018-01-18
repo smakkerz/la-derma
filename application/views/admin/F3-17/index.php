@@ -6,28 +6,29 @@
     </div>
 </div> 
 <!-- /. ROW  -->
-
+<div id="contentWrapper" style="display: block; padding-top: 70px;">
+        <section id='content' style="display: block;">
 <div class="row">
-        <table class="table bordered striped">
+        <table class="list-data" width="100%">
                 <?php echo form_open('Pemesanan/step2', array('class'=>'form-horizontal')); ?>
                 <tr>
                     <td colspan="2"><label class="col-sm-2 control-label"><?php echo date('Y-m-d'); ?></label></td>
                 </tr>
                 <tr>
                         <td><label class="col-sm-2 control-label">Pasien</label>
-                            <input name="pasien" value="<?php echo $pasien ?>" class="form-control">
+                            <input name="pasien" value="<?php echo $pasien ?>" class="input-control iconic">
                         </td>
                         <td>
                         <label class="col-sm-2 control-label">Dokter</label>
-                            <input  name="dokter" value="<?php echo $dokter ?>" class="form-control">
+                            <input  name="dokter" value="<?php echo $dokter ?>" class="input-control iconic">
                     </td>
                     </tr>
 <tr>
     <td colspan="2">
     <label class="col-sm-2 control-label">Kode Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control" required="">
+        <input list="barang" name="barang" placeholder="masukan nama barang" class="input-control iconic" required="">
     <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="form-control" required="">
+            <input type="text" name="qty" placeholder="QTY" class="input-control iconic" required="">
     </td colspan="2">
 </tr>
 <tr>
@@ -50,14 +51,14 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered" width="100%">
+                <table class="list-data" width="100%">
                     <thead>
                         <tr>
-                            <th style="color: white;">No.</th>
-                            <th style="color: white;">Nama Barabg</th>
-                            <th style="color: white;">Qty</th>
-                            <th style="color: white;">Harga</th>
-                            <th style="color: white;">Sub Total</th>
+                            <th>No.</th>
+                            <th>Nama Barabg</th>
+                            <th>Qty</th>
+                            <th>Harga</th>
+                            <th>Sub Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,27 +91,27 @@
             </div>
         </div>
     </div>
-</div>
+    <div id="contentWrapper" style="display: block; padding-top: 70px;">
+        <section id='content' style="display: block;">
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" name="selesai" class="btn btn-success btn-sm">Selesai</button>
+        <button type="submit" name="selesai" class="button success btn-sm">Selesai</button>
     </div>
 </div>
 <!-- /. ROW  -->
-
-                                <table class="table bordered striped hovered" id="mytable">
+ <table class="list-data" width="100%" id="mytable">
                                     <thead>
                                     <tr>
                                         <th colspan="7" style="color: white;">Daftar Pemesanan ( Lebih dari 7 Hari Belum Dibayar Akan Otomatis Terhapus )</th>
                                     </tr>
                                     <tr>
-                                        <th style="color: white;">ID Pemesanan</th>
-                                        <th style="color: white;">Tanggal Transaksi</th>
-                                        <th style="color: white;">Nama Pasien</th>
-                                        <th style="color: white;">Nama Dokter</th>
-                                        <th style="color: white;">Total Tagihan</th>
-                                        <th style="color: white;">Status Bayar</th>
-                                        <th style="color: white;">Aksi</td>
+                                        <th>ID Pemesanan</th>
+                                        <th>Tanggal Transaksi</th>
+                                        <th>Nama Pasien</th>
+                                        <th>Nama Dokter</th>
+                                        <th>Total Tagihan</th>
+                                        <th>Status Bayar</th>
+                                        <th>Aksi</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -160,6 +161,8 @@
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
                 <script src="<?php echo base_url('assets/js/jquery-1.11.2.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
         <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>

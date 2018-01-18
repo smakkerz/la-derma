@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/plugin.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/metro-icons.css">
         <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"> -->
     <script src="<?php echo base_url('\assets\tinymce\js\tinymce\tinymce.min.js') ?>"></script>
     <style>
 html{background-color:#0F6D32;}
@@ -164,10 +164,10 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
 		<div id="headerCenter">
 			<div id="headerTitles">
 				<h1><a href="#!">Klinik La-Derma</a></h1>
-		   		<h2>Sistem Informasi Management Operasional Klinik</h2>
+		   		<h2>Sistem Informasi Operasional Klinik</h2>
 		    </div>
 		    <nav>
-            	<a  href="<?= base_url('index.php/Menu') ?>"  rel="group0" id="menu1" class="navActive">
+            	<a  href="<?= base_url('index.php/Menu') ?>"  rel="group0" id="menu1" >
 	<img src="<?= base_url('Metro') ?>/home.png" alt="home">
 	Pelayanan
 </a>

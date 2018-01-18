@@ -1,25 +1,25 @@
 
         <!-- Main content -->
-        <section class='content'>
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
           <div class='row'>
             <div class='col-xs-12'>
               <div class='box'>
                 <div class='box-header'>
-                  <h3 class='box-title'>Rekam Medis VIEW <?php echo anchor('K_rmedis/create/','Create',array('class'=>'button primary btn-sm'));?>
-		<?php echo anchor(site_url('K_rmedis/excel'), ' <i class="fa fa-file-excel-o"></i> Excel', 'class="button primary btn-sm"'); ?>
-		<?php echo anchor(site_url('K_rmedis/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary btn-sm"'); ?></h3>
+                  <h3 class='box-title'>Rekam Medis <?php echo anchor('K_rmedis/create/','Create',array('class'=>'button primary btn-sm'));?>		<?php echo anchor(site_url('K_rmedis/pdf'), '<i class="fa fa-file-pdf-o"></i> PDF', 'class="button primary btn-sm"'); ?>
+                  </h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table table-bordered table-striped" id="mytable" bgcolor="white">
+        <table class="list-data" width="100%" id="mytable">
             <thead>
                 <tr>
-            <th width="80px" style="color: white;">No</th>
-		    <th style="color: white;">Id Tindakan</th>
-		    <th style="color: white;">Id Pasien</th>
-            <th style="color: white;">Id Dokter</th>
-		    <th style="color: white;">Waktu</th>
-		    <th style="color: white;">Id Pengguna</th>
-		    <th style="color: white;">Action</th>
+            <th width="80px"> No</th>
+		    <th> Tindakan</th>
+		    <th> Pasien</th>
+            <th>Dokter</th>
+		    <th>Waktu</th>
+		    <th>Pengguna</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    <tbody>
@@ -38,11 +38,11 @@
 		    
 		    <td style="text-align:center" width="140px">
 			<?php 
-			echo anchor(site_url('K_rmedis/read/'.$k_rmedis->id_rmedis),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'btn btn-warning btn-sm')); 
+			echo anchor(site_url('K_rmedis/read/'.$k_rmedis->id_rmedis),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('K_rmedis/update/'.$k_rmedis->id_rmedis),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'btn btn-success btn-sm')); 
+			echo anchor(site_url('K_rmedis/update/'.$k_rmedis->id_rmedis),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'button success btn-sm')); 
 			echo '  '; 
-			echo anchor(site_url('K_rmedis/delete/'.$k_rmedis->id_rmedis),'<i class="fa fa-trash-o"></i>','title="delete" class="btn btn-danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('K_rmedis/delete/'.$k_rmedis->id_rmedis),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>
@@ -64,3 +64,4 @@
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+    </div>

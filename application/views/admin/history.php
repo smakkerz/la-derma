@@ -1,22 +1,21 @@
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
 <div class="fluent-menu" data-role="fluentmenu">
-    <br/>
-    <ul class="tabs-holder">
-        <li><a href="<?php echo base_url('History/HistoryTx') ?>">Riwayat Transaksi</a></li>
+    <br/><a href="<?php echo base_url('History/HistoryTx') ?>" class="button warning">Riwayat Transaksi</a>
         ...
-        <li><a href="<?php echo base_url('History/HistoryKj') ?>">Riwayat Kunjungan</a></li>
-    </ul>
+        <a href="<?php echo base_url('History/HistoryKj') ?>" class="button primary">Riwayat Kunjungan</a>
 </div>
 <div>
-    <table class="table striped bordered hovered">
+    <table class="list-data" width="100%" id="mytable">
         <tr>
             <td>Riwayat Transaksi</td>
         </tr>
         <tr>
-            <th>Transaksi ID</th>
+            <th>Kode Transaksi</th>
             <th>Tanggal Transaksi</th>
-            <th>Operator ID</th>
-            <th>Pasien ID</th>
-            <th>Dokter ID</th>
+            <th>Operator</th>
+            <th>Pasien</th>
+            <th>Dokter</th>
             <th>Jenis Transaksi</th>
             <th>Status</th>
         </tr>
@@ -41,4 +40,6 @@
         ?>
         <tr>
     </table>
+</div>
+</section>
 </div>

@@ -14854,7 +14854,7 @@ video::-webkit-media-controls-enclosure {
 .dataTable thead th,
 .dataTable thead td {
   cursor: default;
-  color: #52677a;
+  color: #000;
   border-color: transparent;
   text-align: left;
   font-style: normal;
@@ -15178,8 +15178,8 @@ video::-webkit-media-controls-enclosure {
 }
 .dataTables_paginate .paginate_button.current,
 .dataTables_paginate .paginate_button.active {
-  background-color: #1ba1e2;
-  border-color: #59cde2;
+  background-color: #1000;
+  border-color: #ee9;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -15191,9 +15191,9 @@ video::-webkit-media-controls-enclosure {
 .dataTables_paginate .paginate_button:disabled,
 .dataTables_paginate .paginate_button.disabled {
   cursor: default;
-  background-color: black;
+  background-color: #1000;
   border-color: #eeeeee;
-  color: #999999;
+  color: #eee;
 }
 .dataTables_paginate .paginate_button.spaces {
   border: 0;
@@ -15211,7 +15211,7 @@ video::-webkit-media-controls-enclosure {
 }
 .dataTables_info {
   padding: 5px;
-  background-color: #eeeeee;
+  background-color: #1010;
   font-size: .875rem;
   float: right;
 }

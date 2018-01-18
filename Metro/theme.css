@@ -315,7 +315,7 @@ hr.light{border-color:#AAA;}
 .list-data .even { background: #fff; cursor: pointer; }
 .list-data .odd { background: #f4f4f4; cursor: pointer; }
 .list-data .even:hover, .list-data .odd:hover {background: #d0e7fe; }
-.list-data .warning { background: yellow; }
+.list-data .warning { background: #4B0082; }
 .list-data .threemonth { background: yellowgreen; }
 .list-data .urgent { background: red; color: #fff; }
 .list-data .etiket { background: #d4d4d4; width: 20px; height: 17px; color: #000; }
