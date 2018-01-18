@@ -12,41 +12,75 @@
 	    <tr><td>Untuk</td><td><?php echo $untuk; ?></td></tr>
 	</table>
 
-  <table class="table table-bordered">
-           <?php 
-            $usern = $this->ion_auth->user()->row();
-            $user = $usern->email;
-            foreach ($baca as $pesan) {
-           ?>
-           <tr>
-            <?php
-              if ($pesan->dari == $user) {
-            ?>
-            <td align="right" colspan="2">
-              <div>
-                <b><?= $pesan->jam ?></b><br/>
-                <?= $pesan->dari ?><hr/>
-                <?= $pesan->pesan ?>
-              </div>
-            </td> 
-            <?php
-              }else{
-            ?>
-            <td colspan="2">
-              <div>
-                <b><?= $pesan->jam ?></b><br/>
-                <?= $pesan->dari ?><hr/>
-                <?= $pesan->pesan ?><hr/>
-              </div>
-            </td> 
-            <?php
-              }
-            ?>
-           </tr>
-           <?php
-            }
-           ?>
-        </table>
+  <?php
+        foreach ($baca as $pesan) {
+                            $user = $this->ion_auth->user()->row();
+                            $me = $user->email;
+                            if ($pesan->dari == $me) {
+                          ?>
+                            <div class="mail_heading row">
+                            <div class="col-md-8">
+                              
+                            </div>
+                            <div class="col-md-4 text-right">
+                              <p class="date"> </p>
+                            </div>
+                          </div>
+                          
+                          <div align="right">
+                            <div class="sender-info">
+                            <div class="row">
+                              <div class="col-md-12">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="view-mail">
+                            <div class="example" data-text="blockquote">
+            <blockquote class="place-right">
+                <p><?php
+                              echo $pesan->pesan;
+                            ?></p>
+                <small><?php echo date('d-M-Y H:i',strtotime($pesan->jam)); ?> - <cite title="Source Title">                                <strong><?php echo $pesan->dari; ?></strong>
+</cite></small>
+            </blockquote>
+            </div>                
+                          </div>
+                          </div>
+                          <?php
+                            }else{
+                          ?>
+                          <div class="mail_heading row">
+                            <div class="col-md-8">
+                              <p class="date"></p>
+
+                            </div>
+                            <div class="col-md-4 text-right">
+                            </div>
+                          </div>
+                          <div class="sender-info">
+                            <div class="row">
+                              <div class="col-md-12">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="view-mail">
+                            <div class="example" data-text="blockquote">
+            <blockquote >
+                <p><?php
+                              echo $pesan->pesan;
+                            ?></p>
+                <small><?php echo date('d-M-Y H:i',strtotime($pesan->jam)); ?> - <cite title="Source Title">                                <strong><?php echo $pesan->dari; ?></strong>
+</cite></small>
+            </blockquote>
+            </div>          
+                          </div>
+                          <?php
+                            }
+                            echo "<hr/>";
+                          }
+                          ?>
+      </div>
+    </frame>
         </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

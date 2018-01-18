@@ -1,6 +1,6 @@
 <style type="text/css">
   .wrap{
-  background: blue;
+  background: transparent;
   width: 99%;
   margin: 10px auto;
 }
@@ -52,17 +52,50 @@
 /*akhir sidebar*/
 
 .wrap .badan .content{
-  background: grey;
+  background: transparent;
   float: left;
   height: 100%;
   width: 75%; 
 }
 
 .wrap .footer{
-  background: black;
-  color: white;
+  display: block;
   width: 100%;
   padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 3px solid rgba(0,0,0,0);
+  position: fixed;
+bottom: 0px;
+left: 0px;
+text-align:right;
+color:#555;
+font-size:12px
+}
+#button-blue{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  float:left;
+  width: 100%;
+  border: #fbfbfb solid 4px;
+  cursor:pointer;
+  background-color: #3B8BBA;
+  color:white;
+  font-size:24px;
+  padding-top:22px;
+  padding-bottom:22px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+#content{
+  background: white;
+}
+a{
+  text-decoration: none;
 }
 </style>
 <br/>
@@ -85,6 +118,7 @@
         </ul>
       </div>
       <div class="content">
+        <frame>
         <?php
         foreach ($pesan as $chat) {
                             $user = $this->ion_auth->user()->row();
@@ -96,7 +130,7 @@
                               
                             </div>
                             <div class="col-md-4 text-right">
-                              <p class="date"> <?php echo date('d-M-Y H:i',strtotime($chat->jam)); ?></p>
+                              <p class="date"> </p>
                             </div>
                           </div>
                           
@@ -104,14 +138,19 @@
                             <div class="sender-info">
                             <div class="row">
                               <div class="col-md-12">
-                                <strong>me</strong> (<?php echo $chat->dari; ?>) 
                               </div>
                             </div>
                           </div>
                           <div class="view-mail">
-                            <?php
+                            <div class="example" data-text="blockquote">
+            <blockquote class="place-right">
+                <p><?php
                               echo $chat->pesan;
-                            ?>
+                            ?></p>
+                <small><?php echo date('d-M-Y H:i',strtotime($chat->jam)); ?> - <cite title="Source Title">                                <strong><?php echo $chat->dari; ?></strong>
+</cite></small>
+            </blockquote>
+            </div>                
                           </div>
                           </div>
                           <?php
@@ -119,7 +158,7 @@
                           ?>
                           <div class="mail_heading row">
                             <div class="col-md-8">
-                              <p class="date"> <?php echo date('d-M-Y H:i',strtotime($chat->jam)); ?></p>
+                              <p class="date"></p>
 
                             </div>
                             <div class="col-md-4 text-right">
@@ -128,14 +167,19 @@
                           <div class="sender-info">
                             <div class="row">
                               <div class="col-md-12">
-                                <strong><?php echo $chat->dari; ?></strong>
                               </div>
                             </div>
                           </div>
                           <div class="view-mail">
-                            <?php
+                            <div class="example" data-text="blockquote">
+            <blockquote >
+                <p><?php
                               echo $chat->pesan;
-                            ?>
+                            ?></p>
+                <small><?php echo date('d-M-Y H:i',strtotime($chat->jam)); ?> - <cite title="Source Title">                                <strong><?php echo $chat->dari; ?></strong>
+</cite></small>
+            </blockquote>
+            </div>          
                           </div>
                           <?php
                             }
@@ -143,6 +187,7 @@
                           }
                           ?>
       </div>
+    </frame>
     </div>
     <div class="clear"></div>
     <div class="footer">
@@ -162,15 +207,20 @@
            ?>
            <input type="hidden" name="id_percakapan" value="<?= $this->uri->segment(3) ?>">
            <input type="hidden" name="dari" value="<?= $me ?>">
-           <textarea name="pesan">
-             
-           </textarea>
-           
+           <input type="text" name="pesan" style="
+           background: #fff;
+  box-shadow: 0;
+  border: 3px solid #3498db;
+  color: #3498db;
+  outline: none;
+  padding: 13px;
+  width: 40%;
+           " placeholder="Ketik Pesan Disini">           
         </div>
       </div>
 
       <div class="compose-footer">
-        <button id="send" class="btn btn-sm btn-success" type="submit">Kirim</button>
+        <button id="send" class="button primary" type="submit">Kirim</button>
       </div>
     </div>
     </form>

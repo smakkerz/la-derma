@@ -4,6 +4,9 @@ class Barang extends CI_Controller{
     function __construct() {
         parent::__construct();
         $this->load->model('model_barang');
+        if (!$this->ion_auth->is_admin()) {
+            redirect('auth/login');
+        }
     }
 
 

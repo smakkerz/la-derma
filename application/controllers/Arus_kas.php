@@ -12,6 +12,9 @@ class Arus_kas extends CI_Controller
         parent::__construct();
         $this->load->model('Arus_kas_model');
         $this->load->library('form_validation');
+        if (!$this->ion_auth->is_admin()) {
+            redirect('auth/login');
+        }
     }
 
     public function index()
