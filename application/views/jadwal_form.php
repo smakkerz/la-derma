@@ -19,18 +19,6 @@
 </datalist>
             </select>
             </td>
-	    <tr><td>Hari <?php echo form_error('Hari') ?></td>
-            <td><input list="hari" name="Hari" value="<?= $Hari ?>">
-              <datalist id="hari">
-                <option>Senin</option>
-                <option>Selasa</option>
-                <option>Rabu</option>
-                <option>Kamis</option>
-                <option>Jumat</option>
-                <option>Sabtu</option>
-                <option>Minggu</option>
-              </datalist>
-        </td>
         <tr>
           <td>Tanggal <?php echo form_error('tanggal') ?></td>
           <td><input type="date" name="tanggal" placeholder="Tanggal" class="form-control" id="tanggal" value="<?php echo $tanggal ?>"></td>

@@ -13,7 +13,7 @@
                 <tr>
                     <th width="80px">No</th>
 		    <th>Nama Dokter</th>
-		    <th>Hari</th>
+		    <th>Hari, Tanggal</th>
 		    <th>Mulai Jam</th>
 		    <th>Selesai Jam</th>
 		    <th>Action</th>
@@ -28,7 +28,11 @@
                 <tr>
 		    <td><?php echo ++$start ?></td>
 		    <td>Dr.<?php echo $C_Jadwal->last_name ?></td>
-		    <td><?php echo $C_Jadwal->Hari ?>, <?php echo $C_Jadwal->tanggal ?></td>
+		    <td><?php 
+            $date = date_create($C_Jadwal->tanggal);
+            echo date_format($date, 'l jS F Y'); 
+
+            ?></td>
 		    <td><?php echo $C_Jadwal->DariJam ?> WIB</td>
 		    <td><?php echo $C_Jadwal->SampaiJam ?> WIB</td>
 		    <td style="text-align:center" width="140px">

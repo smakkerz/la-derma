@@ -24,9 +24,12 @@
                 ?>
                 <tr>
         <td><?php echo ++$start ?></td>
-        <td><?php echo $jw->Hari ?>, <?php echo $jw->tanggal; ?></td>
-        <td><?php echo $jw->DariJam ?></td>
-            <td><?php echo $jw->SampaiJam ?></td>
+        <td><?php 
+        $date = date_create($jw->tanggal);
+            echo date_format($date, 'l jS F Y'); 
+         ?></td>
+        <td><?php echo $jw->DariJam ?> WIB</td>
+            <td><?php echo $jw->SampaiJam ?> WIB</td>
         <td><?php echo $jw->first_name." ".$jw->last_name;
          ?></td>
       

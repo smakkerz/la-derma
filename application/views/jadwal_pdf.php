@@ -32,7 +32,9 @@
                 <tr>
 		      <td><?php echo ++$start ?></td>
 		      <td><?php echo $c_jadwal->idDokter ?></td>
-		      <td><?php echo $c_jadwal->Hari ?>, <?php echo $Tanggal ?></td>
+		      <td><?php 
+                $date = date_create($C_Jadwal->tanggal);
+                echo date_format($date, 'l jS F Y');  ?></td>
 		      <td><?php echo $c_jadwal->DariJam ?></td>
 		      <td><?php echo $c_jadwal->SampaiJam ?></td>	
                 </tr>

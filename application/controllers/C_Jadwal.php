@@ -33,7 +33,6 @@ class C_Jadwal extends CI_Controller
             $data = array(
 		'idJadwal' => $row->idJadwal,
 		'idDokter' => $row->idDokter,
-		'Hari' => $row->Hari,
         'tanggal' => $row->tanggal,
 		'DariJam' => $row->DariJam,
 		'SampaiJam' => $row->SampaiJam,
@@ -53,7 +52,6 @@ class C_Jadwal extends CI_Controller
             'action' => site_url('C_Jadwal/create_action'),
 	    'idJadwal' => set_value('idJadwal'),
 	    'idDokter' => '',
-	    'Hari' => set_value('Hari'),
         'tanggal' => set_value('tanggal'),
 	    'DariJam' => set_value('DariJam'),
 	    'SampaiJam' => set_value('SampaiJam'),
@@ -71,7 +69,6 @@ class C_Jadwal extends CI_Controller
         } else {
             $data = array(
 		'idDokter' => $this->input->post('idDokter',TRUE),
-		'Hari' => $this->input->post('Hari',TRUE),
         'tanggal' => $this->input->post('tanggal', TRUE), 
 		'DariJam' => $this->input->post('DariJam',TRUE),
 		'SampaiJam' => $this->input->post('SampaiJam',TRUE),
@@ -93,7 +90,6 @@ class C_Jadwal extends CI_Controller
                 'action' => site_url('C_Jadwal/update_action'),
 		'idJadwal' => set_value('idJadwal', $row->idJadwal),
 		'idDokter' => set_value('idDokter', $row->idDokter),
-		'Hari' => set_value('Hari', $row->Hari),
         'tanggal' => set_value('tanggal', $row->tanggal),
 		'DariJam' => set_value('DariJam', $row->DariJam),
 		'SampaiJam' => set_value('SampaiJam', $row->SampaiJam),
@@ -115,7 +111,6 @@ class C_Jadwal extends CI_Controller
         } else {
             $data = array(
 		'idDokter' => $this->input->post('idDokter',TRUE),
-		'Hari' => $this->input->post('Hari',TRUE),
         'tanggal' => $this->input->post('tanggal',TRUE),
 		'DariJam' => $this->input->post('DariJam',TRUE),
 		'SampaiJam' => $this->input->post('SampaiJam',TRUE),
@@ -144,7 +139,6 @@ class C_Jadwal extends CI_Controller
     public function _rules() 
     {
 	$this->form_validation->set_rules('idDokter', 'iddokter', 'trim|required');
-	$this->form_validation->set_rules('Hari', 'hari', 'trim|required');
     $this->form_validation->set_rules('tanggal','tanggal','trim|required');
 	$this->form_validation->set_rules('DariJam', 'darijam', 'trim|required');
 	$this->form_validation->set_rules('SampaiJam', 'sampaijam', 'trim|required');

@@ -24,7 +24,7 @@
                             <th>ID Transaksi</th>
                             <th>Tanggal Transaksi</th>
                             <th>Operator</th>
-                            <th>Uang Masuk</th>
+                            <th>Uang <?= $jenis ?></th>
                             <th>Keterangan</th>
                         </tr>
                             <?php 
@@ -34,7 +34,7 @@
                             <td><?= $data->idtransaksi ?></td>
                             <td><?= $data->waktu ?></td>
                             <td><?= $data->IdPengguna ?></td>
-                            <td><?= $data->masuk ?></td>
+                            <td><?= uang($data->masuk) ?></td>
                             <td><?= $data->keterangan ?></td>
                             </tr>
                             <?php

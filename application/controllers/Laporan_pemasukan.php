@@ -26,7 +26,8 @@
 				'pemasukan' => $this->Laporan->pemasukan(),
 				'cetak' => $cetak,
 				'tgl' => $tgl,
-				'kapan' => $kapan
+				'kapan' => $kapan,
+				'jenis' => 'Masuk'
 			];
 			$this->load->view('admin/tema2');
 			$this->load->view('laporan',$data);
@@ -37,10 +38,15 @@
 				'pemasukan' => $this->Laporan->pemasukan(),
 				'cetak' => $cetak,
 				'kapan' => 'Pemasukan Bulan Ini',
-				'tgl' => ''
+				'tgl' => '',
+				'jenis' => 'Masuk'
 			];
-			echo "<script>window.print()</script>";
-			$this->load->view('laporan',$data);
+			ini_set('memory_limit', '32M');
+        	$html = $this->load->view('laporan', $data, true);
+        	$this->load->library('pdf');
+        	$pdf = $this->pdf->load();
+        	$pdf->WriteHTML($html);
+        	$pdf->Output('Laporan Pemasukan.pdf', 'D'); 
 		}
 		function priode(){
 			$tgl = "
@@ -62,7 +68,8 @@
 				'pemasukan' => $this->Laporan->priode($tgl1,$tgl2,'keluar'),
 								'cetak' => $cetak,
 				'tgl' => $tgl,
-				'kapan' => $kapan
+				'kapan' => $kapan,
+				'jenis' => 'Masuk'
 
 			];
 			$this->load->view('admin/tema2');
@@ -76,10 +83,15 @@
 				'pemasukan' => $this->Laporan->priode($tgl1,$tgl2,'keluar'),
 				'cetak' => $cetak,
 				'kapan' => "Pemasukan Dari $tgl1 Sampai $tgl2",
-				'tgl' => ''
+				'tgl' => '',
+				'jenis' => 'Masuk'
 			];
-			echo "<script>window.print()</script>";
-			$this->load->view('laporan',$data);
+			ini_set('memory_limit', '32M');
+        	$html = $this->load->view('laporan', $data, true);
+        	$this->load->library('pdf');
+        	$pdf = $this->pdf->load();
+        	$pdf->WriteHTML($html);
+        	$pdf->Output('Laporan Pemasukan.pdf', 'D');
 		}
 	}
 ?>
