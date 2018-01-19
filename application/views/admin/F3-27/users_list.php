@@ -24,6 +24,7 @@
             <th width="80px">No</th>
 		    <th>Nama Pengguna/Email</th>
 		    <th>Nama</th>
+		    <th>Alamat</th>
 		    <th>Phone</th>
 		    <th>Group</th>
 		    <th>Action</th>
@@ -39,6 +40,7 @@
 		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $users->username.'/ ( '.$users->email.' )' ?></td>
 		    <td><?php echo $users->first_name.' '.$users->last_name ?></td>
+		    <td><?php echo $users->company ?></td>
 		    <td><?php echo $users->phone ?></td>
 		    <td>
 		    	<?php foreach ($users->groups as $group):?>
@@ -46,9 +48,7 @@
                 <?php endforeach?>
 			</td>
 		    <td style="text-align:center" width="140px">
-			<?php 
-			echo anchor(site_url('users/read/'.$users->id),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning btn-sm')); 
-			echo '  '; 
+			<?php
 			echo anchor(site_url('users/update/'.$users->id),'<i class="fa fa-pencil-square-o"></i>',array('title'=>'edit','class'=>'button success btn-sm')); 
 			echo '  '; 
 			echo anchor(site_url('users/delete/'.$users->id),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger btn-sm" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
