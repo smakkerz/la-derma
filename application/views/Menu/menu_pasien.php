@@ -5,6 +5,7 @@
                     <li><a href="<?= base_url('C_pasien') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
                     <li><a href="<?= base_url('Pesan') ?>"><i class="fa fa-home"></i> Pesan </a></li>
                   <li><a href="<?= base_url('C_pasien/Pasien_medis') ?>"><i class="fa fa-home"></i> Rekam Medis </a></li>
+                  <li><a href="<?= base_url('C_pasien/jadwal') ?>"><i class="fa fa-home"></i> Jadwal </a></li>
                   <li><a href="<?= base_url('C_pasien/Profil') ?>"><i class="fa fa-home"></i> Profil </a></li>
                 </ul>
               </div>
