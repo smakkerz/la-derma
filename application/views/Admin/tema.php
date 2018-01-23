@@ -57,8 +57,7 @@ html{background-color:#0F6D32;}
 
     <script type="text/javascript" src="<?= base_url('Metro') ?>/jquery191.js"></script> 
     <script type="text/javascript" language="javascript" src="<?= base_url('Metro') ?>/plugins.js"></script>
-    
-	<script>
+        <script>
 scale = 125;
 spacing = 5;
 theme = 'theme_default';
@@ -78,8 +77,8 @@ hideSpeed = 300;
 scrollSpeed = 400;
 
 device = "desktop";
-	scrollHeader = "1";
-	disableGroupScrollingWhenVerticalScroll = "";
+    scrollHeader = "1";
+    disableGroupScrollingWhenVerticalScroll = "";
 
 /*For background image*/
 bgMaxScroll= "130";
@@ -89,62 +88,6 @@ bgScrollSpeed = "390";
 autoRearrangeTiles = "1";
 autoResizeTiles = "1";
 rearrangeTreshhold = 2;
-pageTitles=new Array();
-pageTitles['welcome.php'] = 'Welcome';
-pageTitles['typography.php'] = 'Typography';
-pageTitles['accordions.php'] = 'Accordions';
-pageTitles['sidebars.php'] = 'Sidebars';
-pageTitles['<?= base_url('Barang/index') ?>'] = 'Barang';
-pageTitles['barang-inactive.php'] = 'Barang Tidak Aktif';
-pageTitles['item-kit.php'] = 'Item Kit';
-pageTitles['pabrik.php'] = 'Pabrik';
-pageTitles['pelanggan.php'] = 'Customer';
-pageTitles['supplier.php'] = 'Supplier';
-pageTitles['bank.php'] = 'Bank';
-pageTitles['<?= base_url('Users/index') ?>'] = 'Dokter';
-pageTitles['jadwalpraktek.php'] = 'Jadwal Praktek';
-pageTitles['asuransi.php'] = 'Asuransi';
-pageTitles['karyawan.php'] = 'Karyawan';
-pageTitles['layanan.php'] = 'Layanan';
-pageTitles['instansi.php'] = 'Instansi';
-pageTitles['pelengkap.php'] = 'Produk Pelengkap';
-pageTitles['kemasan.php'] = 'Kemasan';
-pageTitles['golongan.php'] = 'Golongan';
-pageTitles['farmakoterapi.php'] = 'Farmakoterapi';
-pageTitles['kelas-terapi.php'] = 'Kelas Terapi';
-pageTitles['penyakit.php'] = 'Penyakit';
-pageTitles['user-account.php'] = 'User Account';
-pageTitles['pemesanan.php'] = 'Pemesanan';
-pageTitles['penjualan.php'] = 'Penjualan Resep';
-pageTitles['penjualan-nr.php'] = 'Penjualan Non Resep';
-pageTitles['penerimaan.php'] = 'Penerimaan';
-pageTitles['stok-opname.php'] = 'Stok Opname';
-pageTitles['resep.php'] = 'Receipt';
-pageTitles['retur-penerimaan.php'] = 'Retur Penerimaan';
-pageTitles['retur-penjualan.php'] = 'Retur Penjualan';
-pageTitles['pemeriksaan.php'] = 'Pemeriksaan';
-pageTitles['inkaso.php'] = 'Inkaso';
-pageTitles['defecta.php'] = 'Defecta';
-pageTitles['rencana-pemesanan.php'] = 'Rencana Order';
-pageTitles['pendaftaran.php'] = 'Pendaftaran';
-pageTitles['uang-in-out.php'] = 'Pemasukkan Pengeluaran Uang';
-pageTitles['billing.php'] = 'Pembayaran Billing';
-pageTitles['arus-stok.php'] = 'Arus Stok';
-pageTitles['lap-sp.php'] = 'Laporan Pemesanan';
-pageTitles['lap-resep.php'] = 'Laporan Resep';
-pageTitles['lap-penjualan.php'] = 'Laporan Penjualan';
-pageTitles['lap-penjualan-nr.php'] = 'Laporan Penjualan Non Resep';
-pageTitles['lap-penerimaan.php'] = 'Laporan Penerimaan';
-pageTitles['lap-hutang.php'] = 'Laporan Hutang';
-pageTitles['lap-arus-kas.php'] = 'Laporan Arus Kas';
-pageTitles['lap-statistik-obat.php'] = 'Laporan Statistik Pemakaian Obat';
-pageTitles['lap-analisis-abc.php'] = 'Laporan Analisa ABC';
-pageTitles['expired-date.php'] = 'Laporan Expired Date';
-pageTitles['lap-billing.php'] = 'Laporan Billing';
-pageTitles['lap-jasa-tarif.php'] = 'Laporan Jasa Layanan';
-pageTitles['lap-control.php'] = 'Laporan Control';
-pageTitles['neraca.php'] = 'Neraca';
-pageTitles['laba-rugi.php'] = 'Laba Rugi';
 </script>
 <script type="text/javascript" src="<?= base_url('Metro') ?>/plugin.js"></script>
 <script type="text/javascript" src="<?= base_url('Metro') ?>/jquery-ui-1.9.2.custom.js"></script>
@@ -234,11 +177,11 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     </a>
         <a href="<?= base_url('Hutang') ?>" class="tile tileImg group1  " style="margin-top: 175px; margin-left: 650px; width: 125px; height: 125px; background: rgb(211, 73, 39); display: block;" data-pos="175-650-125"> 
     <img src="<?= base_url('Metro') ?>/billing.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">Hutang</div>    </div>
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">Hutang & Pembelian</div>    </div>
     </a>
     <a href="<?= base_url('Karyawanld') ?>" class="tile tileImg group2  " style="margin-top: 45px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(105, 80, 171); display: block;" data-pos="45-1040-125"> 
     <img src="http://july4dev.net76.net/Metro/karyawan.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">Karyawan</div>    </div>
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">Karyawan & Dokter</div>    </div>
     </a>
     <!-- UPLOAD DATA / blm dikerjakan 
         <a href="#!/customer" class="tile tileImg group2  " style="margin-top: 305px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(24, 0, 82); display: block;" data-pos="305-1040-125"> 
@@ -246,7 +189,7 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Upload Data</div>    </div>
     </a>
     -->
-        <a href="<?= base_url('Arus_kas') ?>" class="tile tileImg group2  " style="margin-top: 175px; margin-left: 1170px; width: 125px; height: 125px; background: rgb(232, 100, 27); display: block;" data-pos="175-1170-125"> 
+        <a href="<?= base_url('Arus_kas') ?>" class="tile tileImg group2  " style="margin-top: 305px; margin-left: 1040px; width: 125px; height: 125px; background: rgb(232, 100, 27); display: block;" data-pos="305-1040-125"> 
     <img src="<?= base_url('Metro') ?>/lap-arus-kas.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
     <div class="tileLabelWrapper bottom"><div class="imgDesc">Arus Kas</div>    </div>
     </a>
@@ -274,12 +217,12 @@ pageTitles['laba-rugi.php'] = 'Laba Rugi';
     -->
         <a href="<?= base_url('Laporan_pemasukan') ?>" class="tile tileImg group3  " style="margin-top: 45px; margin-left: 1560px; width: 125px; height: 125px; background: rgb(95, 95, 95); display: block;" data-pos="45-1560-125"> 
     <img src="<?= base_url('Metro') ?>/chart.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">Laporan Pemasukan</div>    </div>
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">Laporan Masuk</div>    </div>
     </a>
 
         <a href="<?= base_url('Laporan_pengeluaran') ?>" class="tile tileImg group3  " style="margin-top: 45px; margin-left: 1690px; width: 125px; height: 125px; background: rgb(69, 119, 164); display: block;" data-pos="45-1690-125"> 
     <img src="<?= base_url('Metro') ?>/lap-sp.png" width="125" style="margin-left:-62.5px; margin-top: -62.5px; max-height:125px;">
-    <div class="tileLabelWrapper bottom"><div class="imgDesc">Laporan Pengeluaran</div>    </div>
+    <div class="tileLabelWrapper bottom"><div class="imgDesc">Laporan Keluar</div>    </div>
     </a>
             </div> 
 <div id="subNavWrapper" style="display: none;"></div>

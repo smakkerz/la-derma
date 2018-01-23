@@ -101,7 +101,7 @@ footer{
 
 /*More */
 a{	/* links */
-	color:black; /* Main color for links */
+	color:white; /* Main color for links */
 	text-decoration:underline;
 }
 a:hover{

@@ -1,6 +1,5 @@
-
-        <!-- Main content -->
-        <section class='content'>
+        <div id="contentWrapper" style="display: block;">
+        <section id='content' style="display: block;">
           <div class='row'>
             <div class='col-xs-12'>
               <div class='box'>
@@ -8,24 +7,21 @@
                   <h3 class='box-title'>PERCAKAPAN</h3>
                 </div><!-- /.box-header -->
                 <div class='box-body'>
-        <table class="table bordered striped" id="mytable">
+        <table class="list-data" width="100%" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px" style="color: white;">No</th>
-		    <th style="color: white;">Judul</th>
-		    <th style="color: white;">Dari</th>
-		    <th style="color: white;">Untuk</th>
-		    <th style="color: white;">Action</th>
+		    <th>Judul</th>
+		    <th>Dari</th>
+		    <th>Untuk</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    <tbody>
             <?php
-            $start = 0;
             foreach ($kelola_pesan_data as $kelola_pesan)
             {
                 ?>
                 <tr>
-		    <td><?php echo ++$start ?></td>
 		    <td><?php echo $kelola_pesan->judul ?></td>
 		    <td><?php echo $kelola_pesan->dari ?></td>
 		    <td><?php echo $kelola_pesan->untuk ?></td>
@@ -33,7 +29,7 @@
 			<?php 
 			echo anchor(site_url('Kelola_pesan/read/'.$kelola_pesan->id_percakapan),'<i class="fa fa-eye"></i>',array('title'=>'detail','class'=>'button warning')); 
 			echo '  '; 
-			echo anchor(site_url('Kelola_pesan/delete/'.$kelola_pesan->id_percakapan),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger style="color: white;"" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+			echo anchor(site_url('Kelola_pesan/delete/'.$kelola_pesan->id_percakapan),'<i class="fa fa-trash-o"></i>','title="delete" class="button danger" onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 			?>
 		    </td>
 	        </tr>
