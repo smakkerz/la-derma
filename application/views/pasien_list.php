@@ -16,6 +16,7 @@
                     <th width="80px">ID</th>
 		    <th>Identitas</th>
 		    <th>Nama</th>
+            <th>Email</th>
 		    <th>Jenis Kelamin</th>
 		    <th>Birth Date</th>
             <th>No Hp</th>
@@ -33,6 +34,7 @@
 		    <td><?php echo $pasien->id_pasien?></td>
 		    <td><?php echo $pasien->identitas ?></td>
 		    <td><?php echo $pasien->nama ?></td>
+            <td><?php echo $pasien->user ?></td>
 		    <td><?php echo $pasien->sex ?></td>
 		    <td><?php echo $pasien->birth_date ?></td>
             <td><?php echo $pasien->no_hp ?></td>

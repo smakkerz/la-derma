@@ -35,10 +35,11 @@
             $start = 0;
             foreach ($users_data as $users)
             {
+                $user = explode("@la-derma", $users->username);
                 ?>
                 <tr>
 		    <td><?php echo ++$start ?></td>
-		    <td><?php echo $users->username.'/ ( '.$users->email.' )' ?></td>
+		    <td><?php echo $user[0] .' / ( '.$users->email.' )' ?></td>
 		    <td><?php echo $users->first_name.' '.$users->last_name ?></td>
 		    <td><?php echo $users->company ?></td>
 		    <td><?php echo $users->phone ?></td>

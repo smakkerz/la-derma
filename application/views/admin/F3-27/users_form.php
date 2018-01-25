@@ -9,7 +9,7 @@
                       <div class=''>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Nama Pengguna </td>
-            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />
+            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />@la-derma
         </td>
 	    <tr><td>Kata Sandi </td>
             <td><input type="password" class="form-control" name="password" id="password" placeholder="Password" value="" required="" />
@@ -25,7 +25,7 @@
             <td><textarea type="text" class="form-control" name="company" id="company" required="" ><?php echo $company; ?></textarea>
         </td>
         <tr><td>No Telepon</td>
-            <td><input type="text" class="form-control" name="phone" id="phone" placeholder="Last Name" value="<?php echo $phone; ?>" required="" />
+            <td><input type="text" class="form-control" name="phone" id="phone" placeholder="No Phone" value="<?php echo $phone; ?>" required="" />
         </td>
       </tr>
       <tr>

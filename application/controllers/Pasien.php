@@ -82,7 +82,7 @@ class Pasien extends CI_Controller
 		'identitas' => $this->input->post('identitas',TRUE),
 		'nama' => $this->input->post('nama',TRUE),
 		'alamat' => $this->input->post('alamat',TRUE),
-		'user' => $this->input->post('user',TRUE),
+		'user' => $this->input->post('user',TRUE).'@la-derma',
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
         'no_hp' => $this->input->post('no_hp',TRUE),
@@ -101,7 +101,7 @@ class Pasien extends CI_Controller
                             );
         $group = array('5');
 
-        $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+        $this->ion_auth->register($username.'@la-derma', $password, $email.'@la-derma', $additional_data, $group);
             redirect(site_url('Pasien'));
         }
     }
@@ -109,7 +109,7 @@ class Pasien extends CI_Controller
     public function update($id)  //fungsi perbarui data
     {
         $row = $this->Pasien_model->get_by_id($id);
-
+        $user = explode("@la-derma", $row->user);
         if ($row) {
             $data = array(
                 'button' => 'Update',
@@ -118,7 +118,7 @@ class Pasien extends CI_Controller
 		'identitas' => set_value('identitas', $row->identitas),
 		'nama' => set_value('nama', $row->nama),
 		'alamat' => set_value('alamat', $row->alamat),
-		'user' => set_value('user', $row->user),
+		'user' => set_value('user', $user[0]),
 		'pass' => set_value('pass', $row->pass),
 		'sex' => set_value('sex', $row->sex),
         'no_hp' => set_value('no_hp', $row->no_hp),
@@ -144,7 +144,7 @@ class Pasien extends CI_Controller
 		'identitas' => $this->input->post('identitas',TRUE),
 		'nama' => $this->input->post('nama',TRUE),
 		'alamat' => $this->input->post('alamat',TRUE),
-		'user' => $this->input->post('user',TRUE),
+		'user' => $this->input->post('user',TRUE).'@la-derma',
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
         'no_hp' => $this->input->post('no_hp',TRUE),

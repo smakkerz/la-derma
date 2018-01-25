@@ -19,10 +19,10 @@
     data-role="input" data-text-auto-resize="true" data-text-max-height="200" required="" ><?php echo $alamat; ?></textarea>
         </td></tr>
 	    <tr><td>User <?php echo form_error('user') ?></td>
-            <td><input type="text" class="input-control" name="user" id="user" placeholder="User" value="<?php echo $user; ?>"  required="" />
+            <td><input type="text" class="input-control" name="user" id="user" placeholder="UserName" value="<?php echo $user; ?>"  required="" />@la-derma
         </td>
 	    <td>Pass <?php echo form_error('pass') ?></td>
-            <td><input type="text" class="input-control" name="pass" id="pass" placeholder="Pass" value="<?php echo $pass; ?>"  required="" />
+            <td><input type="text" class="input-control" name="pass" id="pass" placeholder="Password" value="<?php echo $pass; ?>"  required="" />
         </td>
 	    <tr><td>Sex <?php echo form_error('sex') ?></td>
             <td>

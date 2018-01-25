@@ -99,14 +99,15 @@ class Users extends CI_Controller
 		$g = $this->input->post('groups')						);
 		$group = array($g);
 
-		$this->ion_auth->register($username, $password, $email, $additional_data, $group);
+		$this->ion_auth->register($username.'@la-derma', $password, $email.'@la-derma', $additional_data, $group);
             redirect('users','refresh');
     }
     
     public function update($id)  //fungsi perbarui data
     {
         $row = $this->Users_model->get_by_id($id);
-
+        $username = explode("@la-derma", $row->username);
+        explode("_", $explodeURL[1]);
         if ($row) {
             $groups=$this->ion_auth->groups()->result_array();
         $currentGroups = $this->ion_auth->get_users_groups($id)->result();
@@ -116,7 +117,7 @@ class Users extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('users/update_action'),
 		'id' => set_value('id', $row->id),
-		'username' => set_value('username', $row->username),
+		'username' => set_value('username', $username[0]),
 		'password' => set_value('password', $row->password),
 		'first_name' => set_value('first_name', $row->first_name),
 		'last_name' => set_value('last_name', $row->last_name),
