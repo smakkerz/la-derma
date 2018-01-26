@@ -15165,8 +15165,8 @@ video::-webkit-media-controls-enclosure {
   display: block;
   float: left;
   margin-left: .0652rem;
-  padding: 0.25rem .625rem;
-  background-color: #ffffff;
+  padding: 0.38rem .625rem;
+  background-color: #3399ff;
   cursor: pointer;
   border: 1px #eeeeee solid;
   text-align: center;

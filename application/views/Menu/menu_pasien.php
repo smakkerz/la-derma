@@ -3,9 +3,9 @@
                 <h3>MENU UTAMA</h3>
                 <ul class="nav side-menu">
                     <li><a href="<?= base_url('C_pasien') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
-                    <li><a href="<?= base_url('Pesan') ?>"><i class="fa fa-home"></i> Pesan </a></li>
-                  <li><a href="<?= base_url('C_pasien/Pasien_medis') ?>"><i class="fa fa-home"></i> Rekam Medis </a></li>
-                  <li><a href="<?= base_url('C_pasien/Profil') ?>"><i class="fa fa-home"></i> Profil </a></li>
+                    <li><a href="<?= base_url('Pesan') ?>"><i class="fa fa-envelope"></i> Pesan </a></li>
+                  <li><a href="<?= base_url('C_pasien/Pasien_medis') ?>"><i class="fa fa-medkit"></i> Rekam Medis </a></li>
+                  <li><a href="<?= base_url('C_pasien/Profil') ?>"><i class="fa fa-user"></i> Profil </a></li>
                 </ul>
               </div>
             </div>

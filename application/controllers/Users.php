@@ -107,7 +107,6 @@ class Users extends CI_Controller
     {
         $row = $this->Users_model->get_by_id($id);
         $username = explode("@la-derma", $row->username);
-        explode("_", $explodeURL[1]);
         if ($row) {
             $groups=$this->ion_auth->groups()->result_array();
         $currentGroups = $this->ion_auth->get_users_groups($id)->result();

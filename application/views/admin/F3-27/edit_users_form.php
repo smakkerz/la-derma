@@ -9,7 +9,7 @@
                       <div class=''>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Nama Pengguna </td>
-            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />
+            <td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" required="" />@la-derma
         </td>
 	    <tr><td></td>
 	    <tr><td>Nama Pertama </td>
@@ -28,7 +28,22 @@
       <tr>
         <td>Grup</td>
         <td>
-          <?php foreach ($groups as $group):?>
+          <select name="groups">
+            <?php foreach ($groups as $group):
+                $gID=$group['id'];
+                  $checked = null;
+              if ($gID == $grp->id) {
+                          $checked= ' checked="checked"';
+                      break;
+                      } ?>
+              <option value="<?php echo $group['id'];?>" <?= $checked; ?>>
+
+              <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
+            </option>
+          <?php endforeach?>
+          </select>
+
+          <!-- <?php foreach ($groups as $group):?>
               <label class="checkbox">
               <?php
                   $gID=$group['id'];
@@ -44,7 +59,7 @@
               <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>"<?php echo $checked;?>>
               <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
               </label>
-          <?php endforeach?>
+          <?php endforeach?> -->
         </td>
       </tr>
 	    <input type="hidden" name="id" value="<?php echo $id; ?>" /> 
