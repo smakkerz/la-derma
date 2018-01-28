@@ -110,4 +110,5 @@ class model_pemesanan extends ci_model
     {
         $this->db->query("UPDATE arus_kas SET verifikasi ='0' WHERE id ='$id'");
     }
+    
 }

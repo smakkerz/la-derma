@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-md-12">
         <h2 class="page-header">
@@ -79,14 +80,15 @@
                         	<?php
                         		}else{
                         	?>
+                            <script type="text/javascript">
+                                alert("Untuk Cetak silahkan CTRL + P");
+                            </script>
                         	<tr>
                         		<td colspan="5">Terimakasih telah mengunjungi La-Derma Skin Care</td>
                         	</tr>
-                        	<script type="text/javascript">
-                        		window.print();
                         	</script>
                         	<?php
-                        		}
+                           		}
                         	?>
                         </tfoot>
                     </table>

@@ -25,10 +25,10 @@
             </select>
         </td>
 	    <tr><td>DariJam <?php echo form_error('DariJam') ?></td>
-            <td><input type="time" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />
+            <td><input type="text" class="form-control" name="DariJam" id="DariJam" placeholder="DariJam" value="<?php echo $DariJam; ?>" />
         </td>
 	    <tr><td>SampaiJam <?php echo form_error('SampaiJam') ?></td>
-            <td><input type="time" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" />
+            <td><input type="text" class="form-control" name="SampaiJam" id="SampaiJam" placeholder="SampaiJam" value="<?php echo $SampaiJam; ?>" />
         </td>
 	    <input type="hidden" name="idJadwal" value="<?php echo $idJadwal; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
@@ -47,3 +47,43 @@
     } ?>
                                     
 </datalist>
+     <script src="<?php echo base_url('\assets\time\jquery.ui.timepicker.js') ?>"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+   $('#DariJam').timepicker({
+       showLeadingZero: false,
+       onSelect: tpStartSelect,
+       maxTime: {
+           hour: 16, minute: 30
+       }
+   });
+   $('#SampaiJam').timepicker({
+       showLeadingZero: false,
+       onSelect: tpEndSelect,
+       minTime: {
+           hour: 9, minute: 15
+       }
+   });
+});
+
+// when start time change, update minimum for end timepicker
+function tpStartSelect( time, endTimePickerInst ) {
+   $('#SampaiJam').timepicker('option', {
+       minTime: {
+           hour: endTimePickerInst.hours,
+           minute: endTimePickerInst.minutes
+       }
+   });
+}
+
+// when end time change, update maximum for start timepicker
+function tpEndSelect( time, startTimePickerInst ) {
+   $('#DariJam').timepicker('option', {
+       maxTime: {
+           hour: startTimePickerInst.hours,
+           minute: startTimePickerInst.minutes
+       }
+   });
+}
+</script>

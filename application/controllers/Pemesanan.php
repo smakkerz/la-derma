@@ -83,5 +83,13 @@
     	$this->model_pemesanan->batal($id);
     	redirect('Pemesanan','refresh');
     }
+    function invoice()
+    {
+        $id = $this->uri->segment(3);
+        $data = [
+            'data' => $this->model_pemesanan->invoice($id)
+        ];
+        $this->load->view('transaksi');
+    }
 	}
 ?>

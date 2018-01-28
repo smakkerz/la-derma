@@ -18,6 +18,7 @@
             <th>Dokter</th>
             <th>Jenis Transaksi</th>
             <th>Status</th>
+            <th>Invoice</th>
         </tr>
         <?php
             foreach ($get_tx as $data) {
@@ -34,6 +35,13 @@
                 }else{
                     echo "Belum Lunas";
                 } ?></td>
+            <td>
+                <?php if ($data->verifikasi == 1) {
+                echo "<a target='_blank' href='".base_url('transaksi/cetak')."/$data->transaksi_id'>Cetak</a>";
+                }else{
+                    echo "Belum Lunas";
+                } ?>
+            </td>
         </tr>
         <?php
             }
