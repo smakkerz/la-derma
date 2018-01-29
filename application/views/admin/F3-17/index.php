@@ -26,9 +26,9 @@
 <tr>
     <td colspan="2">
     <label class="col-sm-2 control-label">Kode Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="input-control iconic" required="">
+        <input list="barang" name="barang" placeholder="masukan nama barang" class="input-control iconic" >
     <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="input-control iconic" required="">
+            <input type="text" name="qty" placeholder="QTY" class="input-control iconic" >
     </td colspan="2">
 </tr>
 <tr>
@@ -142,14 +142,18 @@
                                             echo $stat;
                                          ?></td>
                                         <td>
-                                            <?php 
-                                                if ($data->verifikasi == 0) {
-                                                $stata = "<a href='". base_url('Pemesanan/set_lunas/'.$data->id)."' class='button primary'>Set Lunas</a>";
-                                            }else{
-                                                $stata = "<a href='".base_url('Pemesanan/set_batallunas/'.$data->id) ."' class='button danger'>Batalkan Lunas</a>";
-                                            }
-                                            echo $stata;
-                                            ?>
+    <?php 
+    if ($data->verifikasi == 0) {
+        $invoice = "";
+        $stata = "<a href='". base_url('Pemesanan/set_lunas/'.$data->id)."' class='button primary'>Accept</a>";
+    }else{
+        $invoice = "<a href='".base_url('transaksi/cetak/'.$data->id) ."' class='button warning'>Cetak</a>";
+        $stata = "<a href='".base_url('Pemesanan/set_batallunas/'.$data->id) ."' class='button danger'>Batalkan Lunas</a>";
+    }
+        echo $stata;
+        echo "|";
+        echo $invoice;
+    ?>
                                         </td>
                                     </tr>
                                     <?php

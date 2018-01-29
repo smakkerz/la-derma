@@ -49,7 +49,7 @@
 	    			</tr>
 	    			</tbody>
 				</table>
-				<a href="" class="btn btn-primary">Ubah Data</a>
+				<a href="<?= base_url('C_pasien/ubah_data') ?>" class="btn btn-primary">Ubah Data</a>
         </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->

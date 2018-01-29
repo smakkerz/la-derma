@@ -57,17 +57,21 @@ class transaksi extends ci_controller{
     }
     function cetak()
     {
-        $idakhir = $this->model_transaksi->transaksi_terakhir();
-        foreach ($idakhir as $id) {
-            $idtx = $id->transaksi_id;
-        }
+        $idtx = $this->uri->segment(3);
+        $idakhir = $this->model_transaksi->txdata($idtx);
         $barang = $this->model_transaksi->transaksi_detail_terakhir($idtx);
-        $data = 
+        $inidata = 
         [
             'data' => $idakhir,
             'barang' => $barang
         ];
-        $this->load->view('transaksi/result',$data);
+            //ini_set('memory_limit', '32M');
+            //$html = 
+        $this->load->view('transaksi/result', $inidata);
+            //$this->load->library('pdf');
+            //$pdf = $this->pdf->load();
+            //$pdf->WriteHTML($html);
+            //$pdf->Output('Invoice.pdf', 'D');
     }
     function hapusitem()
     {

@@ -29,9 +29,9 @@
 <tr>
     <td colspan="2">
     <label class="col-sm-2 control-label">Kode Barang</label>
-        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control" required="">
+        <input list="barang" name="barang" placeholder="masukan nama barang" class="form-control" >
     <label class="col-sm-2 control-label">Quantity</label>
-            <input type="text" name="qty" placeholder="QTY" class="form-control" required="">
+            <input type="text" name="qty" placeholder="QTY" class="form-control" >
     </td colspan="2">
 </tr>
 <tr>

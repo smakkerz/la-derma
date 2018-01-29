@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('Metro') ?>/metro-icons.css">
         <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/datatables/dataTables.bootstrap.css') ?>"> -->
+    <link href="<?php echo base_url('\assets\time\include\ui-1.10.0\ui-lightness\images\jquery-ui-1.10.0.custom.min.css') ?>" rel="stylesheet">
+    <link href="<?php echo base_url('\assets\time\jquery.ui.timepicker.css') ?>" rel="stylesheet">
     <script src="<?php echo base_url('\assets\tinymce\js\tinymce\tinymce.min.js') ?>"></script>
     <style>
 html{background-color:#0F6D32;}

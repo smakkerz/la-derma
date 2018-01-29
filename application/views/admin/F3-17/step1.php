@@ -64,12 +64,16 @@
                                          ?></td>
                                         <td>
                                             <?php 
-                                                if ($data->verifikasi == 0) {
-                                                $stata = "<a href='". base_url('Pemesanan/set_lunas/'.$data->id)."' class='button primary'>Set Lunas</a>";
-                                            }else{
-                                                $stata = "<a href='".base_url('Pemesanan/set_batallunas/'.$data->id) ."' class='button danger'>Batalkan Lunas</a>";
-                                            }
-                                            echo $stata;
+if ($data->verifikasi == 0) {
+        $invoice = "";
+        $stata = "<a href='". base_url('Pemesanan/set_lunas/'.$data->id)."' class='button primary'>Accept</a>";
+    }else{
+        $invoice = "<a target='_blank' href='".base_url('transaksi/cetak/'.$data->idtransaksi) ."' class='button warning'>Cetak</a>";
+        $stata = "<a href='".base_url('Pemesanan/set_batallunas/'.$data->id) ."' class='button danger'>Batalkan Lunas</a>";
+    }
+        echo $stata;
+        echo "|";
+        echo $invoice;
                                             ?>
                                         </td>
                                     </tr>

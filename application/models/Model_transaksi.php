@@ -97,6 +97,9 @@ class model_transaksi extends ci_model
         $this->db->order_by('transaksi_id', 'DESC');
         return $this->db->get('transaksi',1)->result();
     }
+    function txdata($id){
+        return $this->db->get_where('transaksi',array('transaksi_id' => $id))->result();
+    }
     function transaksi_detail_terakhir($id)
     {
         $this->db->join('barang', 'barang.barang_id = transaksi_detail.barang_id');

@@ -11,6 +11,7 @@
 			$this->load->model('K_pesan_model');
 			$this->load->model('Pasien_login');
 	        $this->load->model('K_prmedis_model');
+	        $this->load->model('Pasien_model');
 		}
 		function index()
 		{
@@ -164,7 +165,72 @@
 		{
 			$data['jadwal'] = $this->Pasien_login->jadwal();
 			$this->template->load('template','Pasien/jadwal',$data);
-
 		}
+		function ubah_data()
+		{
+			$user = $this->ion_auth->user()->row();
+			$id = $user->email;
+			$row = $this->Pasien_login->profil($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('Pasien/update_action'),
+		'id_pasien' => set_value('id_pasien', $row->id_pasien),
+		'identitas' => set_value('identitas', $row->identitas),
+		'nama' => set_value('nama', $row->nama),
+		'alamat' => set_value('alamat', $row->alamat),
+		'user' => set_value('user', $row->user),
+		'pass' => set_value('pass', $row->pass),
+		'sex' => set_value('sex', $row->sex),
+        'no_hp' => set_value('no_hp', $row->no_hp),
+		'birth_date' => set_value('birth_date', $row->birth_date),
+		'status' => set_value('status', $row->status),
+	    );
+			$this->template->load('template','Pasien/ubah',$row);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('Pasien'));
+        }
+		}
+	public function update_action() //fungsi validasi sebelum diperbarui data
+    {
+        $this->_rules();
+
+       // if ($this->form_validation->run() == FALSE) {
+         //   $this->ubah_data($this->input->post('id_pasien', TRUE));
+        //} else {
+            $data = array(
+		'identitas' => $this->input->post('identitas',TRUE),
+		'nama' => $this->input->post('nama',TRUE),
+		'alamat' => $this->input->post('alamat',TRUE),
+		'user' => $this->input->post('user',TRUE),
+		'pass' => $this->input->post('pass',TRUE),
+		'sex' => $this->input->post('sex',TRUE),
+        'no_hp' => $this->input->post('no_hp',TRUE),
+		'birth_date' => $this->input->post('birth_date',TRUE),
+		'status' => $this->input->post('status',TRUE),
+	    );
+
+            $this->Pasien_model->update($this->input->post('id_pasien', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('C_pasien/profil'));
+        //}
+    }
+	public function _rules() 
+    {
+	$this->form_validation->set_rules('identitas', 'identitas', 'trim|required');
+	$this->form_validation->set_rules('nama', 'nama', 'trim|required');
+	$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
+	$this->form_validation->set_rules('user', 'user', 'trim|required');
+	$this->form_validation->set_rules('pass', 'pass', 'trim|required');
+	$this->form_validation->set_rules('sex', 'sex', 'trim|required');
+    $this->form_validation->set_rules('no_hp','no_hp','trim|required');
+	$this->form_validation->set_rules('birth_date', 'birth date', 'trim|required');
+	$this->form_validation->set_rules('status', 'status', 'trim|required');
+
+	$this->form_validation->set_rules('id_pasien', 'id_pasien', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
 }
 ?>
