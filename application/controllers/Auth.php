@@ -23,12 +23,7 @@ class Auth extends CI_Controller {
 			// redirect them to the login page
 			redirect('auth/login', 'refresh');
 		}
-		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
-		{
-			// redirect them to the home page because they must be an administrator to view this
-			return show_error('You must be an administrator to view this page.');
-		}
-		else
+		elseif ($this->ion_auth->is_admin())
 		{
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
@@ -40,7 +35,13 @@ class Auth extends CI_Controller {
 				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->template->load('template','auth/index',$this->data);
+			redirect('Menu','refresh');
+		}else if ($this->ion_auth->in_group(3)) {
+			redirect('C_owner','refresh');
+		}else if ($this->ion_auth->in_group(4)) {
+			redirect('C_dokter','refresh');
+		}else{
+			redirect('C_pasien','refresh');
 		}
 	}
 
@@ -63,8 +64,19 @@ class Auth extends CI_Controller {
 			{
 				//if the login is successful
 				//redirect them back to the home page
+				
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
+				$email = $this->input->post('identity');
+					if ($this->ion_auth->is_admin()) {
+					redirect('Menu','refresh');
+					}else if ($this->ion_auth->in_group(3)){
+
+					redirect('C_owner','refresh');
+					}else if ($this->ion_auth->in_group(4)){
+					redirect('C_dokter','refresh');
+					}else{
+					redirect('C_pasien','refresh');
+					}
 			}
 			else
 			{
@@ -153,7 +165,12 @@ class Auth extends CI_Controller {
 			);
 
 			// render
-			$this->_render_page('auth/change_password', $this->data);
+			if ($this->ion_auth->is_admin()) {
+				$this->load->view('admin/tema2');
+				$this->load->view('auth/change_password', $this->data);
+			}else{
+				$this->template->load('template','auth/change_password',$this->data);
+			}
 		}
 		else
 		{
@@ -515,7 +532,7 @@ class Auth extends CI_Controller {
                 'value' => $this->form_validation->set_value('password_confirm'),
             );
 
-            $this->_render_page('auth/create_user', $this->data);
+            $this->template->load('template','auth/create_user', $this->data);
         }
     }
 

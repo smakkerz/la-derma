@@ -16,33 +16,14 @@ class Pasien extends CI_Controller
 
     public function index()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'pasien/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pasien/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'pasien/index.html';
-            $config['first_url'] = base_url() . 'pasien/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pasien_model->total_rows($q);
-        $pasien = $this->Pasien_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $pasien = $this->Pasien_model->get_all();
 
         $data = array(
-            'pasien_data' => $pasien,
-            'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
+            'pasien_data' => $pasien
         );
-        $this->template->load('template','pasien_list', $data);
+
+        $this->load->view('admin/tema2');
+        $this->load->view('pasien_list', $data);
     }
 
     public function read($id) //fungsi tampil data
@@ -58,12 +39,14 @@ class Pasien extends CI_Controller
 		'pass' => $row->pass,
 		'sex' => $row->sex,
 		'birth_date' => $row->birth_date,
+        'no_hp' => $row->no_hp,
 		'status' => $row->status,
 	    );
-            $this->template->load('template','pasien_read', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('pasien_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('pasien'));
+            redirect(site_url('Pasien'));
         }
     }
 
@@ -71,18 +54,20 @@ class Pasien extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('pasien/create_action'),
+            'action' => site_url('Pasien/create_action'),
 	    'id_pasien' => set_value('id_pasien'),
 	    'identitas' => set_value('identitas'),
 	    'nama' => set_value('nama'),
 	    'alamat' => set_value('alamat'),
 	    'user' => set_value('user'),
 	    'pass' => set_value('pass'),
-	    'sex' => set_value('sex'),
+        'no_hp' => set_value('no_hp'),
+	    'sex' => 'Pilih',
 	    'birth_date' => set_value('birth_date'),
-	    'status' => set_value('status'),
+	    'status' => 'Pilih',
 	);
-        $this->template->load('template','pasien_form', $data);
+        $this->load->view('admin/tema2');
+        $this->load->view('pasien_form', $data);
     }
     
     public function create_action() //fungsi validasi sebelum ditambah data
@@ -93,44 +78,58 @@ class Pasien extends CI_Controller
             $this->create();
         } else {
             $data = array(
+        'id_pasien' => $this->Pasien_model->idpasien(),
 		'identitas' => $this->input->post('identitas',TRUE),
 		'nama' => $this->input->post('nama',TRUE),
 		'alamat' => $this->input->post('alamat',TRUE),
-		'user' => $this->input->post('user',TRUE),
+		'user' => $this->input->post('user',TRUE).'@la-derma',
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
+        'no_hp' => $this->input->post('no_hp',TRUE),
 		'birth_date' => $this->input->post('birth_date',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
 
             $this->Pasien_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('pasien'));
+        $username = $this->input->post('user',TRUE);
+        $password = $this->input->post('pass',TRUE);
+        $email = $this->input->post('user',TRUE);
+        $additional_data = array(
+                                'first_name' => $this->input->post('nama',TRUE),
+                                'last_name' => $this->input->post('identitas',TRUE)
+                            );
+        $group = array('5');
+
+        $this->ion_auth->register($username.'@la-derma', $password, $email.'@la-derma', $additional_data, $group);
+            redirect(site_url('Pasien'));
         }
     }
     
     public function update($id)  //fungsi perbarui data
     {
         $row = $this->Pasien_model->get_by_id($id);
-
+        $user = explode("@la-derma", $row->user);
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('pasien/update_action'),
+                'action' => site_url('Pasien/update_action'),
 		'id_pasien' => set_value('id_pasien', $row->id_pasien),
 		'identitas' => set_value('identitas', $row->identitas),
 		'nama' => set_value('nama', $row->nama),
 		'alamat' => set_value('alamat', $row->alamat),
-		'user' => set_value('user', $row->user),
+		'user' => set_value('user', $user[0]),
 		'pass' => set_value('pass', $row->pass),
 		'sex' => set_value('sex', $row->sex),
+        'no_hp' => set_value('no_hp', $row->no_hp),
 		'birth_date' => set_value('birth_date', $row->birth_date),
 		'status' => set_value('status', $row->status),
 	    );
-            $this->template->load('template','pasien_form', $data);
+            $this->load->view('admin/tema2');
+        $this->load->view('pasien_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('pasien'));
+            redirect(site_url('Pasien'));
         }
     }
     
@@ -145,16 +144,17 @@ class Pasien extends CI_Controller
 		'identitas' => $this->input->post('identitas',TRUE),
 		'nama' => $this->input->post('nama',TRUE),
 		'alamat' => $this->input->post('alamat',TRUE),
-		'user' => $this->input->post('user',TRUE),
+		'user' => $this->input->post('user',TRUE).'@la-derma',
 		'pass' => $this->input->post('pass',TRUE),
 		'sex' => $this->input->post('sex',TRUE),
+        'no_hp' => $this->input->post('no_hp',TRUE),
 		'birth_date' => $this->input->post('birth_date',TRUE),
 		'status' => $this->input->post('status',TRUE),
 	    );
 
             $this->Pasien_model->update($this->input->post('id_pasien', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('pasien'));
+            redirect(site_url('Pasien'));
         }
     }
     
@@ -165,10 +165,10 @@ class Pasien extends CI_Controller
         if ($row) {
             $this->Pasien_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('pasien'));
+            redirect(site_url('Pasien'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('pasien'));
+            redirect(site_url('Pasien'));
         }
     }
 
@@ -180,6 +180,7 @@ class Pasien extends CI_Controller
 	$this->form_validation->set_rules('user', 'user', 'trim|required');
 	$this->form_validation->set_rules('pass', 'pass', 'trim|required');
 	$this->form_validation->set_rules('sex', 'sex', 'trim|required');
+    $this->form_validation->set_rules('no_hp','no_hp','trim|required');
 	$this->form_validation->set_rules('birth_date', 'birth date', 'trim|required');
 	$this->form_validation->set_rules('status', 'status', 'trim|required');
 
@@ -213,7 +214,7 @@ class Pasien extends CI_Controller
 	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
 	xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
 	xlsWriteLabel($tablehead, $kolomhead++, "User");
-	xlsWriteLabel($tablehead, $kolomhead++, "Pass");
+	xlsWriteLabel($tablehead, $kolomhead++, "No Hp");
 	xlsWriteLabel($tablehead, $kolomhead++, "Sex");
 	xlsWriteLabel($tablehead, $kolomhead++, "Birth Date");
 	xlsWriteLabel($tablehead, $kolomhead++, "Status");
@@ -227,7 +228,7 @@ class Pasien extends CI_Controller
 	    xlsWriteLabel($tablebody, $kolombody++, $data->nama);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->alamat);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->user);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->pass);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->no_hp);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->sex);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->birth_date);
 	    xlsWriteLabel($tablebody, $kolombody++, $data->status);
@@ -238,19 +239,6 @@ class Pasien extends CI_Controller
 
         xlsEOF();
         exit();
-    }
-
-    public function word()
-    {
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=pasien.doc");
-
-        $data = array(
-            'pasien_data' => $this->Pasien_model->get_all(),
-            'start' => 0
-        );
-        
-        $this->load->view('pasien_doc',$data);
     }
 
     function pdf()
@@ -266,6 +254,12 @@ class Pasien extends CI_Controller
         $pdf = $this->pdf->load();
         $pdf->WriteHTML($html);
         $pdf->Output('pasien.pdf', 'D'); 
+    }
+
+    //testidpasien
+    function test()
+    {
+        echo $this->Pasien_model->idpasien();
     }
 
 }

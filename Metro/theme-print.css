@@ -1,0 +1,29 @@
+/* 
+    Document   : theme-print
+    Created on : Aug 23, 2013, 1:56:51 PM
+    Author     : arvinnizar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+html, table{
+	font-family: Arial; font-size: 10px;
+}
+@page 
+{
+    size: auto;   /* auto is the initial value */
+    margin-top: 10mm;  /* this affects the margin in the printer settings */
+}
+h1 { font-size: 11px; text-align: center; }
+h1.kop-surat { border-bottom: 1px solid #000; padding-bottom: 10px; }
+body, .default-printing table { font-size: 11px; }
+.layout-print-struk th { font-size: 11px; text-align: left; }
+.layout-print-struk table td { font-family: Arial; font-size: 10px; line-height: 9px; }
+
+
+.list-data-print { text-transform: uppercase; border-top: 1px solid #000; border-left: 1px solid #000; margin: 10px 0; background: #fff; color: #000; font-size: inherit; }
+.list-data-print th { font-weight: bold; vertical-align: top; border-right: 1px solid #000; height: 20px; border-bottom: 1px solid #000; height: 40px; color: #000; cursor: pointer; }
+.list-data-print td { border-right: 1px solid #000; height: 20px; border-bottom: 1px solid #000; height: 20px; padding: 2px; empty-cells: show; }
+.list-data-print tfoot { font-weight: bold; }
+.list-data-print .even { background: #fff; cursor: pointer; }
+.list-data-print .odd { background: #fff; cursor: pointer; }
+.list-data-print .even:hover, .list-data .odd:hover {background: #d0e7fe; }

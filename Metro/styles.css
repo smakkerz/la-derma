@@ -1,0 +1,104 @@
+/* 
+    Document   : styles
+    Created on : Jul 23, 2013, 3:17:35 PM
+    Author     : arvinnizar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+input.search { float: right; font-family: inherit; margin-right: 0; }
+.aksi { white-space: nowrap; }
+table.data-input input[type=text], table.data-input input[type=password], table.data-input textarea { margin: 0.5px; max-width: 300px; text-transform: uppercase; }
+.data-input { border: 1px solid #999; background: #f4f4f4; padding: 10px 5px; font-size: 11px; }
+.data-input .small-input { min-width: 92px; }
+.data-input label { margin-left: 0; margin-right: 10px; }
+.data-input input[type=text]:focus, .data-input input[type=password]:focus, .data-input textarea:focus, .data-input input[type=radio] { border: 1px solid blue; }
+.data-input select:focus { border: 1px solid blue; padding: 1px 1px 1px 2px; }
+.data-input select { font-family: inherit; margin-left: 0.5px; margin-top: 1px; margin-bottom: 1px; min-width: 155px; }
+.data-input input[type=radio] { margin-left: 0; margin-right: 2px; }
+.data-input input[type=checkbox] { margin-left: 0; }
+.data-input input[type=file] { margin: 0; }
+.data-input .space { width: 20px; display: inline-table; }
+.data-input textarea { max-width: 300px; height: 20px; text-transform: uppercase; }
+.edition { background: url(../../img/icons/edit.png) center no-repeat; width: 19px; height: 19px; text-align: center; display: inline-block; }
+.edition:hover { background: url(../../img/icons/edit.png) center no-repeat; width: 19px; height: 19px; cursor: pointer; }
+.printing { background: url(../../img/icons/print.png) center no-repeat; width: 19px; height: 19px; text-align: center; display: inline-block; }
+.printing:hover { background: url(../../img/icons/print.png) center no-repeat; width: 19px; height: 19px; cursor: pointer; }
+.deletion { background: url(../../img/icons/delete.png) center no-repeat; width: 19px; height: 19px; display: inline-block;}
+.deletion:hover { background: url(../../img/icons/delete.png) center no-repeat; width: 19px; height: 19px; cursor: pointer; }
+.planning { background: url(../../img/icons/cart.png) center no-repeat; width: 18px; height: 18px; display: inline-block; }
+.custom-combobox { position: relative; display: inline-block; }
+.custom-combobox-toggle { position: absolute; top: 0; bottom: 0; margin-left: -1px; padding: 0;
+    /* support: IE7 */
+    *height: 1.7em;
+    *top: 0.1em;
+}
+.custom-combobox-input { margin: 0; }
+.input-parameter { background-color: rgba(60, 60, 60, 0.3); border: 1px solid #999; font-size: 12px; }
+.input-parameter label { margin: 0; }
+.input-parameter table { margin: 10px; border-spacing: 0; }
+.input-parameter table tr {  }
+.input-parameter input[type=text] { font-size: inherit; border: 1px solid #f4f4f4; padding: 1px; font-family: inherit; }
+.input-parameter input[type=text]:focus { border: 1px solid #ccc; }
+.input-parameter select { min-width: 200px; font-family: inherit; }
+.input-parameter input[type=button] { min-width: 70px; margin-right: 0; }
+
+/*paging*/
+.titik { float: left; }
+.noblock { float: left; text-align: center; min-width: 15px; padding:2px 5px 2px 5px; background: #04a4f2; border:1px solid #ccc; text-decoration: none; color: #fff; margin-right: 0;}
+.block { float: left; text-align: center; min-width: 15px; padding:2px 5px 2px 5px; background-color:#175e88; border:1px solid #175e88; color:#fff; cursor: pointer; margin: 0 2px; }
+.block:hover { float: left; padding:2px 5px 2px 5px; background: #04a4f2; color: #fff; }
+.page-next { float: left; width: 22px; cursor:pointer;font-size:10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #42c3eb), color-stop(1, #289ad9) );
+    background: #019601; color: #fff; padding: 4px 10px 6px 10px; margin-left: 2px;}
+.page-prev { float: left; width: 22px; cursor:pointer;font-size:10px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #42c3eb), color-stop(1, #289ad9) );
+    background: #019601; color: #fff; padding: 4px 10px 6px 10px; margin-right: 2px;}
+.logout { color: #fff; padding: 6px 27px 2px 27px; margin-top: 0; display: block; min-width: 30px; float: right; text-align: center; }
+.logout:hover { background: #2c5564; padding: 6px 27px 8px 27px; cursor: pointer; }
+.logout img { display: block; margin-bottom: 4px; margin-left: 5px; }
+
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+  }
+  .ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 14px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+  }
+  .arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+  }
+  .arrow.top {
+    top: -16px;
+    bottom: auto;
+  }
+  .arrow.left {
+    left: 20%;
+  }
+  .arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    tranform: rotate(45deg);
+  }
+  .arrow.top:after {
+    bottom: -20px;
+    top: auto;
+  }

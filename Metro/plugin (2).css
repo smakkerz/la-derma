@@ -1,0 +1,37 @@
+.metro-accordion>h3{
+	margin: 0 0 0 0;
+	padding:0;
+	font-size:28px;
+}
+.metro-accordion>h3:hover{
+	color: #F90;
+	cursor:pointer;
+}
+.metro-accordion>div.accordionContent{
+	padding: 0px;
+	margin:10px;
+}
+.metro-accordion>h3>img.accordionArrow{
+	-moz-transition: -moz-transform 500ms;
+	-o-transition: -o-transform 500ms;
+	-ms-transition: -ms-transform 500ms;
+	transition: transform 500ms;
+	height:28px;
+	width:28px;
+	vertical-align:middle;
+	margin-top:-12px;
+	margin-right: 10px;
+}
+.metro-accordion>h3>img.accordionArrow.down{
+	 -moz-transform: rotate(90deg);
+	 -o-transform: rotate(90deg);
+	 -ms-transform: rotate(90deg);
+	  transform: rotate(90deg);
+}
+.metro-accordion>h3>img.accordionArrow.right{
+	 -webkit-transform: rotate(0deg);
+	 -moz-transform: rotate(0deg);
+	 -o-transform: rotate(0deg);
+	 -ms-transform: rotate(0deg);
+	 transform: rotate(0deg);
+}

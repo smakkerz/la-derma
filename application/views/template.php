@@ -9,16 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>HOME | SIM</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/select2/css/select2.min.css">
+            <script src="<?php echo base_url() ?>template/vendors/jquery/dist/jquery.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url(); ?>/assets/select2/js/select2.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+  $(".js-example-basic-single").select2();
+});
+</script>
     <link rel="shortcut icon" href="<?= base_url($informasi['fav']) ?>" type="image/x-icon">
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>template/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo base_url() ?>template/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url() ?>template/build/css/custom.min.css" rel="stylesheet">
-    <!-- jQuery -->
-  
+        
+     <script src="<?php echo base_url('\assets\tinymce\js\tinymce\tinymce.min.js') ?>"></script>
+
+<script src="<?= base_url() ?>assets/highcharts/code/highcharts.js"></script>
+ <script src="<?= base_url() ?>assets/highcharts/code/modules/exporting.js"></script>
+ 
+
   </head>
 
   <body class="nav-md">
@@ -36,7 +49,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_info">
-                <h2 class="pull-right"><?= $this->session->userdata('nama') ?></h2>
+                <h2 class="pull-right">
+                 Hai, Selamat datang <?php $user = $this->ion_auth->user()->row();
+                     echo $user->first_name." ".$user->last_name; ?>
+      
+    </h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -44,22 +61,15 @@
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>MENU UTAMA</h3>
-                <ul class="nav side-menu">
-                    <li><a href="<?= base_url('auth') ?>"><i class="fa fa-home"></i> BERANDA </a></li>
-                        <li><a href="<?= base_url('c_kasir') ?>"><i class="fa fa-folder-o"></i> Kasir</a></li>
-                        <li><a href="<?= base_url('c_kasir/tx_list') ?>"><i class="fa fa-file-o"></i>List Transaksi </a></li>
-                        <li><a href="<?= base_url('k_obat') ?>"><i class="fa fa-folder-o"></i>Obat </a></li>
-                        <li><a href="<?= base_url('Kategori_obat') ?>"><i class="fa fa-file-o"></i>Kategori Obat</a></li>
-                        <li><a href="<?= base_url('pasien') ?>"><i class="fa fa-file-o"></i>Pasien </a></li>
-                        <li><a href="<?= base_url('c_pesan') ?>"><i class="fa fa-file-o"></i>Pesan </a></li>
-                        <li><a href="<?= base_url('k_rmedis') ?>"><i class="fa fa-file-o"></i>Rekam Medis </a></li>
-
-                </ul>
-              </div>
-            </div>
+            <?php
+              if ($this->ion_auth->in_group(3)) {
+                $this->load->view('Menu/menu_owner');
+              }elseif ($this->ion_auth->in_group(4)){
+                $this->load->view('Menu/menu_dokter');
+              }else{
+                $this->load->view('Menu/menu_pasien');
+              }
+            ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -92,11 +102,23 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <?php echo $this->session->userdata('level'); ?>
+                    <?php 
+                      if ($this->ion_auth->is_admin())
+                        {
+                         echo "Administrator";
+                        }elseif ($this->ion_auth->in_group("Dokter")) {
+                          echo "Dokter";
+                        }elseif ($this->ion_auth->in_group("Pasien")){
+                          echo "Pasien";
+                        }else{
+                          echo "Owner";
+                        }
+                     ?>
                     <span class="fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li> <a href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li> <a href="<?= base_url('auth/change_password') ?>"><i class="fa fa-key pull-right"></i> Ubah Password</a></li>
+                    <li> <a href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out pull-right"></i> Keluar</a></li>
                   </ul>
                 </li>
                 <li role="presentation" class="dropdown"><a href="javascript:;" class="dropdown-toggle info-number">
@@ -133,7 +155,7 @@
         <!-- /footer content -->
       </div>
     </div>
-        <script src="<?php echo base_url() ?>template/vendors/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <script src="<?php echo base_url() ?>template/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -144,6 +166,7 @@
     <script src="<?php echo base_url() ?>template/build/js/custom.min.js"></script>
         <script src="<?php echo base_url('assets/datatables/jquery.dataTables.js') ?>"></script>
         <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
+
 
   </body>
 

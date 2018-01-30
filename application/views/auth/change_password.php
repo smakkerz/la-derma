@@ -1,6 +1,9 @@
 <h1><?php echo lang('change_password_heading');?></h1>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<table class="table bordered">
+      <tr>
+            <td>
+                  <div id="infoMessage"><?php echo $message;?></div>
 
 <?php echo form_open("auth/change_password");?>
 
@@ -23,3 +26,6 @@
       <p><?php echo form_submit('submit', lang('change_password_submit_btn'));?></p>
 
 <?php echo form_close();?>
+            </td>
+      </tr>
+</table>

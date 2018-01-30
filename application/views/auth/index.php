@@ -9,8 +9,8 @@
 
 <table class="table table-bordered">
 	<tr>
-		<th><?php echo lang('index_fname_th');?></th>
-		<th><?php echo lang('index_lname_th');?></th>
+		<th>Identitas</th>
+		<th>Nama</th>
 		<th><?php echo lang('index_email_th');?></th>
 		<th><?php echo lang('index_groups_th');?></th>
 		<th><?php echo lang('index_status_th');?></th>
@@ -33,3 +33,7 @@
 </table>
 
 <p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('index_create_group_link'))?></p>
+
+<?php 
+	redirect('Users');
+?>

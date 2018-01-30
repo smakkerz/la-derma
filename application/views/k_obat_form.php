@@ -9,7 +9,7 @@
                 </div>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
 	    <tr><td>Nama <?php echo form_error('nama') ?></td>
-            <td><input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
+            <td><input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" required="" />
         </td>
 	    <tr><td>Kategori Obat <?php echo form_error('kategori_obat') ?>
         </td>
@@ -26,22 +26,22 @@
             </select>
         </td>
 	    <tr><td>Deskripsi <?php echo form_error('deskripsi') ?></td>
-            <td><input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value="<?php echo $deskripsi; ?>" />
+            <td><input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value="<?php echo $deskripsi; ?>" required="" />
         </td>
 	    <tr><td>Stock <?php echo form_error('stock') ?></td>
-            <td><input type="text" class="form-control" name="stock" id="stock" placeholder="Stock" value="<?php echo $stock; ?>" />
+            <td><input type="text" class="form-control" name="stock" id="stock" placeholder="Stock" value="<?php echo $stock; ?>" required="" />
         </td>
 	    <tr><td>Manufaktur <?php echo form_error('manufaktur') ?></td>
-            <td><input type="text" class="form-control" name="manufaktur" id="manufaktur" placeholder="Manufaktur" value="<?php echo $manufaktur; ?>" />
+            <td><input type="text" class="form-control" name="manufaktur" id="manufaktur" placeholder="Manufaktur" value="<?php echo $manufaktur; ?>" required="" />
         </td>
 	    <tr><td>Harga <?php echo form_error('harga') ?></td>
-            <td><input type="text" class="form-control" name="harga" id="harga" placeholder="Harga" value="<?php echo $harga; ?>" />
+            <td><input type="text" class="form-control" name="harga" id="harga" placeholder="Harga" value="<?php echo $harga; ?>" required="" />
         </td>
 	    <tr><td>Status <?php echo form_error('status') ?></td>
-            <td><input type="text" class="form-control" name="status" id="status" placeholder="Status" value="<?php echo $status; ?>" />
+            <td><input type="text" class="form-control" name="status" id="status" placeholder="Status" value="<?php echo $status; ?>" required="" />
         </td>
 	    <tr><td>Expired <?php echo form_error('expired') ?></td>
-            <td><input type="text" class="form-control" name="expired" id="expired" placeholder="Expired" value="<?php echo $expired; ?>" />
+            <td><input type="text" class="form-control" name="expired" id="expired" placeholder="Expired" value="<?php echo $expired; ?>" required="" />
         </td>
 	    <input type="hidden" name="id_obat" value="<?php echo $id_obat; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

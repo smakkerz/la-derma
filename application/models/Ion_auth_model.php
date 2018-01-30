@@ -1006,8 +1006,11 @@ class Ion_auth_model extends CI_Model
 				}
 
 				$this->set_session($user);
-
-				$this->update_last_login($user->id);
+				date_default_timezone_set('Asia/Jakarta');
+				$datenow = date("Y-m-d H:i:s");
+				$this->db->set('last_login', $datenow);
+				$this->db->where('id', $user->id);
+				$this->db->update('users');
 
 				$this->clear_login_attempts($identity);
 
@@ -1905,7 +1908,46 @@ class Ion_auth_model extends CI_Model
 		$this->trigger_events(array('post_remember_user', 'remember_user_unsuccessful'));
 		return FALSE;
 	}
+	public function change_password2($identity, $new)
+    {
+        $query = $this->db->select('id, password, salt')
+                          ->where('id', $identity)
+                          ->limit(1)
+                          ->order_by('id', 'desc')
+                          ->get('users');
 
+        if ($query->num_rows() !== 1)
+        {
+            $this->trigger_events(array('post_change_password', 'post_change_password_unsuccessful'));
+            $this->set_error('password_change_unsuccessful');
+            return FALSE;
+        }
+
+        $user = $query->row();
+            // store the new password and reset the remember code so all remembered instances have to re-login
+            $hashed_new_password  = $this->hash_password($new, $user->salt);
+            $data = array(
+                'password' => $hashed_new_password,
+                'remember_code' => NULL,
+            );
+
+            $this->trigger_events('extra_where');
+
+            $successfully_changed_password_in_db = $this->db->update('users', $data, array('id' => $identity));
+            if ($successfully_changed_password_in_db)
+            {
+                $this->trigger_events(array('post_change_password', 'post_change_password_successful'));
+                $this->set_message('password_change_successful');
+                 return $successfully_changed_password_in_db;
+            }
+            else
+            {
+                $this->trigger_events(array('post_change_password', 'post_change_password_unsuccessful'));
+                $this->set_error('password_change_unsuccessful');
+                $this->set_error('password_change_unsuccessful');
+        return FALSE;
+            }   
+    }
 	/**
 	 * login_remembed_user
 	 *

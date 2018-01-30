@@ -18,6 +18,7 @@ class K_janji_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->join('pasien','pasien.identitas = k_janji.id_pasien');
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -32,9 +33,11 @@ class K_janji_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_kj', $q);
-	$this->db->or_like('waktu_janji', $q);
-	$this->db->or_like('id_pengguna', $q);
 	$this->db->or_like('id_pasien', $q);
+	$this->db->or_like('idDokter', $q);
+	$this->db->or_like('Tanggal', $q);
+	$this->db->or_like('Jam', $q);
+	$this->db->or_like('IdPengguna', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -43,9 +46,11 @@ class K_janji_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('id_kj', $q);
-	$this->db->or_like('waktu_janji', $q);
-	$this->db->or_like('id_pengguna', $q);
 	$this->db->or_like('id_pasien', $q);
+	$this->db->or_like('idDokter', $q);
+	$this->db->or_like('Tanggal', $q);
+	$this->db->or_like('Jam', $q);
+	$this->db->or_like('IdPengguna', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

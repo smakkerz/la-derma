@@ -1,4 +1,24 @@
-
+<script type="text/javascript">
+    function get_harga(){
+        var id_obat = $("#id_obat").val();
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url('C_kasir/get_harga'); ?>",
+            data:"id_obat="+id_obat,
+            success: function(msg){
+                $("#harga").html(msg);
+            }
+        })
+    }
+</script>
+<script>
+function hitung2() {
+    var a = $(".a2").val();
+    var b = $(".b2").val();
+    c = a * b; //a kali b
+    $(".c2").val(c);
+}
+</script>
         <!-- Main content -->
         <section class='content'>
           <div class='row'>
@@ -6,45 +26,87 @@
               <div>
                 <div class='box-header'>
                 <h3 class='box-title'>Kasir</h3>
-                <?php echo form_open('c_kasir/next'); ?>
+                <?php echo form_open('c_kasir/tmbh'); ?>
                 <table class="table table-bordered">
-                	<tr>
-                		<th>Kode Pasien</th>
-                		<td><input type="text" name="kd_pasien" class="form-control"></td>
-                	</tr>
-                	<tr>
-                		<th>Kode Dokter</th>
-                		<td><input type="text" name="kd_dokter" class="form-control"></td>
-                	</tr>
-                	<tr>
-                		<td colspan="2"><input type="submit" name="next" value="Selanjutnya" class="btn btn-primary"></td>
-                	</tr>
-                	 <!-- tgl-kodeurut-bulan-thn-LD 
-                	<tr>
-                		<td>Tambah Obat</td>
-                		<td>
-                			<select name="t_obt">
-                				<?php
-                					foreach ($obat as $obt) {
-                				?>
-                				<option value="<?= $obt->id_obat ?>"><?= $obt->nama ?></option>
-                				<?php
-                					}
-                				?>
-                			</select>
-                		<input type="submit" value="Tambah"></td>
-                	</tr>
-                	
-                	<tr>
-                		<td colspan="2">
-                			<table>
+                    <tr>
+                        <td>Tanggal :</td>
+                        <td><?= format_tanggal(date('Y-m-d')) ?></td>
+                        <td colspan="2">   </td>
+                        <td colspan="2">No Faktur : <?= $this->K_kasir->faktur() ?></td>
+                    </tr>
 
-                			</table>
-                		</td>
-                	</tr>
-                	-->
+                    <tr>
+                        <td colspan="2">
+                            <select class="js-example-basic-single form-control" name="kd_pasien">
+                                <option>Nama Pasien</option>
+                                <?php
+                                    foreach ($a as $pasien) {
+                                ?>
+                                <option value="<?= $pasien->identitas ?>"><?= $pasien->nama ?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                        <td colspan="2">   </td>
+                        <td colspan="3">
+                            <select class="js-example-basic-single form-control" name="kd_dokter">
+                                <option>Nama Dokter</option>
+                                <?php
+                                    $row = $this->ion_auth->users('Dokter')->result();
+                                    foreach ($row as $data) {
+                                ?>
+                                <option value="<?= $data->email ?>"><?= $data->first_name ?> <?= $data->last_name ?></option>
+                                <?php
+                                    }
+                                ?>  
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right">Nama Produk</td>
+                        <td>
+                            <select class="js-example-basic-single form-control" name="id_obat" id="id_obat" onchange="get_harga();">
+                                <option>== PILIH ==</option>
+                                <?php 
+                                    foreach ($obat as $row) {
+                                ?>
+                                <option value="<?= $row->id_obat ?>"><?= $row->nama ?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right">Jumlah Produk</td>
+                        <td><input type="text" onkeyup="hitung2();" name="qty_produk" id="qty_produk" class="form-control b2" value="0"></td>
+                    </tr>
+                	<tr>
+                        <td colspan="2" align="right">Harga Produk</td>
+                        <td><div id="harga">
+                            <input type="text" onkeyup="hitung2();" name="harga" id="harga" class="form-control" value="">
+
+                        </div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="right">Total Harga Produk</td>
+                        <td><input type="text" name="totalharga_produk" id="totalharga_produk" class="form-control c2" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right"><input type="submit" name="tambah" value="Tambah" class="btn btn-primary"></td>
+                    </tr>
+                    <?php echo form_close(); ?>
+                    <tr>
+                        <td colspan="6">
+                            <table class="table" align="center">
+                                <tr>
+                                    <td align="center">-DATA MASIH KOSONG-</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
                 </table>
-                </form>
 
         </div><!-- /.box-body -->
               </div><!-- /.box -->

@@ -16,7 +16,7 @@
         </style>
     </head>
     <body>
-        <h2>K_rmedis List</h2>
+        <h2>Rekam Medis List</h2>
         <table class="word-table" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
@@ -28,6 +28,7 @@
 		<th>Waktu</th>
 		<th>Keterangan</th>
 		<th>Id Pengguna</th>
+		<th>Id Dokter</th>
 		
             </tr><?php
             foreach ($k_rmedis_data as $k_rmedis)
@@ -42,7 +43,8 @@
 		      <td><?php echo $k_rmedis->resep ?></td>
 		      <td><?php echo $k_rmedis->waktu ?></td>
 		      <td><?php echo $k_rmedis->keterangan ?></td>
-		      <td><?php echo $k_rmedis->id_pengguna ?></td>	
+		      <td><?php echo $k_rmedis->id_pengguna ?></td>
+		      <td><?php echo $k_rmedis->id_dokter ?></td>	
                 </tr>
                 <?php
             }

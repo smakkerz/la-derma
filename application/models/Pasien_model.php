@@ -14,11 +14,30 @@ class Pasien_model extends CI_Model
     {
         parent::__construct();
     }
+    function idpasien()
+    {
+    	$cek = $this->db->query("SELECT MAX(id_pasien) as id, COUNT(id_pasien) as jml FROM pasien")->row();
+        $tahun_now = date('Y');
+        $bulan_now = date('m');
+        $antrian = $cek->jml;
+        $pecah = explode('-', $antrian);
+        
+        // $antri = substr($pecah[1],4,4);
+        $antri = $antrian+1;
+        $antri = sprintf('%05s', $antri);
+        $antri = sprintf('%05s', $antri);
 
+    	if ($cek->jml == 0) {
+    		return $id = "LD-".$tahun_now."0001".$bulan_now;
+    	}else{
+            return $id = "LD-".$tahun_now.$antri.$bulan_now;
+        }
+    }
     // get all
     function get_all()
     {
         $this->db->order_by($this->id, $this->order);
+        $this->db->where('IsDeleted', NULL);
         return $this->db->get($this->table)->result();
     }
 
@@ -74,10 +93,17 @@ class Pasien_model extends CI_Model
     }
 
     // delete data
+    // function delete($id)
+    // {
+    //     $this->db->where($this->id, $id);
+    //     $this->db->delete($this->table);
+    // }
+
     function delete($id)
     {
+        $data = array('IsDeleted' => '1');
         $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
+        $this->db->update($this->table, $data);
     }
 
 }

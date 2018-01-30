@@ -2,20 +2,47 @@
         <section class='content'>
           <div class='row'>
             <div class='col-xs-12'>
-              <div class='box'>
-                <div class='box-header'>
+              <div class=''>
+                <div class=''>
                 
                   <h3 class='box-title'>K_JANJI</h3>
-                      <div class='box box-primary'>
+                      <div class=''>
         <form action="<?php echo $action; ?>" method="post"><table class='table table-bordered'>
-	    <tr><td>Waktu Janji <?php echo form_error('waktu_janji') ?></td>
-            <td><input type="text" class="form-control" name="waktu_janji" id="waktu_janji" placeholder="Waktu Janji" value="<?php echo $waktu_janji; ?>" />
-        </td>
-	    <tr><td>Id Pengguna <?php echo form_error('id_pengguna') ?></td>
-            <td><input type="text" class="form-control" name="id_pengguna" id="id_pengguna" placeholder="Id Pengguna" value="<?php echo $id_pengguna; ?>" />
-        </td>
 	    <tr><td>Id Pasien <?php echo form_error('id_pasien') ?></td>
-            <td><input type="text" class="form-control" name="id_pasien" id="id_pasien" placeholder="Id Pasien" value="<?php echo $id_pasien; ?>" />
+            <td><select class="js-example-basic-single form-control" name="id_pasien">
+                                <option>Nama Pasien</option>
+                                <?php
+                                    foreach ($a as $pasien) {
+                                ?>
+                                <option value="<?= $pasien->identitas ?>"><?= $pasien->nama ?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+        </td>
+	    <tr><td>IdDokter <?php echo form_error('idDokter') ?></td>
+            <td><select class="js-example-basic-single form-control" name="idDokter">
+                                <option>Nama Dokter</option>
+                                <?php
+                                    $row = $this->ion_auth->users('Dokter')->result();
+                                    foreach ($row as $data) {
+                                ?>
+                                <option value="<?= $data->email ?>"><?= $data->first_name ?> <?= $data->last_name ?></option>
+                                <?php
+                                    }
+                                    $user = $this->ion_auth->user()->row();
+    
+                                ?>  
+                            </select>
+        </td>
+	    <tr><td>Tanggal <?php echo form_error('Tanggal') ?></td>
+            <td><input type="date" class="form-control" name="Tanggal" id="Tanggal" placeholder="Tanggal" value="<?php echo $Tanggal; ?>" required="" />
+        </td>
+	    <tr><td>Jam <?php echo form_error('Jam') ?></td>
+            <td><input type="time" class="form-control" name="Jam" id="Jam" placeholder="Jam" value="<?php echo $Jam; ?>" required="" />
+        </td>
+	    <tr><td>IdPengguna <?php echo form_error('IdPengguna') ?></td>
+            <td><input type="text" class="form-control" name="IdPengguna" id="IdPengguna" placeholder="IdPengguna" value="<?php echo $user->email; ?>" readonly />
         </td>
 	    <input type="hidden" name="id_kj" value="<?php echo $id_kj; ?>" /> 
 	    <tr><td colspan='2'><button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
